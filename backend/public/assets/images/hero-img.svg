@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="400px" viewBox="0 0 600 400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="AURA-Hero" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Background Circle -->
+        <circle id="Background-Circle" fill="#F5F8FB" cx="300" cy="200" r="190"></circle>
+        
+        <!-- Center Device -->
+        <rect id="Phone-Body" fill="#1E2432" x="270" y="80" width="60" height="240" rx="10"></rect>
+        <rect id="Phone-Screen" fill="#FFFFFF" x="275" y="90" width="50" height="210" rx="5"></rect>
+        <circle id="Phone-Button" fill="#F5F8FB" cx="300" cy="310" r="10"></circle>
+        
+        <!-- AURA App UI Elements -->
+        <rect id="Header" fill="#3461FF" x="275" y="90" width="50" height="30" rx="5"></rect>
+        <rect id="Card-1" fill="#F5F8FB" x="280" y="130" width="40" height="30" rx="5"></rect>
+        <rect id="Card-2" fill="#F5F8FB" x="280" y="170" width="40" height="30" rx="5"></rect>
+        <rect id="Card-3" fill="#F5F8FB" x="280" y="210" width="40" height="30" rx="5"></rect>
+        <rect id="Bottom-Nav" fill="#F5F8FB" x="275" y="280" width="50" height="20" rx="5"></rect>
+        
+        <!-- Connection Lines -->
+        <path d="M300,200 L200,130" id="Line-1" stroke="#3461FF" stroke-width="2" stroke-dasharray="5,5"></path>
+        <path d="M300,200 L150,200" id="Line-2" stroke="#3461FF" stroke-width="2" stroke-dasharray="5,5"></path>
+        <path d="M300,200 L200,270" id="Line-3" stroke="#3461FF" stroke-width="2" stroke-dasharray="5,5"></path>
+        <path d="M300,200 L400,130" id="Line-4" stroke="#3461FF" stroke-width="2" stroke-dasharray="5,5"></path>
+        <path d="M300,200 L450,200" id="Line-5" stroke="#3461FF" stroke-width="2" stroke-dasharray="5,5"></path>
+        <path d="M300,200 L400,270" id="Line-6" stroke="#3461FF" stroke-width="2" stroke-dasharray="5,5"></path>
+        
+        <!-- Feature Circles -->
+        <circle id="Feature-1" fill="#FFFFFF" stroke="#3461FF" stroke-width="2" cx="200" cy="130" r="30"></circle>
+        <circle id="Feature-2" fill="#FFFFFF" stroke="#3461FF" stroke-width="2" cx="150" cy="200" r="30"></circle>
+        <circle id="Feature-3" fill="#FFFFFF" stroke="#3461FF" stroke-width="2" cx="200" cy="270" r="30"></circle>
+        <circle id="Feature-4" fill="#FFFFFF" stroke="#3461FF" stroke-width="2" cx="400" cy="130" r="30"></circle>
+        <circle id="Feature-5" fill="#FFFFFF" stroke="#3461FF" stroke-width="2" cx="450" cy="200" r="30"></circle>
+        <circle id="Feature-6" fill="#FFFFFF" stroke="#3461FF" stroke-width="2" cx="400" cy="270" r="30"></circle>
+        
+        <!-- Feature Icons -->
+        <path d="M190,130 L210,130 M200,120 L200,140" id="Wallet-Icon" stroke="#3461FF" stroke-width="3" stroke-linecap="round"></path>
+        <circle id="Social-Icon" stroke="#3461FF" stroke-width="3" cx="150" cy="200" r="10"></circle>
+        <path d="M190,270 L210,270 M200,260 L200,280" id="Shop-Icon" stroke="#3461FF" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M390,130 L410,130 M400,120 L400,140" id="Chat-Icon" stroke="#3461FF" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M440,200 L460,200 M450,190 L450,210" id="Delivery-Icon" stroke="#3461FF" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M390,270 L410,270 M400,260 L400,280" id="Agent-Icon" stroke="#3461FF" stroke-width="3" stroke-linecap="round"></path>
+        
+        <!-- AURA Center Text -->
+        <circle id="Center-Icon" fill="#3461FF" cx="300" cy="200" r="20"></circle>
+        
+        <!-- Decorative Elements -->
+        <circle id="Dot-1" fill="#F9A826" cx="150" cy="100" r="5"></circle>
+        <circle id="Dot-2" fill="#F9A826" cx="450" cy="100" r="5"></circle>
+        <circle id="Dot-3" fill="#F9A826" cx="150" cy="300" r="5"></circle>
+        <circle id="Dot-4" fill="#F9A826" cx="450" cy="300" r="5"></circle>
+        
+        <path d="M120,150 Q150,130 180,150" id="Wave-1" stroke="#F9A826" stroke-width="2" fill="none"></path>
+        <path d="M420,150 Q450,130 480,150" id="Wave-2" stroke="#F9A826" stroke-width="2" fill="none"></path>
+        <path d="M120,250 Q150,270 180,250" id="Wave-3" stroke="#F9A826" stroke-width="2" fill="none"></path>
+        <path d="M420,250 Q450,270 480,250" id="Wave-4" stroke="#F9A826" stroke-width="2" fill="none"></path>
+    </g>
+</svg>

@@ -1,0 +1,176 @@
+AURA/
+├── backend/                     # المشروع الخلفي باستخدام Laravel
+│   ├── app/
+│   │   ├── Console/             # أوامر وعمليات سطر الأوامر
+│   │   │   ├── Commands/        # الأوامر المخصصة
+│   │   │   │   ├── SyncOfflineTransactions.php
+│   │   │   │   ├── GenerateReports.php
+│   │   │   │   └── CleanupOldData.php
+│   │   │   └── Kernel.php       # معالج الأوامر الرئيسي
+│   │   ├── Exceptions/          # معالجة الاستثناءات
+│   │   │   ├── Handler.php      # المعالج الرئيسي للأخطاء
+│   │   │   ├── AuthenticationException.php
+│   │   │   └── ValidationException.php
+│   │   ├── Http/                # طبقة HTTP
+│   │   │   ├── Controllers/     # المتحكمات
+│   │   │   │   ├── Admin/       # متحكمات الإدارة
+│   │   │   │   │   ├── DashboardController.php
+│   │   │   │   │   ├── UserManagementController.php
+│   │   │   │   │   ├── TransactionController.php
+│   │   │   │   │   └── ReportController.php
+│   │   │   │   ├── Agent/       # متحكمات الوكلاء
+│   │   │   │   │   ├── BranchController.php
+│   │   │   │   │   ├── WalletController.php
+│   │   │   │   │   └── TransactionController.php
+│   │   │   │   ├── Merchant/    # متحكمات التجار
+│   │   │   │   │   ├── StoreController.php
+│   │   │   │   │   ├── ProductController.php
+│   │   │   │   │   └── OrderController.php
+│   │   │   │   ├── User/        # متحكمات المستخدمين
+│   │   │   │   │   ├── ProfileController.php
+│   │   │   │   │   ├── WalletController.php
+│   │   │   │   │   └── OrderController.php
+│   │   │   │   └── Api/         # متحكمات APIs
+│   │   │   │       ├── AuthController.php
+│   │   │   │       ├── WalletController.php
+│   │   │   │       └── MessageController.php
+│   │   │   ├── Middleware/      # الوسطاء
+│   │   │   │   ├── AuthMiddleware.php
+│   │   │   │   ├── RoleMiddleware.php
+│   │   │   │   └── LoggingMiddleware.php
+│   │   │   └── Requests/        # طلبات التحقق
+│   │   │       ├── UserRegistrationRequest.php
+│   │   │       └── TransactionRequest.php
+│   │   ├── Models/              # النماذج
+│   │   │   ├── User.php
+│   │   │   ├── Merchant.php
+│   │   │   ├── Agent.php
+│   │   │   ├── Admin.php
+│   │   │   ├── Wallet.php
+│   │   │   ├── Transaction.php
+│   │   │   ├── Currency.php
+│   │   │   ├── Product.php
+│   │   │   ├── Store.php
+│   │   │   └── Order.php
+│   │   ├── Modules/             # الوحدات المتخصصة
+│   │   │   ├── AI/
+│   │   │   ├── Commerce/
+│   │   │   ├── Delivery/
+│   │   │   ├── Messaging/
+│   │   │   ├── Payment/
+│   │   │   ├── Social/
+│   │   │   └── Wallet/
+│   │   ├── Providers/           # مزودي الخدمة
+│   │   │   ├── AuthServiceProvider.php
+│   │   │   └── PaymentServiceProvider.php
+│   │   ├── Services/            # الخدمات
+│   │   │   ├── AI/
+│   │   │   ├── Auth/
+│   │   │   ├── Messaging/
+│   │   │   ├── Transaction/
+│   │   │   └── Notification/
+│   │   └── Utils/               # الأدوات المساعدة
+│   │       ├── Encryption.php
+│   │       └── Helper.php
+│   ├── config/                  # ملفات التكوين
+│   │   ├── app.php
+│   │   ├── database.php
+│   │   ├── services.php
+│   │   └── security.php
+│   ├── database/                # قاعدة البيانات
+│   │   ├── migrations/          # ترحيلات قاعدة البيانات
+│   │   ├── seeders/             # البذور الأولية
+│   │   └── factories/           # مصانع البيانات
+│   ├── routes/                  # مسارات التطبيق
+│   │   ├── web.php
+│   │   ├── api.php
+│   │   ├── admin.php
+│   │   ├── merchant.php
+│   │   └── agent.php
+│   ├── storage/                 # التخزين
+│   │   ├── logs/
+│   │   ├── framework/
+│   │   └── uploads/
+│   ├── tests/                   # الاختبارات
+│   │   ├── Unit/
+│   │   ├── Feature/
+│   │   └── Integration/
+│   ├── .env                     # إعدادات البيئة
+│   ├── composer.json            # تبعيات Composer
+│   └── artisan                  # أداة سطر الأوامر
+│
+├── frontend/                    # المشروع الأمامي
+│   ├── public/                  # الملفات العامة
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   └── manifest.json
+│   ├── src/                     # المصادر
+│   │   ├── assets/              # الأصول
+│   │   │   ├── styles/          # أنماط CSS
+│   │   │   ├── fonts/           # الخطوط
+│   │   │   └── images/          # الصور
+│   │   ├── components/          # المكونات
+│   │   │   ├── common/          # مكونات مشتركة
+│   │   │   ├── wallet/          # مكونات المحفظة
+│   │   │   ├── messaging/       # مكونات المراسلة
+│   │   │   ├── ecommerce/       # مكونات التجارة
+│   │   │   └── auth/            # مكونات المصادقة
+│   │   ├── pages/               # الصفحات
+│   │   │   ├── Dashboard.vue
+│   │   │   ├── Wallet.vue
+│   │   │   ├── Profile.vue
+│   │   │   ├── Messaging.vue
+│   │   │   └── Shop.vue
+│   │   ├── store/               # إدارة الحالة
+│   │   │   ├── index.js
+│   │   │   ├── modules/
+│   │   │   │   ├── auth.js
+│   │   │   │   ├── wallet.js
+│   │   │   │   └── messaging.js
+│   │   ├── services/            # الخدمات
+│   │   │   ├── api.js
+│   │   │   ├── auth.js
+│   │   │   └── wallet.js
+│   │   ├── utils/               # الأدوات
+│   │   │   ├── helpers.js
+│   │   │   └── validators.js
+│   │   ├── App.vue              # المكون الرئيسي
+│   │   └── main.js              # نقطة الدخول
+│   ├── package.json             # تبعيات npm
+│   └── vue.config.js            # تكوين Vue
+│
+├── mobile/                      # التطبيق المحمول
+│   ├── android/                 # مشروع Android
+│   │   ├── app/
+│   │   └── gradle/
+│   ├── ios/                     # مشروع iOS
+│   │   ├── Aura/
+│   │   └── Podfile
+│   └── src/                     # المصادر المشتركة
+│       ├── components/
+│       ├── screens/
+│       └── navigation/
+│
+├── docs/                        # التوثيق
+│   ├── api/                     # توثيق API
+│   ├── user-guide/              # دليل المستخدم
+│   └── technical-documentation/ # التوثيق التقني
+│
+├── scripts/                     # نصوص مساعدة
+│   ├── deployment/              # نصوص النشر
+│   ├── database/                # نصوص قاعدة البيانات
+│   └── monitoring/              # نصوص المراقبة
+│
+├── tests/                       # الاختبارات الشاملة
+│   ├── integration/
+│   ├── performance/
+│   └── security/
+│
+├── docker/                      # تكوين Docker
+│   ├── backend/
+│   ├── frontend/
+│   └── database/
+│
+├── .gitignore
+├── README.md
+└── LICENSE

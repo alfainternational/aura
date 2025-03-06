@@ -1,0 +1,397 @@
+/**
+ * AURA Theme System - CSS Variables for Theme Support
+ */
+
+/* Default Theme Variables - Light Mode */
+:root {
+    /* Color Palette - Default Theme (Light) */
+    --primary-color: #6c63ff;
+    --primary-color-dark: #5a52d9;
+    --primary-color-light: #8d86ff;
+    
+    --secondary-color: #5D6A92;
+    --secondary-color-dark: #4a5475;
+    --secondary-color-light: #717fa3;
+    
+    --success-color: #2E9B4F;
+    --success-color-dark: #227a3d;
+    --success-color-light: #3cb563;
+    
+    --info-color: #2E9BAB;
+    --info-color-dark: #247a87;
+    --info-color-light: #3cadbf;
+    
+    --warning-color: #F9A826;
+    --warning-color-dark: #e69312;
+    --warning-color-light: #fab64e;
+    
+    --danger-color: #E53F3C;
+    --danger-color-dark: #c52a27;
+    --danger-color-light: #e85f5d;
+    
+    /* Background Colors */
+    --body-bg: #ffffff;
+    --surface-bg: #f8f9fa;
+    --border-color: #dee2e6;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #6c757d;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transition for theme switching */
+    --theme-transition: all 0.3s ease-in-out;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    /* Color Palette - Dark Theme */
+    --primary-color: #8571FF;
+    --primary-color-dark: #6e5ad9;
+    --primary-color-light: #9c8aff;
+    
+    --secondary-color: #7B8BB2;
+    --secondary-color-dark: #5D6A92;
+    --secondary-color-light: #99A7C7;
+    
+    --success-color: #3CB563;
+    --success-color-dark: #2E9B4F;
+    --success-color-light: #4FD177;
+    
+    --info-color: #3CADBF;
+    --info-color-dark: #2E9BAB;
+    --info-color-light: #4FC3D6;
+    
+    --warning-color: #FAB64E;
+    --warning-color-dark: #F9A826;
+    --warning-color-light: #FBC578;
+    
+    --danger-color: #E85F5D;
+    --danger-color-dark: #E53F3C;
+    --danger-color-light: #EC7F7D;
+    
+    /* Background Colors */
+    --body-bg: #121212;
+    --surface-bg: #1e1e1e;
+    --border-color: #2d2d2d;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --text-muted: #adb5bd;
+    
+    /* Shadows for dark theme */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Blue Theme - Light */
+[data-color-theme="blue"] {
+    --primary-color: #1565c0;
+    --primary-color-dark: #0d47a1;
+    --primary-color-light: #1976d2;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Blue Theme - Dark */
+[data-theme="dark"][data-color-theme="blue"] {
+    --primary-color: #42a5f5;
+    --primary-color-dark: #2e88f0;
+    --primary-color-light: #64b5f6;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Green Theme - Light */
+[data-color-theme="green"] {
+    --primary-color: #2e7d32;
+    --primary-color-dark: #1b5e20;
+    --primary-color-light: #388e3c;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Green Theme - Dark */
+[data-theme="dark"][data-color-theme="green"] {
+    --primary-color: #66bb6a;
+    --primary-color-dark: #4caf50;
+    --primary-color-light: #81c784;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Purple Theme - Light */
+[data-color-theme="purple"] {
+    --primary-color: #6a1b9a;
+    --primary-color-dark: #4a148c;
+    --primary-color-light: #7b1fa2;
+    
+    --secondary-color: #5c6bc0;
+    --secondary-color-dark: #3949ab;
+    --secondary-color-light: #7986cb;
+}
+
+/* Purple Theme - Dark */
+[data-theme="dark"][data-color-theme="purple"] {
+    --primary-color: #ab47bc;
+    --primary-color-dark: #8e24aa;
+    --primary-color-light: #ce93d8;
+    
+    --secondary-color: #5c6bc0;
+    --secondary-color-dark: #3949ab;
+    --secondary-color-light: #7986cb;
+}
+
+/* Orange Theme - Light */
+[data-color-theme="orange"] {
+    --primary-color: #e65100;
+    --primary-color-dark: #bf360c;
+    --primary-color-light: #ef6c00;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Orange Theme - Dark */
+[data-theme="dark"][data-color-theme="orange"] {
+    --primary-color: #ff9800;
+    --primary-color-dark: #e68a00;
+    --primary-color-light: #ffa726;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Red Theme - Light */
+[data-color-theme="red"] {
+    --primary-color: #c62828;
+    --primary-color-dark: #b71c1c;
+    --primary-color-light: #d32f2f;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Red Theme - Dark */
+[data-theme="dark"][data-color-theme="red"] {
+    --primary-color: #ef5350;
+    --primary-color-dark: #e57373;
+    --primary-color-light: #f44336;
+    
+    --secondary-color: #546e7a;
+    --secondary-color-dark: #37474f;
+    --secondary-color-light: #78909c;
+}
+
+/* Apply Theme Variables to Elements */
+body {
+    background-color: var(--body-bg);
+    color: var(--text-primary);
+    transition: var(--theme-transition);
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.bg-success {
+    background-color: var(--success-color) !important;
+}
+
+.bg-info {
+    background-color: var(--info-color) !important;
+}
+
+.bg-warning {
+    background-color: var(--warning-color) !important;
+}
+
+.bg-danger {
+    background-color: var(--danger-color) !important;
+}
+
+.bg-light {
+    background-color: var(--surface-bg) !important;
+}
+
+.bg-dark {
+    background-color: var(--text-primary) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.border {
+    border-color: var(--border-color) !important;
+}
+
+.card {
+    background-color: var(--surface-bg);
+    border-color: var(--border-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Site Header Styling */
+.site-header {
+    background-color: var(--surface-bg);
+}
+
+.header-top {
+    background-color: var(--surface-bg);
+}
+
+[data-theme="dark"] .header-top {
+    background-color: var(--surface-bg);
+}
+
+/* Footer Styling */
+.site-footer {
+    background-color: var(--surface-bg);
+}
+
+.footer-bottom {
+    background-color: var(--border-color);
+}
+
+/* Navbar Styling */
+.navbar-light {
+    background-color: var(--surface-bg) !important;
+}
+
+[data-theme="dark"] .navbar-light {
+    background-color: var(--surface-bg) !important;
+}
+
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link {
+    color: var(--text-primary);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
+}
+
+.sidebar-menu-link {
+    color: var(--text-primary);
+}
+
+.sidebar-menu-item.active .sidebar-menu-link {
+    background-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Input Styling */
+.form-control {
+    background-color: var(--surface-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
+}
+
+/* Dropdown Styling */
+.dropdown-menu {
+    background-color: var(--surface-bg);
+    border-color: var(--border-color);
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: var(--primary-color);
+}
+
+/* Modal Styling */
+.modal-content {
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
+}
+
+/* Accordion Styling */
+.accordion-item {
+    background-color: var(--surface-bg);
+    border-color: var(--border-color);
+}
+
+.accordion-button {
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Table Styling */
+.table {
+    color: var(--text-primary);
+}
+
+/* Link Styling */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-color-dark);
+}
+
+/* Transitions for smooth theme switching */
+*, *::before, *::after {
+    transition: var(--theme-transition);
+}

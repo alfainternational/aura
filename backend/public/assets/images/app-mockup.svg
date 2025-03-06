@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="App-Mockup" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Background -->
+        <circle id="Background-Circle" fill="#F5F8FB" cx="250" cy="250" r="150"></circle>
+        
+        <!-- Device Frame -->
+        <rect id="Phone-Frame" fill="#1E2432" x="175" y="65" width="150" height="300" rx="15"></rect>
+        <rect id="Phone-Screen" fill="#FFFFFF" x="180" y="75" width="140" height="280" rx="5"></rect>
+        <circle id="Home-Button" fill="#F5F8FB" cx="250" cy="360" r="12"></circle>
+        <rect id="Notch" fill="#1E2432" x="215" y="75" width="70" height="15" rx="5"></rect>
+        
+        <!-- Screen Content -->
+        <rect id="Header" fill="#3461FF" x="180" y="90" width="140" height="40" rx="5"></rect>
+        <rect id="Logo-Circle" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" cx="200" cy="110" width="20" height="20" rx="10"></rect>
+        <text id="AURA-Text" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" x="225" y="115">AURA</text>
+        
+        <!-- App UI Elements -->
+        <rect id="Card-1" fill="#F5F8FB" x="190" y="140" width="120" height="50" rx="10"></rect>
+        <rect id="Card-1-Icon" fill="#3461FF" x="200" y="155" width="20" height="20" rx="5"></rect>
+        <line x1="230" y1="150" x2="300" y2="150" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="230" y1="165" x2="280" y2="165" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="230" y1="180" x2="270" y2="180" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        
+        <rect id="Card-2" fill="#F5F8FB" x="190" y="200" width="120" height="50" rx="10"></rect>
+        <rect id="Card-2-Icon" fill="#F9A826" x="200" y="215" width="20" height="20" rx="5"></rect>
+        <line x1="230" y1="210" x2="300" y2="210" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="230" y1="225" x2="280" y2="225" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="230" y1="240" x2="270" y2="240" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        
+        <rect id="Card-3" fill="#F5F8FB" x="190" y="260" width="120" height="50" rx="10"></rect>
+        <rect id="Card-3-Icon" fill="#2E9B4F" x="200" y="275" width="20" height="20" rx="5"></rect>
+        <line x1="230" y1="270" x2="300" y2="270" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="230" y1="285" x2="280" y2="285" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="230" y1="300" x2="270" y2="300" stroke="#1E2432" stroke-width="2" stroke-linecap="round"></line>
+        
+        <rect id="Bottom-Nav" fill="#FFFFFF" stroke="#F5F8FB" stroke-width="1" x="180" y="320" width="140" height="35" rx="5"></rect>
+        <circle id="Nav-1" fill="#3461FF" cx="205" cy="337.5" r="7.5"></circle>
+        <circle id="Nav-2" fill="#8896AB" cx="250" cy="337.5" r="7.5"></circle>
+        <circle id="Nav-3" fill="#8896AB" cx="295" cy="337.5" r="7.5"></circle>
+        
+        <!-- Decorative Elements -->
+        <circle id="Floating-Circle-1" fill="#3461FF" fill-opacity="0.1" cx="150" cy="150" r="25"></circle>
+        <circle id="Floating-Circle-2" fill="#F9A826" fill-opacity="0.1" cx="350" cy="150" r="20"></circle>
+        <circle id="Floating-Circle-3" fill="#3461FF" fill-opacity="0.1" cx="150" cy="350" r="20"></circle>
+        <circle id="Floating-Circle-4" fill="#F9A826" fill-opacity="0.1" cx="350" cy="350" r="25"></circle>
+        
+        <!-- Device Reflection -->
+        <rect id="Screen-Reflection" fill="#FFFFFF" fill-opacity="0.1" x="180" y="75" width="140" height="140" rx="5"></rect>
+        
+        <!-- Device Shadow -->
+        <ellipse id="Shadow" fill="#1E2432" fill-opacity="0.1" cx="250" cy="390" rx="75" ry="10"></ellipse>
+    </g>
+</svg>

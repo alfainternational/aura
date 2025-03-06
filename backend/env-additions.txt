@@ -1,0 +1,9 @@
+# PayPal API Configuration
+PAYPAL_MODE=sandbox
+PAYPAL_CLIENT_ID=your_paypal_client_id
+PAYPAL_SECRET=your_paypal_secret
+PAYPAL_SANDBOX_CLIENT_ID=your_sandbox_client_id
+PAYPAL_SANDBOX_CLIENT_SECRET=your_sandbox_client_secret
+
+# Telegram Bot Configuration
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token

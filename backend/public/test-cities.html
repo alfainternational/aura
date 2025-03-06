@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار تحميل المدن</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            direction: rtl;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .debug-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #debug-output {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>اختبار تحميل المدن</h1>
+        
+        <div class="form-group">
+            <label for="country_id">اختر الدولة:</label>
+            <select id="country_id">
+                <option value="">-- اختر الدولة --</option>
+                <option value="1">السودان (249+)</option>
+                <option value="2">مصر (20+)</option>
+                <option value="3">السعودية (966+)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="city_id">اختر المدينة:</label>
+            <select id="city_id">
+                <option value="">-- اختر المدينة --</option>
+            </select>
+        </div>
+        
+        <div class="debug-info">
+            <h3>معلومات التصحيح:</h3>
+            <div id="debug-output"></div>
+        </div>
+    </div>
+    
+    <script>
+        // وظيفة لإضافة رسائل التصحيح
+        function log(message) {
+            const output = document.getElementById('debug-output');
+            const timestamp = new Date().toLocaleTimeString();
+            output.innerHTML += `[${timestamp}] ${message}\n`;
+            console.log(message);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelect = document.getElementById('country_id');
+            const citySelect = document.getElementById('city_id');
+            
+            function loadCities() {
+                const countryId = countrySelect.value;
+                
+                if (!countryId) {
+                    citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
+                    return;
+                }
+                
+                log(`تحميل المدن للدولة رقم: ${countryId}`);
+                
+                // تعطيل حقل المدينة أثناء التحميل
+                citySelect.disabled = true;
+                citySelect.innerHTML = '<option value="">جاري تحميل المدن...</option>';
+                
+                // إضافة طابع زمني لتجنب التخزين المؤقت
+                const timestamp = new Date().getTime();
+                
+                // المسار الأول - مسار مطلق
+                const url1 = `http://localhost/aura/backend/public/cities-by-country?country_id=${countryId}&_=${timestamp}`;
+                log(`محاولة استخدام المسار: ${url1}`);
+                
+                fetch(url1)
+                    .then(response => {
+                        log(`حالة الاستجابة: ${response.status} ${response.statusText}`);
+                        if (!response.ok) {
+                            throw new Error(`خطأ في الاستجابة: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        log(`تم استلام البيانات: ${JSON.stringify(data).substring(0, 100)}...`);
+                        processCitiesData(data);
+                    })
+                    .catch(error => {
+                        log(`خطأ في المسار الأول: ${error.message}`);
+                        
+                        // المسار البديل
+                        const url2 = `/cities-by-country?country_id=${countryId}&_=${timestamp}`;
+                        log(`محاولة استخدام المسار البديل: ${url2}`);
+                        
+                        fetch(url2)
+                            .then(response => {
+                                log(`حالة الاستجابة البديلة: ${response.status} ${response.statusText}`);
+                                if (!response.ok) {
+                                    throw new Error(`خطأ في الاستجابة البديلة: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                log(`تم استلام البيانات من المسار البديل: ${JSON.stringify(data).substring(0, 100)}...`);
+                                processCitiesData(data);
+                            })
+                            .catch(altError => {
+                                log(`خطأ في المسار البديل: ${altError.message}`);
+                                citySelect.innerHTML = '<option value="">تعذر تحميل المدن</option>';
+                                citySelect.disabled = false;
+                            });
+                    });
+            }
+            
+            function processCitiesData(data) {
+                citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
+                
+                if (Array.isArray(data) && data.length > 0) {
+                    log(`تم العثور على ${data.length} مدينة`);
+                    
+                    data.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city.id;
+                        option.textContent = city.name;
+                        citySelect.appendChild(option);
+                    });
+                    
+                    citySelect.disabled = false;
+                } else {
+                    log('لا توجد مدن في البيانات المستلمة');
+                    const option = document.createElement('option');
+                    option.value = "";
+                    option.textContent = "لا توجد مدن متاحة";
+                    citySelect.appendChild(option);
+                    citySelect.disabled = true;
+                }
+            }
+            
+            // إضافة مستمع حدث لتغيير الدولة
+            countrySelect.addEventListener('change', loadCities);
+            
+            log('تم تحميل الصفحة بنجاح');
+        });
+    </script>
+</body>
+</html>

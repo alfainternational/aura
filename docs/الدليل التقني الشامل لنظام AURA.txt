@@ -1,0 +1,5568 @@
+الدليل التقني الشامل لنظام AURA
+الإصدار 1.0
+ تاريخ آخر تحديث: فبراير 2025
+جدول المحتويات
+مقدمة
+نظرة عامة على النظام
+الرؤية والأهداف
+المصطلحات الأساسية
+البنية المعمارية
+نظرة شاملة
+معمارية الطبقات
+معمارية الخدمات المصغرة
+مخطط التفاعل بين المكونات
+البنية التقنية
+التقنيات المستخدمة
+إطار العمل Laravel
+نظام قواعد البيانات MySQL
+تقنيات الواجهة الأمامية
+تقنيات الاتصال الفوري
+هيكل قاعدة البيانات
+المخطط العام لقاعدة البيانات
+جداول المستخدمين والصلاحيات
+جداول المحفظة والمعاملات
+جداول المراسلة والاتصال
+جداول التجارة الإلكترونية
+العلاقات بين الجداول
+هيكل التطبيق
+بنية المجلدات والملفات
+مسارات التطبيق (Routes)
+المتحكمات (Controllers)
+النماذج (Models)
+العروض (Views)
+الخدمات (Services)
+الوظائف المجدولة (Jobs)
+وحدة المستخدمين والصلاحيات
+أنواع المستخدمين
+نظام التسجيل والمصادقة
+نظام الصلاحيات والأدوار
+التحقق من الهوية (KYC)
+نظام OTP متعدد القنوات
+وحدة المحفظة الإلكترونية
+بنية المحفظة
+المعاملات وأنواعها
+آلية العمل أثناء الاتصال وعدمه
+المزامنة بين الوضعين
+واجهات برمجة التطبيقات للمحفظة
+وحدة المراسلة والاتصالات
+بنية نظام المراسلة
+بروتوكولات الاتصال
+تخزين ومعالجة الرسائل
+نظام الاتصالات الصوتية والمرئية
+واجهات برمجة التطبيقات للمراسلة
+وحدة التجارة الإلكترونية
+بنية متاجر التجار
+نظام إدارة المنتجات
+نظام الطلب والدفع
+التكامل مع المحفظة
+واجهات برمجة التطبيقات للتجارة
+وحدة الذكاء الاصطناعي
+بنية نظام الذكاء الاصطناعي
+خدمات الدعم والمساعدة
+أنظمة التوصية الذكية
+تكامل واجهات API الخارجية
+تحليلات البيانات والتنبؤات
+وحدة التوصيل واللوجستيات
+بنية نظام التوصيل
+إدارة السائقين ومزودي الخدمة
+تتبع الطلبات وتحديثات الحالة
+خوارزميات تحديد المسارات
+واجهات برمجة التطبيقات للتوصيل
+الواجهة الأمامية
+هيكل واجهة المستخدم
+مكونات الواجهة الرئيسية
+تجربة المستخدم وسهولة الوصول
+التوافق عبر الأجهزة المختلفة
+أنماط التصميم ومكتبات UI
+الأمان والخصوصية
+استراتيجية الأمان الشاملة
+تشفير البيانات وحمايتها
+أمان المعاملات
+اكتشاف الاحتيال والمنع
+الامتثال للوائح والقوانين
+الاختبار والجودة
+استراتيجية الاختبار
+اختبارات الوحدة
+اختبارات التكامل
+اختبارات الأداء والتحمل
+اختبارات الأمان
+ضمان الجودة المستمر
+النشر والتحديث
+بيئة التطوير والاختبار والإنتاج
+استراتيجية النشر المتدرجة
+إدارة الإصدارات والترقيات
+آلية النسخ الاحتياطي والاستعادة
+مراقبة النظام والتنبيهات
+التوسع وقابلية التكيف
+استراتيجية التوسع الأفقي والعمودي
+إدارة الأحمال المتزايدة
+التخصيص حسب الأسواق والمناطق
+تكامل مع الأنظمة الخارجية
+دليل التطوير للمبرمجين
+إعداد بيئة التطوير
+معايير كتابة الكود
+عمليات Git وإدارة المشروع
+توثيق الكود والتعليقات
+حل المشكلات الشائعة
+المراجع والموارد
+القواميس والمصطلحات
+المكتبات والحزم المستخدمة
+الموارد التعليمية
+الأدوات المساعدة
+1. مقدمة
+1.1 نظرة عامة على النظام
+AURA هو نظام بيئي رقمي متكامل يجمع بين المدفوعات الإلكترونية، منصة التواصل الاجتماعي، التجارة الإلكترونية، والخدمات اللوجستية في منصة واحدة. الهدف الرئيسي من تطوير AURA هو إنشاء بيئة متكاملة تتيح للمستخدمين إدارة جميع احتياجاتهم الرقمية والمالية من خلال تطبيق واحد، مع التركيز على سوق السودان كمرحلة أولى.
+النظام مصمم للعمل في بيئات متصلة وغير متصلة بالإنترنت، مما يضمن استمرارية الخدمة حتى في مناطق ضعيفة الاتصال. يعتمد AURA على بنية معمارية حديثة تدعم التوسع والتكيف المستقبلي، مع الاستفادة من أحدث التقنيات في مجال الذكاء الاصطناعي لتحسين تجربة المستخدم وتقديم خدمات مخصصة.
+1.2 الرؤية والأهداف
+الرؤية: أن يصبح AURA المنصة الرائدة التي تجمع العالم الرقمي والمالي في حل واحد متكامل، تلبي احتياجات المستخدمين اليومية وتسهل التفاعلات المجتمعية والتجارية بطريقة آمنة وسلسة.
+الأهداف الاستراتيجية:
+الشمول المالي: توسيع نطاق الوصول إلى الخدمات المالية للجميع، بغض النظر عن موقعهم أو البنية التحتية المتاحة.
+التكامل الرقمي: إنشاء نظام بيئي متكامل يجمع بين التواصل الاجتماعي، التجارة، والمدفوعات في منصة واحدة.
+تمكين الأعمال: توفير أدوات متطورة للتجار والشركات لإنشاء وإدارة أعمالهم الرقمية بفعالية.
+الابتكار المستمر: استخدام أحدث التقنيات والذكاء الاصطناعي لتطوير خدمات جديدة تلبي احتياجات السوق المتغيرة.
+التوسع التدريجي: بناء نظام قابل للتوسع على المستوى المحلي والإقليمي والعالمي.
+1.3 المصطلحات الأساسية
+المصطلح
+التعريف
+محفظة AURA
+الحساب المالي الرقمي للمستخدم الذي يتيح إجراء المعاملات وحفظ الأموال.
+المستخدم العادي
+الفرد الذي يستخدم تطبيق AURA للمعاملات والتواصل والتسوق.
+التاجر
+مالك متجر أو خدمة يبيع منتجاته عبر منصة AURA.
+الوكيل
+شخص أو مؤسسة معتمدة من AURA لتقديم خدمات مثل الإيداع والسحب.
+المشرف
+مسؤول عن إدارة جزء محدد من النظام ضمن صلاحيات معينة.
+المعاملة
+أي عملية تبادل مالي داخل النظام.
+المحفظة غير المتصلة
+آلية تسمح بإجراء المعاملات دون الحاجة لاتصال بالإنترنت.
+المحفظة المتصلة
+نسخة المحفظة التي تعمل عند توفر اتصال بالإنترنت.
+المزامنة
+عملية تحديث بيانات المحفظة غير المتصلة مع النسخة المتصلة.
+KYC
+اختصار لـ "اعرف عميلك" - عملية التحقق من هوية المستخدمين.
+OTP
+رمز التحقق لمرة واحدة المستخدم في المصادقة.
+API
+واجهة برمجة التطبيقات التي تسمح بالتفاعل مع خدمات النظام.
+QR Code
+رمز الاستجابة السريعة المستخدم لتسهيل المدفوعات والتفاعلات.
+التطبيقات المصغرة
+تطبيقات صغيرة تعمل داخل بيئة AURA وتقدم وظائف محددة.
+
+2. البنية المعمارية
+2.1 نظرة شاملة
+تعتمد بنية AURA على نموذج معماري حديث يجمع بين معمارية الطبقات ومعمارية الخدمات المصغرة (Microservices). هذا النموذج المختلط يسمح بمرونة عالية في التطوير والنشر، ويدعم التوسع السلس مع نمو النظام.
+البنية مصممة لدعم التشغيل في حالتي الاتصال وعدم الاتصال بالإنترنت، مع آليات مزامنة قوية تضمن تناسق البيانات. كما أنها توفر مستوى عالٍ من التفاعل بين المكونات المختلفة للنظام، مثل المحفظة والمراسلة والتجارة الإلكترونية، مع الحفاظ على انفصال المسؤوليات.
+2.2 معمارية الطبقات
+تتألف بنية AURA من خمس طبقات رئيسية:
+طبقة العرض (Presentation Layer):
+واجهات المستخدم الرسومية (GUI)
+تطبيقات الويب التفاعلية
+تطبيقات الهاتف المحمول
+واجهات برمجة التطبيقات العامة
+طبقة التطبيق (Application Layer):
+المتحكمات (Controllers)
+معالجة الطلبات
+التوجيه والتنسيق بين المكونات
+التحقق من الصلاحيات
+طبقة الخدمات (Service Layer):
+المنطق التجاري
+الخدمات المتخصصة
+التكامل بين الوحدات
+معالجة العمليات
+طبقة الوصول للبيانات (Data Access Layer):
+النماذج (Models)
+مستودعات البيانات (Repositories)
+التعامل مع قواعد البيانات
+ذاكرة التخزين المؤقت (Caching)
+طبقة البنية التحتية (Infrastructure Layer):
+قواعد البيانات
+أنظمة التخزين
+خدمات الاتصال
+خدمات المراقبة والتسجيل
+2.3 معمارية الخدمات المصغرة
+يستخدم AURA نهج الخدمات المصغرة (Microservices) في تصميم النظام، حيث يتم تقسيم الوظائف الرئيسية إلى خدمات مستقلة:
+خدمة المستخدمين والمصادقة (User Service):
+إدارة حسابات المستخدمين
+المصادقة والتفويض
+إدارة الجلسات
+التحقق من الهوية (KYC)
+خدمة المحفظة والمعاملات (Wallet Service):
+إدارة المحافظ الإلكترونية
+معالجة المعاملات المالية
+تتبع الرصيد والتاريخ المالي
+دعم وضع عدم الاتصال
+خدمة المراسلة والاتصالات (Messaging Service):
+المراسلة الفورية
+الاتصالات الصوتية والمرئية
+إدارة المجموعات والقنوات
+معالجة الوسائط
+خدمة الشبكة الاجتماعية (Social Service):
+الملفات الشخصية
+المنشورات والتفاعلات
+التعليقات والإعجابات
+اكتشاف المحتوى
+خدمة التجارة الإلكترونية (E-commerce Service):
+إدارة المتاجر
+كتالوج المنتجات
+عربة التسوق والطلبات
+التقييمات والمراجعات
+خدمة التوصيل واللوجستيات (Delivery Service):
+إدارة عمليات التوصيل
+تتبع الشحنات
+تحديد المسارات
+إدارة السائقين
+خدمة الذكاء الاصطناعي (AI Service):
+التوصيات الذكية
+المساعدة الافتراضية
+تحليل البيانات
+اكتشاف الاحتيال
+خدمة الإشعارات (Notification Service):
+إدارة الإشعارات
+القوالب والتخصيص
+تسليم الإشعارات عبر قنوات متعددة
+جدولة الإشعارات
+خدمة التقارير والتحليلات (Analytics Service):
+تحليل البيانات
+لوحات المعلومات
+التقارير المخصصة
+مؤشرات الأداء الرئيسية
+2.4 مخطط التفاعل بين المكونات
+Copy
+┌────────────────────────────────────────────────────────────────┐
+│                      واجهات المستخدم                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
+│  │  تطبيق ويب   │  │ تطبيق جوال  │  │    واجهات برمجية    │  │
+│  └──────────────┘  └──────────────┘  └──────────────────────┘  │
+└───────────────────────────┬────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────────────┐
+│                          API Gateway                           │
+└───────────────────────────┬────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      خدمات النظام الأساسية                     │
+│  ┌──────────┐ ┌──────────┐ ┌─────────┐ ┌──────────┐ ┌─────────┐ │
+│  │ المحفظة  │ │ المراسلة │ │ التجارة │ │ التوصيل  │ │  الذكاء  │ │
+│  │          │ │          │ │         │ │          │ │ الاصطناعي│ │
+│  └────┬─────┘ └────┬─────┘ └────┬────┘ └────┬─────┘ └────┬────┘ │
+└───────┼───────────┼──────────┼──────────┼──────────────┼────────┘
+         │           │          │          │              │
+         ▼           ▼          ▼          ▼              ▼
+┌────────┴───────────┴──────────┴──────────┴──────────────┴────────┐
+│                         خدمات مشتركة                            │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────┐ │
+│  │ المستخدمين│ │ المصادقة │ │الإشعارات │ │ التقارير │ │ المراقبة │ │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬────┘ │
+└───────┼───────────┼──────────┼──────────┼──────────────┼────────┘
+         │           │          │          │              │
+         ▼           ▼          ▼          ▼              ▼
+┌────────┴───────────┴──────────┴──────────┴──────────────┴────────┐
+│                          قواعد البيانات                          │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────┐ │
+│  │  MySQL   │ │ Redis    │ │ MongoDB  │ │ MinIO    │ │ وحدات   │ │
+│  │ الرئيسية │ │ للت
+
+│ │ MySQL │ │ Redis │ │ MongoDB │ │ MinIO │ │ وحدات │ │ │ │ الرئيسية │ │ للتخزين │ │ للرسائل │ │ للوسائط │ │ تخزين أخرى│ │ │ └──────────┘ └──────────┘ └──────────┘ └──────────┘ └─────────┘ │ └────────────────────────────────────────────────────────────────┘
+Copy
+
+تتفاعل مكونات AURA عبر واجهات برمجة محددة بوضوح، مع تدفق البيانات عبر الطبقات المختلفة. يُستخدم نموذج الناشر/المشترك (Pub/Sub) للاتصال غير المتزامن بين الخدمات، بينما يُستخدم طلب/استجابة (Request/Response) للتفاعلات المتزامنة المباشرة.
+
+## 3. البنية التقنية
+
+### 3.1 التقنيات المستخدمة
+
+يستخدم نظام AURA مجموعة متكاملة من التقنيات الحديثة لتحقيق التوازن بين الأداء والاستقرار والمرونة:
+
+| الفئة | التقنيات |
+|-------|----------|
+| **لغات البرمجة** | PHP (7.4+), JavaScript (ES6+), TypeScript |
+| **تقنيات الخادم الخلفي** | Laravel, Node.js, Redis, RESTful APIs, GraphQL |
+| **تقنيات الواجهة الأمامية** | Vue.js, React Native, Progressive Web App (PWA) |
+| **قواعد البيانات** | MySQL, MongoDB, Redis |
+| **تخزين الوسائط** | MinIO/S3-compatible Storage |
+| **الاتصالات** | WebSockets, Socket.io, WebRTC, XMPP |
+| **المصادقة والأمان** | OAuth 2.0, JWT, HTTPS, Two-Factor Authentication |
+| **التوسع والتوافر** | Docker, Kubernetes, Load Balancing, Horizontal Scaling |
+| **المراقبة والتشخيص** | Prometheus, Grafana, ELK Stack |
+| **الذكاء الاصطناعي** | TensorFlow, PyTorch, Scikit-learn, APIs خارجية |
+
+### 3.2 إطار العمل Laravel
+
+يشكل Laravel العمود الفقري للبنية الخلفية لنظام AURA، ويستفيد النظام من ميزاته المتقدمة:
+
+#### 3.2.1 المكونات الرئيسية المستخدمة
+
+- **Eloquent ORM**: للتعامل مع قواعد البيانات بطريقة سلسة وكفؤة
+- **Laravel Passport**: لإدارة المصادقة وإصدار الرموز المميزة
+- **Laravel Sanctum**: للمصادقة في التطبيقات المحمولة وواجهات API البسيطة
+- **Laravel Echo**: لدعم الاتصالات في الوقت الفعلي
+- **Laravel Horizon**: لإدارة ومراقبة وظائف الصف (Queue Jobs)
+- **Laravel Telescope**: لتصحيح الأخطاء والمراقبة في بيئة التطوير
+- **Laravel Cashier**: لإدارة الاشتراكات والمدفوعات المتكررة
+- **Laravel Socialite**: للمصادقة عبر منصات التواصل الاجتماعي
+
+#### 3.2.2 التخصيص والإضافات
+
+- **مزودات خدمة مخصصة**: لإضافة وظائف جديدة وتكامل مع الخدمات الخارجية
+- **وسطاء مخصصة (Middleware)**: لإدارة الطلبات والاستجابات قبل وصولها للمتحكمات
+- **أوامر Artisan مخصصة**: لأتمتة المهام المتكررة وإدارة النظام
+- **قواعد التحقق المخصصة**: للتحقق من صحة البيانات المخصصة وفق متطلبات العمل
+
+### 3.3 نظام قواعد البيانات MySQL
+
+تُستخدم MySQL كقاعدة البيانات الرئيسية في AURA، نظرًا لموثوقيتها واستقرارها ودعمها للمعاملات المعقدة:
+
+#### 3.3.1 بنية قاعدة البيانات
+
+- **InnoDB**: محرك تخزين للدعم الكامل للمعاملات ACID
+- **الجداول المقسمة (Partitioned Tables)**: للتعامل مع جداول البيانات الضخمة
+- **الفهارس المتقدمة**: لتحسين أداء الاستعلامات
+- **العلاقات الخارجية**: لضمان تكامل البيانات
+
+#### 3.3.2 التحسينات والإعدادات
+
+- **التجمع (Pooling)**: لإدارة اتصالات قاعدة البيانات بكفاءة
+- **التخزين المؤقت للاستعلامات**: لتحسين أداء الاستعلامات المتكررة
+- **إعدادات الأمان المتقدمة**: لحماية البيانات الحساسة
+- **التشفير على مستوى العمود**: للبيانات الحساسة مثل معلومات الدفع
+
+#### 3.3.3 استراتيجية النسخ الاحتياطي والتعافي
+
+- **نسخ احتياطي يومي كامل**: لضمان عدم فقدان البيانات
+- **نسخ احتياطي تزايدي**: كل ساعة للبيانات المتغيرة
+- **النسخ المتماثل (Replication)**: للتوافر العالي واستمرارية الخدمة
+- **خطة التعافي من الكوارث**: باستخدام مواقع بديلة وآليات استعادة سريعة
+
+### 3.4 تقنيات الواجهة الأمامية
+
+#### 3.4.1 الويب
+
+- **Vue.js**: كإطار عمل أساسي للواجهة الأمامية
+- **Vuex**: لإدارة حالة التطبيق
+- **Vue Router**: لإدارة التنقل داخل التطبيق
+- **Progressive Web App (PWA)**: لدعم وضع عدم الاتصال والتكامل مع الجهاز
+
+#### 3.4.2 تطبيقات الهاتف المحمول
+
+- **React Native**: لإنشاء تطبيقات أصلية لنظامي Android و iOS
+- **Redux**: لإدارة حالة التطبيق
+- **AsyncStorage**: لتخزين البيانات محليًا للعمل دون اتصال
+- **SQLite**: لتخزين البيانات المحلية المعقدة
+
+#### 3.4.3 التصميم وتجربة المستخدم
+
+- **Tailwind CSS**: لتطوير واجهات مستخدم متجاوبة وقابلة للتخصيص
+- **Material Design**: لعناصر واجهة المستخدم على الأجهزة المحمولة
+- **Figma**: لتصميم ونمذجة واجهات المستخدم
+- **Storybook**: لتطوير وتوثيق مكونات واجهة المستخدم
+
+### 3.5 تقنيات الاتصال الفوري
+
+#### 3.5.1 المراسلة الفورية
+
+- **WebSockets**: لاتصالات ثنائية الاتجاه في الوقت الفعلي
+- **Socket.io**: لضمان التوافق عبر المتصفحات المختلفة
+- **Laravel Echo**: لتكامل WebSockets مع Laravel
+- **XMPP (خادم مخصص)**: لبروتوكول المراسلة الأساسي
+
+#### 3.5.2 الاتصالات الصوتية والمرئية
+
+- **WebRTC**: لاتصالات الوسائط المتعددة من نظير إلى نظير
+- **خوادم TURN/STUN**: لتجاوز مشكلات NAT وتسهيل الاتصالات
+- **Janus WebRTC Server**: لتسهيل اتصالات الفيديو متعددة المشاركين
+- **تشفير DTLS-SRTP**: لتأمين اتصالات الوسائط المتعددة
+
+#### 3.5.3 تخزين الرسائل
+
+- **MongoDB**: لتخزين الرسائل ومحفوظات الدردشة
+- **تشفير من طرف إلى طرف**: لضمان سرية الرسائل
+- **آليات التخزين المحلي**: لعمل المراسلة دون اتصال بالإنترنت
+
+## 4. هيكل قاعدة البيانات
+
+### 4.1 المخطط العام لقاعدة البيانات
+
+يستخدم نظام AURA قواعد بيانات متعددة للتعامل مع البيانات المختلفة، مع استخدام MySQL كقاعدة البيانات الرئيسية. فيما يلي استعراض للمخطط العام للجداول الرئيسية:
+
+#### فئات الجداول الرئيسية:
+
+1. **جداول المستخدمين والصلاحيات**
+2. **جداول المحفظة والمعاملات**
+3. **جداول المراسلة والاتصال**
+4. **جداول التجارة الإلكترونية**
+5. **جداول التوصيل والخدمات اللوجستية**
+6. **جداول التكوين والإعدادات**
+7. **جداول السجلات والإحصاءات**
+
+### 4.2 جداول المستخدمين والصلاحيات
+
+#### 4.2.1 الجداول الرئيسية
+
+```sql
+-- جدول المستخدمين العاديين
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) DEFAULT NULL,
+  `firstname` varchar(40) DEFAULT NULL,
+  `lastname` varchar(40) DEFAULT NULL,
+  `username` varchar(40) DEFAULT NULL,
+  `email` varchar(40) NOT NULL,
+  `dial_code` varchar(40) DEFAULT NULL,
+  `country_code` varchar(40) DEFAULT NULL,
+  `mobile` varchar(40) DEFAULT NULL,
+  `ref_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `balance` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `password` varchar(255) NOT NULL,
+  `country_name` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: banned, 1: active',
+  `kyc_data` text DEFAULT NULL,
+  `kyc_rejection_reason` varchar(255) DEFAULT NULL,
+  `kv` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: KYC Unverified, 2: KYC pending, 1: KYC verified',
+  `ev` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: email unverified, 1: email verified',
+  `sv` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: mobile unverified, 1: mobile verified',
+  `profile_complete` tinyint(1) NOT NULL DEFAULT 0,
+  `ver_code` varchar(40) DEFAULT NULL COMMENT 'stores verification code',
+  `ver_code_send_at` datetime DEFAULT NULL COMMENT 'verification send time',
+  `ts` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 2fa off, 1: 2fa on',
+  `tv` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: 2fa unverified, 1: 2fa verified',
+  `tsc` varchar(255) DEFAULT NULL,
+  `ban_reason` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `provider` varchar(40) DEFAULT NULL,
+  `provider_id` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_email_unique` (`username`,`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول التجار
+CREATE TABLE `merchants` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(40) DEFAULT NULL,
+  `lastname` varchar(40) DEFAULT NULL,
+  `username` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `country_code` varchar(40) DEFAULT NULL,
+  `mobile` varchar(40) DEFAULT NULL,
+  `ref_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `balance` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL COMMENT 'contains full address',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: banned, 1: active',
+  `kv` tinyint(1) NOT NULL DEFAULT 0,
+  `kyc_data` text DEFAULT NULL,
+  `kyc_rejection_reason` varchar(255) DEFAULT NULL,
+  `ev` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: email unverified, 1: email verified',
+  `sv` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: sms unverified, 1: sms verified',
+  `profile_complete` tinyint(1) NOT NULL DEFAULT 0,
+  `ver_code` varchar(40) DEFAULT NULL COMMENT 'stores verification code',
+  `ver_code_send_at` datetime DEFAULT NULL COMMENT 'verification send time',
+  `ts` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 2fa off, 1: 2fa on',
+  `tv` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: 2fa unverified, 1: 2fa verified',
+  `tsc` varchar(255) DEFAULT NULL,
+  `ban_reason` varchar(255) DEFAULT NULL,
+  `public_api_key` varchar(255) DEFAULT NULL,
+  `secret_api_key` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول الوكلاء
+CREATE TABLE `agents` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(40) DEFAULT NULL,
+  `lastname` varchar(40) DEFAULT NULL,
+  `username` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `country_code` varchar(40) DEFAULT NULL,
+  `mobile` varchar(40) DEFAULT NULL,
+  `ref_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `balance` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL COMMENT 'contains full address',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: banned, 1: active',
+  `kv` tinyint(1) NOT NULL DEFAULT 0,
+  `kyc_data` text DEFAULT NULL,
+  `kyc_rejection_reason` varchar(255) DEFAULT NULL,
+  `ev` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: email unverified, 1: email verified',
+  `sv` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: sms unverified, 1: sms verified',
+  `profile_complete` tinyint(1) NOT NULL DEFAULT 0,
+  `ver_code` varchar(40) DEFAULT NULL COMMENT 'stores verification code',
+  `ver_code_send_at` datetime DEFAULT NULL COMMENT 'verification send time',
+  `ts` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 2fa off, 1: 2fa on',
+  `tv` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: 2fa unverified, 1: 2fa verified',
+  `tsc` varchar(255) DEFAULT NULL,
+  `ban_reason` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول المشرفين
+CREATE TABLE `admins` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `username` varchar(40) DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول فروع الوكلاء
+CREATE TABLE `agent_branches` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `agent_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `address` text NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: inactive, 1: active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `agent_branches_agent_id_foreign` (`agent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول الأدوار والصلاحيات
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) NOT NULL,
+  `permissions` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول ربط المشرفين بالأدوار
+CREATE TABLE `admin_role` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `admin_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+4.2.2 العلاقات الرئيسية
+المستخدمون والوكلاء والتجار لهم جداول منفصلة ولكن يشتركون في نفس الهيكل الأساسي
+يمكن للوكلاء إنشاء فروع متعددة
+المشرفون لهم أدوار وصلاحيات محددة
+4.3 جداول المحفظة والمعاملات
+4.3.1 الجداول الرئيسية
+sql
+Copy
+-- جدول العملات
+CREATE TABLE `currencies` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `currency_code` varchar(255) NOT NULL,
+  `currency_symbol` varchar(40) NOT NULL,
+  `currency_fullname` varchar(255) NOT NULL,
+  `currency_type` tinyint(1) UNSIGNED NOT NULL COMMENT '1=>Fiat, 2=>Crypto',
+  `rate` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `is_default` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `currencies_currency_code_index` (`currency_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول المحافظ
+CREATE TABLE `wallets` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_type` varchar(40) NOT NULL,
+  `currency_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `currency_code` varchar(40) NOT NULL,
+  `balance` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول المعاملات
+CREATE TABLE `transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_type` varchar(40) DEFAULT NULL,
+  `receiver_id` int(10) UNSIGNED DEFAULT NULL,
+  `receiver_type` varchar(40) DEFAULT NULL,
+  `currency_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `wallet_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `before_charge` decimal(28,8) DEFAULT 0.00000000,
+  `amount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `charge` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `post_balance` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `trx_type` varchar(40) DEFAULT NULL,
+  `charge_type` varchar(40) DEFAULT NULL,
+  `trx` varchar(40) DEFAULT NULL,
+  `details` varchar(255) DEFAULT NULL,
+  `remark` varchar(40) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول عمليات السحب
+CREATE TABLE `withdrawals` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `method_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_type` varchar(40) DEFAULT NULL,
+  `amount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `currency_id` int(10) NOT NULL DEFAULT 0,
+  `wallet_id` int(10) NOT NULL DEFAULT 0,
+  `currency` varchar(40) DEFAULT NULL,
+  `rate` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `charge` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `trx` varchar(40) DEFAULT NULL,
+  `final_amount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `after_charge` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `withdraw_information` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=>success, 2=>pending, 3=>cancel',
+  `admin_feedback` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول عمليات الإيداع
+CREATE TABLE `deposits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_type` varchar(40) DEFAULT NULL,
+  `wallet_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `currency_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `method_code` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `amount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `method_currency` varchar(40) DEFAULT NULL,
+  `charge` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `rate` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `final_amount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `detail` text DEFAULT NULL,
+  `btc_amount` varchar(255) DEFAULT NULL,
+  `btc_wallet` varchar(255) DEFAULT NULL,
+  `trx` varchar(40) DEFAULT NULL,
+  `payment_try` int(10) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=>success, 2=>pending, 3=>cancel',
+  `from_api` tinyint(1) NOT NULL DEFAULT 0,
+  `admin_feedback` varchar(255) DEFAULT NULL,
+  `success_url` varchar(255) DEFAULT NULL,
+  `failed_url` varchar(255) DEFAULT NULL,
+  `last_cron` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول الرسوم والعمولات
+CREATE TABLE `transaction_charges` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `slug` varchar(40) NOT NULL,
+  `fixed_charge` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `percent_charge` decimal(5,2) NOT NULL DEFAULT 0.00,
+  `min_limit` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `max_limit` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `agent_commission_fixed` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `agent_commission_percent` decimal(5,2) NOT NULL DEFAULT 0.00,
+  `merchant_fixed_charge` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `merchant_percent_charge` decimal(5,2) NOT NULL DEFAULT 0.00,
+  `monthly_limit` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `daily_limit` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `daily_request_accept_limit` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `voucher_limit` int(11) NOT NULL DEFAULT 0,
+  `cap` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `transaction_charges_slug_index` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول القسائم (Vouchers)
+CREATE TABLE `vouchers` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_type` varchar(40) NOT NULL,
+  `amount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `currency_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `voucher_code` varchar(40) NOT NULL,
+  `is_used` tinyint(4) NOT NULL DEFAULT 0,
+  `redeemer_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول رموز QR
+CREATE TABLE `qr_codes` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_type` varchar(40) NOT NULL COMMENT '1=> USER, 2=> AGENT, 3=>MERCHANT',
+  `unique_code` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- جدول طلبات الأموال CREATE TABLE request_money ( id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, currency_id int(10) UNSIGNED NOT NULL DEFAULT 0, wallet_id int(10) UNSIGNED NOT NULL DEFAULT 0, charge decimal(28,8) NOT NULL DEFAULT 0.00000000, request_amount decimal(28,8) NOT NULL DEFAULT 0.00000000, sender_id int(10) UNSIGNED NOT NULL DEFAULT 0, receiver_id int(10) UNSIGNED NOT NULL DEFAULT 0, note text DEFAULT NULL, status tinyint(1) NOT NULL DEFAULT 0, created_at timestamp NULL DEFAULT NULL, updated_at timestamp NULL DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- جدول سجلات المعاملات المحلية (للمحفظة غير المتصلة) CREATE TABLE offline_transactions ( id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, user_id int(10) UNSIGNED NOT NULL, user_type varchar(40) NOT NULL, transaction_type varchar(40) NOT NULL, amount decimal(28,8) NOT NULL, currency_id int(10) UNSIGNED NOT NULL, receiver_id int(10) UNSIGNED DEFAULT NULL, receiver_type varchar(40) DEFAULT NULL, details text DEFAULT NULL, reference varchar(100) NOT NULL, sync_status tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: pending, 1: synced', created_at timestamp NULL DEFAULT NULL, updated_at timestamp NULL DEFAULT NULL, synced_at timestamp NULL DEFAULT NULL, PRIMARY KEY (id), KEY offline_transactions_reference_index (reference), KEY offline_transactions_sync_status_index (sync_status) ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+Copy
+
+#### 4.3.2 العلاقات الرئيسية
+
+- كل مستخدم (عادي، تاجر، وكيل) يمكن أن يمتلك محافظ متعددة بعملات مختلفة
+- المعاملات ترتبط بالمحافظ والمستخدمين والعملات
+- المعاملات غير المتصلة تُخزن محليًا ثم تتم مزامنتها مع الخادم
+
+### 4.4 جداول المراسلة والاتصال
+
+#### 4.4.1 الجداول الرئيسية
+
+```sql
+-- جدول المحادثات
+CREATE TABLE `conversations` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `creator_id` int(10) UNSIGNED NOT NULL,
+  `creator_type` varchar(40) NOT NULL,
+  `receiver_id` int(10) UNSIGNED DEFAULT NULL,
+  `receiver_type` varchar(40) DEFAULT NULL,
+  `is_group` tinyint(1) NOT NULL DEFAULT 0,
+  `title` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `last_message_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `conversations_creator_id_creator_type_index` (`creator_id`, `creator_type`),
+  KEY `conversations_receiver_id_receiver_type_index` (`receiver_id`, `receiver_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول الرسائل
+CREATE TABLE `messages` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `conversation_id` bigint(20) UNSIGNED NOT NULL,
+  `sender_id` int(10) UNSIGNED NOT NULL,
+  `sender_type` varchar(40) NOT NULL,
+  `message_type` varchar(40) NOT NULL DEFAULT 'text',
+  `message` text DEFAULT NULL,
+  `file_path` varchar(255) DEFAULT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0,
+  `is_delivered` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `messages_conversation_id_index` (`conversation_id`),
+  KEY `messages_sender_id_sender_type_index` (`sender_id`, `sender_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول المجموعات
+CREATE TABLE `groups` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `conversation_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `creator_id` int(10) UNSIGNED NOT NULL,
+  `creator_type` varchar(40) NOT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `groups_conversation_id_foreign` (`conversation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول أعضاء المجموعات
+CREATE TABLE `group_members` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `group_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(40) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `joined_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_members_group_id_user_id_user_type_unique` (`group_id`, `user_id`, `user_type`),
+  KEY `group_members_group_id_index` (`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول جلسات الاتصال
+CREATE TABLE `call_sessions` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `call_id` varchar(100) NOT NULL,
+  `caller_id` int(10) UNSIGNED NOT NULL,
+  `caller_type` varchar(40) NOT NULL,
+  `receiver_id` int(10) UNSIGNED NOT NULL,
+  `receiver_type` varchar(40) NOT NULL,
+  `call_type` varchar(20) NOT NULL COMMENT 'audio, video',
+  `status` varchar(20) NOT NULL COMMENT 'ringing, ongoing, ended, missed, rejected',
+  `start_time` timestamp NULL DEFAULT NULL,
+  `end_time` timestamp NULL DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `call_sessions_call_id_index` (`call_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول وسائط الرسائل
+CREATE TABLE `message_attachments` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `message_id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `file_type` varchar(40) NOT NULL,
+  `file_size` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `message_attachments_message_id_foreign` (`message_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول الإشعارات
+CREATE TABLE `notifications` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(40) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0,
+  `notification_type` varchar(40) DEFAULT NULL,
+  `reference_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `reference_type` varchar(40) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `notifications_user_id_user_type_index` (`user_id`, `user_type`),
+  KEY `notifications_is_read_index` (`is_read`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+4.4.2 العلاقات الرئيسية
+كل محادثة بين مستخدمين أو مجموعة
+الرسائل مرتبطة بالمحادثات
+يمكن للرسائل أن تحتوي على مرفقات متعددة
+المجموعات تتكون من أعضاء متعددين
+جلسات الاتصال تتم بين مستخدمين
+4.5 جداول التجارة الإلكترونية
+4.5.1 الجداول الرئيسية
+sql
+Copy
+-- جدول المتاجر
+CREATE TABLE `stores` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `merchant_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `cover_image` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `phone` varchar(40) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: inactive, 1: active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `stores_slug_unique` (`slug`),
+  KEY `stores_merchant_id_foreign` (`merchant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول فئات المنتجات
+CREATE TABLE `product_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `store_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_categories_parent_id_foreign` (`parent_id`),
+  KEY `product_categories_store_id_foreign` (`store_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول المنتجات
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `store_id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `sku` varchar(100) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `short_description` text DEFAULT NULL,
+  `price` decimal(28,8) NOT NULL,
+  `discount_price` decimal(28,8) DEFAULT NULL,
+  `cost_price` decimal(28,8) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `is_digital` tinyint(1) NOT NULL DEFAULT 0,
+  `requires_shipping` tinyint(1) NOT NULL DEFAULT 1,
+  `weight` decimal(10,2) DEFAULT NULL,
+  `dimensions` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0: inactive, 1: active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_store_id_foreign` (`store_id`),
+  KEY `products_category_id_foreign` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول صور المنتجات
+CREATE TABLE `product_images` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_images_product_id_foreign` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول خصائص المنتجات
+CREATE TABLE `product_attributes` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_attributes_product_id_foreign` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول متغيرات المنتجات
+CREATE TABLE `product_variants` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price_adjustment` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `sku` varchar(100) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_variants_product_id_foreign` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول سلة التسوق
+CREATE TABLE `cart_items` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(40) NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `variant_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cart_items_user_id_user_type_index` (`user_id`, `user_type`),
+  KEY `cart_items_product_id_foreign` (`product_id`),
+  KEY `cart_items_variant_id_foreign` (`variant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول الطلبات
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_number` varchar(40) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(40) NOT NULL,
+  `store_id` bigint(20) UNSIGNED NOT NULL,
+  `currency_id` int(10) UNSIGNED NOT NULL,
+  `shipping_address` text DEFAULT NULL,
+  `billing_address` text DEFAULT NULL,
+  `subtotal` decimal(28,8) NOT NULL,
+  `shipping_cost` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `tax` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `discount` decimal(28,8) NOT NULL DEFAULT 0.00000000,
+  `total` decimal(28,8) NOT NULL,
+  `payment_status` varchar(40) NOT NULL DEFAULT 'pending',
+  `delivery_status` varchar(40) NOT NULL DEFAULT 'pending',
+  `tracking_number` varchar(100) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `orders_order_number_unique` (`order_number`),
+  KEY `orders_user_id_user_type_index` (`user_id`, `user_type`),
+  KEY `orders_store_id_foreign` (`store_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول عناصر الطلبات
+CREATE TABLE `order_items` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `variant_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `variant_name` varchar(255) DEFAULT NULL,
+  `price` decimal(28,8) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `subtotal` decimal(28,8) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_items_order_id_foreign` (`order_id`),
+  KEY `order_items_product_id_foreign` (`product_id`),
+  KEY `order_items_variant_id_foreign` (`variant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول معاملات الطلبات
+CREATE TABLE `order_transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `transaction_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `payment_method` varchar(40) NOT NULL,
+  `amount` decimal(28,8) NOT NULL,
+  `status` varchar(40) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_transactions_order_id_foreign` (`order_id`),
+  KEY `order_transactions_transaction_id_foreign` (`transaction_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- جدول تقييمات المنتجات
+CREATE TABLE `product_reviews` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(40) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `review` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_reviews_product_id_foreign` (`product_id`),
+  KEY `product_reviews_user_id_user_type_index` (`user_id`, `user_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+4.5.2 العلاقات الرئيسية
+كل تاجر يمكن أن يملك متاجر متعددة
+المتاجر تحتوي على فئات ومنتجات
+المنتجات لها صور وخصائص ومتغيرات
+الطلبات تضم عناصر طلب متعددة ومرتبطة بمعاملات
+التقييمات مرتبطة بالمنتجات والمستخدمين
+4.6 العلاقات بين الجداول
+4.6.1 علاقات المستخدمين والمحافظ
+علاقة 1:N بين المستخدمين والمحافظ
+علاقة 1:N بين المستخدمين والمعاملات
+علاقة N:M بين المستخدمين من خلال المعاملات وطلبات الأموال
+4.6.2 علاقات المراسلة
+علاقة 1:N بين المحادثات والرسائل
+علاقة N:M بين المستخدمين والمجموعات
+علاقة 1:N بين الرسائل والمرفقات
+4.6.3 علاقات التجارة الإلكترونية
+علاقة 1:N بين المتاجر والمنتجات
+علاقة 1:N بين الفئات والمنتجات
+علاقة 1:N بين المنتجات والصور/الخصائص/المتغيرات
+علاقة 1:N بين الطلبات وعناصر الطلب
+علاقة 1:N بين المنتجات والتقييمات
+4.6.4 العلاقات المتقاطعة
+مستخدم → محفظة → معاملة → طلب
+تاجر → متجر → منتج → طلب
+مستخدم ↔ تاجر (من خلال المراسلة)
+معاملة ↔ إشعار (من خلال الإشعارات)
+5. هيكل التطبيق
+5.1 بنية المجلدات والملفات
+هيكل المشروع يتبع بنية Laravel القياسية مع تنظيم مخصص للوحدات والمكونات:
+Copy
+├── app/
+│   ├── Console/                    # أوامر Artisan
+│   ├── Exceptions/                 # معالجة الاستثناءات
+│   ├── Http/
+│   │   ├── Controllers/            # المتحكمات
+│   │   │   ├── Admin/              # متحكمات لوحة الإدارة
+│   │   │   ├── Agent/              # متحكمات الوكلاء
+│   │   │   ├── Api/                # متحكمات API
+│   │   │   ├── Auth/               # متحكمات المصادقة
+│   │   │   ├── Merchant/           # متحكمات التجار
+│   │   │   └── User/               # متحكمات المستخدمين
+│   │   ├── Middleware/             # الوسطاء
+│   │   └── Requests/               # طلبات التحقق
+│   ├── Jobs/                       # وظائف الصف
+│   ├── Listeners/                  # مستمعي الأحداث
+│   ├── Models/                     # النماذج
+│   │   ├── Admin.php               # نموذج المشرف
+│   │   ├── Agent.php               # نموذج الوكيل
+│   │   ├── Merchant.php            # نموذج التاجر
+│   │   ├── User.php                # نموذج المستخدم
+│   │   ├── Wallet.php              # نموذج المحفظة
+│   │   └── ...
+│   ├── Modules/                    # وحدات النظام
+│   │   ├── AI/                     # وحدة الذكاء الاصطناعي
+│   │   ├── Commerce/               # وحدة التجارة الإلكترونية
+│   │   ├── Delivery/               # وحدة التوصيل
+│   │   ├── Messaging/              # وحدة المراسلة
+│   │   ├── Payment/                # وحدة المدفوعات
+│   │   ├── Social/                 # وحدة التواصل الاجتماعي
+│   │   └── Wallet/                 # وحدة المحفظة
+│   ├── Providers/                  # مزودو الخدمة
+│   ├── Services/                   # طبقة الخدمات
+│   │   ├── AI/                     # خدمات الذكاء الاصطناعي
+│   │   ├── Auth/                   # خدمات المصادقة
+│   │   ├── Messaging/              # خدمات المراسلة
+│   │   ├── Transaction/            # خدمات المعاملات
+│   │   └── ...
+│   └── Utils/                      # أدوات مساعدة
+├── bootstrap/                      # ملفات بدء التشغيل
+├── config/                         # ملفات التكوين
+├── database/
+│   ├── factories/                  # مصانع البيانات للاختبار
+│   ├── migrations/                 # ترحيلات قاعدة البيانات
+│   └── seeders/                    # بذور قاعدة البيانات
+├── public/                         # الملفات العامة
+│   ├── assets/                     # الأصول (CSS، JS، الصور)
+│   └── uploads/                    # الملفات المرفوعة
+├── resources/
+│   ├── js/                         # مصادر JavaScript
+│   │   ├── components/             # مكونات Vue/React
+│   │   ├── layouts/                # تخطيطات التطبيق
+│   │   ├── pages/                  # صفحات التطبيق
+│   │   └── ...
+│   ├── lang/                       # ملفات الترجمة
+│   ├── sass/                       # ملفات SASS/SCSS
+│   └── views/                      # قوالب Blade
+│       ├── admin/                  # قوالب لوحة الإدارة
+│       ├── agent/                  # قوالب الوكلاء
+│       ├── auth/                   # قوالب المصادقة
+│       ├── merchant/               # قوالب التجار
+│       ├── user/                   # قوالب المستخدمين
+│       └── ...
+├── routes/
+│   ├── admin.php                   # مسارات لوحة الإدارة
+│   ├── agent.php                   # مسارات الوكلاء
+│   ├── api.php                     # مسارات API
+│   ├── merchant.php                # مسارات التجار
+│   ├── user.php                    # مسارات المستخدمين
+│   └── web.php                     # مسارات الويب العامة
+├── storage/                        # ملفات التخزين
+├── tests/                          # اختبارات التطبيق
+├── vendor/                         # حزم Composer
+├── .env                            # متغيرات البيئة
+├── .env.example                    # مثال لملف متغيرات البيئة
+├── artisan                         # أداة سطر الأوامر
+├── composer.json                   # تبعيات PHP
+├── package.json                    # تبعيات Node.js
+└── webpack.mix.js                  # تكوين Laravel Mix
+5.2 مسارات التطبيق (Routes)
+تم تنظيم مسارات التطبيق حسب نوع المستخدم والوظيفة لضمان التنظيم والأمان:
+5.2.1 مسارات المستخدمين العاديين (routes/user.php)
+php
+Copy
+Route::middleware(['auth:user', 'verified'])->group(function () {
+    // لوحة التحكم
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    
+    // المحفظة والمعاملات
+    Route::prefix('wallet')->group(function () {
+        Route::get('/', 'WalletController@index')->name('wallet');
+        Route::get('/transactions', 'WalletController@transactions')->name('wallet.transactions');
+        Route::post('/transfer', 'WalletController@transfer')->name('wallet.transfer');
+        Route::post('/request-money', 'WalletController@requestMoney')->name('wallet.request-money');
+        Route::post('/create-voucher', 'WalletController@createVoucher')->name('wallet.create-voucher');
+    });
+    
+    // المراسلة
+    Route::prefix('messages')->group(function () {
+        Route::get('/', 'MessageController@index')->name('messages');
+        Route::get('/conversation/{id}', 'MessageController@conversation')->name('messages.conversation');
+        Route::post('/send', 'MessageController@send')->name('messages.send');
+        Route::post('/create-group', 'MessageController@createGroup')->name('messages.create-group');
+    });
+   
+// التسوق Route::prefix('shop')->group(function () { Route::get('/', 'ShopController@index')->name('shop'); Route::get('/stores', 'ShopController@stores')->name('shop.stores'); Route::get('/store/{slug}', 'ShopController@store')->name('shop.store'); Route::get('/product/{slug}', 'ShopController@product')->name('shop.product'); Route::post('/add-to-cart', 'ShopController@addToCart')->name('shop.add-to-cart'); Route::get('/cart', 'ShopController@cart')->name('shop.cart'); Route::post('/checkout', 'ShopController@checkout')->name('shop.checkout'); });
+Copy
+// الطلبات
+Route::prefix('orders')->group(function () {
+    Route::get('/', 'OrderController@index')->name('orders');
+    Route::get('/{id}', 'OrderController@details')->name('orders.details');
+    Route::post('/track', 'OrderController@track')->name('orders.track');
+});
+
+// الملف الشخصي
+Route::prefix('profile')->group(function () {
+    Route::get('/', 'ProfileController@index')->name('profile');
+    Route::post('/update', 'ProfileController@update')->name('profile.update');
+    Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
+    Route::post('/two-factor', 'ProfileController@twoFactor')->name('profile.two-factor');
+});
+});
+Copy
+
+#### 5.2.2 مسارات التجار (routes/merchant.php)
+
+```php
+Route::middleware(['auth:merchant', 'verified'])->group(function () {
+    // لوحة التحكم
+    Route::get('/dashboard', 'DashboardController@index')->name('merchant.dashboard');
+    
+    // المتاجر
+    Route::prefix('stores')->group(function () {
+        Route::get('/', 'StoreController@index')->name('merchant.stores');
+        Route::get('/create', 'StoreController@create')->name('merchant.stores.create');
+        Route::post('/store', 'StoreController@store')->name('merchant.stores.store');
+        Route::get('/{id}/edit', 'StoreController@edit')->name('merchant.stores.edit');
+        Route::post('/{id}/update', 'StoreController@update')->name('merchant.stores.update');
+    });
+    
+    // المنتجات
+    Route::prefix('products')->group(function () {
+        Route::get('/', 'ProductController@index')->name('merchant.products');
+        Route::get('/create', 'ProductController@create')->name('merchant.products.create');
+        Route::post('/store', 'ProductController@store')->name('merchant.products.store');
+        Route::get('/{id}/edit', 'ProductController@edit')->name('merchant.products.edit');
+        Route::post('/{id}/update', 'ProductController@update')->name('merchant.products.update');
+        Route::post('/{id}/delete', 'ProductController@delete')->name('merchant.products.delete');
+    });
+    
+    // الطلبات
+    Route::prefix('orders')->group(function () {
+        Route::get('/', 'OrderController@index')->name('merchant.orders');
+        Route::get('/{id}', 'OrderController@details')->name('merchant.orders.details');
+        Route::post('/{id}/update-status', 'OrderController@updateStatus')->name('merchant.orders.update-status');
+    });
+    
+    // API المدفوعات
+    Route::prefix('api-payments')->group(function () {
+        Route::get('/', 'ApiPaymentController@index')->name('merchant.api-payments');
+        Route::get('/create', 'ApiPaymentController@create')->name('merchant.api-payments.create');
+        Route::post('/store', 'ApiPaymentController@store')->name('merchant.api-payments.store');
+    });
+    
+    // المحفظة والمعاملات
+    Route::prefix('wallet')->group(function () {
+        Route::get('/', 'WalletController@index')->name('merchant.wallet');
+        Route::get('/transactions', 'WalletController@transactions')->name('merchant.wallet.transactions');
+        Route::post('/withdraw', 'WalletController@withdraw')->name('merchant.wallet.withdraw');
+    });
+});
+5.2.3 مسارات الوكلاء (routes/agent.php)
+php
+Copy
+Route::middleware(['auth:agent', 'verified'])->group(function () {
+    // لوحة التحكم
+    Route::get('/dashboard', 'DashboardController@index')->name('agent.dashboard');
+    
+    // المعاملات
+    Route::prefix('transactions')->group(function () {
+        Route::get('/', 'TransactionController@index')->name('agent.transactions');
+        Route::post('/deposit', 'TransactionController@deposit')->name('agent.transactions.deposit');
+        Route::post('/withdraw', 'TransactionController@withdraw')->name('agent.transactions.withdraw');
+    });
+    
+    // إدارة الفروع
+    Route::prefix('branches')->group(function () {
+        Route::get('/', 'BranchController@index')->name('agent.branches');
+        Route::get('/create', 'BranchController@create')->name('agent.branches.create');
+        Route::post('/store', 'BranchController@store')->name('agent.branches.store');
+        Route::get('/{id}/edit', 'BranchController@edit')->name('agent.branches.edit');
+        Route::post('/{id}/update', 'BranchController@update')->name('agent.branches.update');
+    });
+    
+    // المحفظة والعمولات
+    Route::prefix('wallet')->group(function () {
+        Route::get('/', 'WalletController@index')->name('agent.wallet');
+        Route::get('/commissions', 'WalletController@commissions')->name('agent.wallet.commissions');
+        Route::post('/withdraw', 'WalletController@withdraw')->name('agent.wallet.withdraw');
+    });
+});
+5.2.4 مسارات API (routes/api.php)
+php
+Copy
+// المصادقة
+Route::prefix('auth')->group(function () {
+    Route::post('/register', 'AuthController@register');
+    Route::post('/login', 'AuthController@login');
+    Route::post('/logout', 'AuthController@logout')->middleware('auth:sanctum');
+    Route::post('/refresh', 'AuthController@refresh')->middleware('auth:sanctum');
+});
+
+// المستخدم وملفه الشخصي
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', 'UserController@profile');
+    Route::post('/user/update', 'UserController@updateProfile');
+});
+
+// المحفظة والمعاملات
+Route::middleware('auth:sanctum')->prefix('wallet')->group(function () {
+    Route::get('/', 'WalletController@index');
+    Route::get('/transactions', 'WalletController@transactions');
+    Route::post('/transfer', 'WalletController@transfer');
+    Route::post('/request-money', 'WalletController@requestMoney');
+});
+
+// المراسلة
+Route::middleware('auth:sanctum')->prefix('messages')->group(function () {
+    Route::get('/conversations', 'MessageController@conversations');
+    Route::get('/conversation/{id}', 'MessageController@conversation');
+    Route::post('/send', 'MessageController@send');
+});
+
+// التسوق والمنتجات
+Route::prefix('shop')->group(function () {
+    Route::get('/stores', 'ShopController@stores');
+    Route::get('/store/{slug}', 'ShopController@store');
+    Route::get('/products', 'ShopController@products');
+    Route::get('/product/{slug}', 'ShopController@product');
+    
+    // تتطلب مصادقة
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/add-to-cart', 'ShopController@addToCart');
+        Route::get('/cart', 'ShopController@cart');
+        Route::post('/checkout', 'ShopController@checkout');
+    });
+});
+
+// واجهات API للتجار
+Route::prefix('merchant')->group(function () {
+    Route::post('/payment/create', 'MerchantPaymentController@create');
+    Route::post('/payment/validate', 'MerchantPaymentController@validate');
+    Route::post('/payment/ipn', 'MerchantPaymentController@ipn');
+});
+
+// التوثيق
+Route::get('/docs', 'DocsController@index');
+5.3 المتحكمات (Controllers)
+المتحكمات منظمة حسب نوع المستخدم والوظيفة:
+5.3.1 هيكل المتحكمات
+php
+Copy
+// متحكم المحفظة للمستخدمين
+namespace App\Http\Controllers\User;
+
+use App\Http\Controllers\Controller;
+use App\Models\Transaction;
+use App\Models\Wallet;
+use App\Services\Transaction\TransactionService;
+use Illuminate\Http\Request;
+
+class WalletController extends Controller
+{
+    protected $transactionService;
+    
+    public function __construct(TransactionService $transactionService)
+    {
+        $this->transactionService = $transactionService;
+    }
+    
+    public function index()
+    {
+        $wallets = auth()->user()->wallets()->with('currency')->get();
+        return view('user.wallet.index', compact('wallets'));
+    }
+    
+    public function transactions(Request $request)
+    {
+        $transactions = auth()->user()->transactions()
+            ->filter($request->all())
+            ->latest()
+            ->paginate(15);
+            
+        return view('user.wallet.transactions', compact('transactions'));
+    }
+    
+    public function transfer(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'wallet_id' => 'required|exists:wallets,id',
+            'recipient_identifier' => 'required|string',
+            'note' => 'nullable|string|max:255',
+        ]);
+        
+        $result = $this->transactionService->transfer(
+            auth()->user(),
+            $request->wallet_id,
+            $request->recipient_identifier,
+            $request->amount,
+            $request->note
+        );
+        
+        if ($result['status'] === 'success') {
+            return redirect()->back()->with('success', $result['message']);
+        }
+        
+        return redirect()->back()->with('error', $result['message']);
+    }
+    
+    public function requestMoney(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'wallet_id' => 'required|exists:wallets,id',
+            'sender_identifier' => 'required|string',
+            'note' => 'nullable|string|max:255',
+        ]);
+        
+        $result = $this->transactionService->requestMoney(
+            auth()->user(),
+            $request->wallet_id,
+            $request->sender_identifier,
+            $request->amount,
+            $request->note
+        );
+        
+        if ($result['status'] === 'success') {
+            return redirect()->back()->with('success', $result['message']);
+        }
+        
+        return redirect()->back()->with('error', $result['message']);
+    }
+    
+    public function createVoucher(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'wallet_id' => 'required|exists:wallets,id',
+        ]);
+        
+        $result = $this->transactionService->createVoucher(
+            auth()->user(),
+            $request->wallet_id,
+            $request->amount
+        );
+        
+        if ($result['status'] === 'success') {
+            return redirect()->back()->with('success', $result['message']);
+        }
+        
+        return redirect()->back()->with('error', $result['message']);
+    }
+}
+5.3.2 متحكمات API
+php
+Copy
+// متحكم API المحفظة
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\TransactionResource;
+use App\Http\Resources\WalletResource;
+use App\Services\Transaction\TransactionService;
+use Illuminate\Http\Request;
+
+class WalletController extends Controller
+{
+    protected $transactionService;
+    
+    public function __construct(TransactionService $transactionService)
+    {
+        $this->transactionService = $transactionService;
+    }
+    
+    public function index()
+    {
+        $wallets = auth()->user()->wallets()->with('currency')->get();
+        return WalletResource::collection($wallets);
+    }
+    
+    public function transactions(Request $request)
+    {
+        $transactions = auth()->user()->transactions()
+            ->filter($request->all())
+            ->latest()
+            ->paginate(15);
+            
+        return TransactionResource::collection($transactions);
+    }
+    
+    public function transfer(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'wallet_id' => 'required|exists:wallets,id',
+            'recipient_identifier' => 'required|string',
+            'note' => 'nullable|string|max:255',
+        ]);
+        
+        $result = $this->transactionService->transfer(
+            auth()->user(),
+            $request->wallet_id,
+            $request->recipient_identifier,
+            $request->amount,
+            $request->note
+        );
+        
+        return response()->json($result);
+    }
+    
+    public function requestMoney(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'wallet_id' => 'required|exists:wallets,id',
+            'sender_identifier' => 'required|string',
+            'note' => 'nullable|string|max:255',
+        ]);
+        
+        $result = $this->transactionService->requestMoney(
+            auth()->user(),
+            $request->wallet_id,
+            $request->sender_identifier,
+            $request->amount,
+            $request->note
+        );
+        
+        return response()->json($result);
+    }
+}
+5.4 النماذج (Models)
+النماذج تمثل كيانات قاعدة البيانات وتحتوي على العلاقات والمسارات والطرق المساعدة:
+5.4.1 نموذج المستخدم
+php
+Copy
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $fillable = [
+        'company_name',
+        'firstname',
+        'lastname',
+        'username',
+        'email',
+        'dial_code',
+        'country_code',
+        'mobile',
+        'ref_by',
+        'password',
+        'country_name',
+        'city',
+        'state',
+        'zip',
+        'address',
+        'image',
+        'status',
+        'kv',
+        'ev',
+        'sv',
+        'profile_complete',
+        'ver_code',
+        'ver_code_send_at',
+        'ts',
+        'tv'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'address' => 'object',
+        'kyc_data' => 'array',
+        'ver_code_send_at' => 'datetime'
+    ];
+    
+    // العلاقات
+    
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function receivedTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'receiver_id')->where('receiver_type', 'USER');
+    }
+    
+    public function deposits()
+    {
+        return $this->hasMany(Deposit::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function sentRequests()
+    {
+        return $this->hasMany(RequestMoney::class, 'sender_id');
+    }
+    
+    public function receivedRequests()
+    {
+        return $this->hasMany(RequestMoney::class, 'receiver_id');
+    }
+    
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function qrCode()
+    {
+        return $this->hasOne(QrCode::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function conversations()
+    {
+        return $this->morphMany(Conversation::class, 'creator');
+    }
+    
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class, 'user_id')->where('user_type', 'USER');
+    }
+    
+    public function reviews()
+    {
+        return $this->morphMany(ProductReview::class, 'user');
+    }
+    
+    // الدوال
+    
+    public function getFullNameAttribute()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+    
+    public function getFormattedMobileAttribute()
+    {
+        return $this->dial_code . $this->mobile;
+    }
+    
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    
+    public function scopeEmailVerified($query)
+    {
+        return $query->where('ev', 1);
+    }
+    
+    public function scopeMobileVerified($query)
+    {
+        return $query->where('sv', 1);
+    }
+    
+    public function scopeKycVerified($query)
+    {
+        return $query->where('kv', 1);
+    }
+}
+5.4.2 نموذج المحفظة
+php
+Copy
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Wallet extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'user_type',
+        'currency_id',
+        'currency_code',
+        'balance'
+    ];
+    
+    // العلاقات
+    
+    public function user()
+    {
+        return $this->morphTo();
+    }
+    
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+    
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'wallet_id');
+    }
+    
+    // الدوال
+    
+    public function getFormattedBalanceAttribute()
+    {
+        return number_format($this->balance, 8);
+    }
+    
+    public function scopeByCurrency($query, $currencyId)
+    {
+        return $query->where('currency_id', $currencyId);
+    }
+    
+    public function scopeByUserAndType($query, $userId, $userType)
+    {
+        return $query->where('user_id', $userId)->where('user_type', $userType);
+    }
+}
+5.4.3 نموذج المعاملة
+php
+Copy
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Transaction extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'user_type',
+        'receiver_id',
+        'receiver_type',
+        'currency_id',
+        'wallet_id',
+        'before_charge',
+        'amount',
+        'charge',
+        'post_balance',
+        'trx_type',
+        'charge_type',
+        'trx',
+        'details',
+        'remark'
+    ];
+    
+    // العلاقات
+    
+    public function user()
+    {
+        return $this->morphTo();
+    }
+    
+    public function receiver()
+    {
+        return $this->morphTo();
+    }
+    
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+    
+    public function wallet()
+    {
+        return $this->belongsTo(Wallet::class);
+    }
+    
+    // الدوال
+    
+    public function getFormattedAmountAttribute()
+    {
+        return number_format($this->amount, 8);
+    }
+    
+    public function getFormattedChargeAttribute()
+    {
+        return number_format($this->charge, 8);
+    }
+    
+    public function getFormattedPostBalanceAttribute()
+    {
+        return number_format($this->post_balance, 8);
+    }
+    
+    public function scopeFilter($query, $params)
+    {
+        if (isset($params['trx_type'])) {
+            $query->where('trx_type', $params['trx_type']);
+        }
+        
+        if (isset($params['remark'])) {
+            $query->where('remark', $params['remark']);
+        }
+        
+        if (isset($params['currency_id'])) {
+            $query->where('currency_id', $params['currency_id']);
+        }
+        
+        if (isset($params['start_date']) && isset($params['end_date'])) {
+            $query->whereBetween('created_at', [$params['start_date'], $params['end_date']]);
+        }
+        
+        return $query;
+    }
+}
+5.5 العروض (Views)
+العروض مبنية باستخدام Laravel Blade للويب وVue.js للواجهات التفاعلية:
+5.5.1 هيكل العروض
+Copy
+views/
+├── admin/                     # عروض لوحة الإدارة
+├── agent/                     # عروض الوكلاء
+├── auth/                      # عروض المصادقة
+│   ├── login.blade.php        # صفحة تسجيل الدخول
+│   ├── register.blade.php     # صفحة التسجيل
+│   └── ...
+├── components/                # مكونات Blade القابلة لإعادة الاستخدام
+│   ├── alerts.blade.php       # مكون التنبيهات
+│   ├── pagination.blade.php   # مكون الترقيم
+│   └── ...
+├── emails/                    # قوالب البريد الإلكتروني
+├── errors/                    # صفحات الأخطاء
+├── layouts/                   # تخطيطات التطبيق
+│   ├── app.blade.php          # التخطيط الرئيسي
+│   ├── auth.blade.php         # تخطيط المصادقة
+│   └── ...
+├── merchant/                  # عروض التجار
+├── partials/                  # أجزاء متكررة من الصفحات
+│   ├── header.blade.php       # جزء الرأس
+│   ├── footer.blade.php       # جزء التذييل
+│   ├── sidebar.blade.php      # الشريط الجانبي
+│   └── ...
+├── user/                      # عروض المستخدمين
+│   ├── dashboard/             # لوحة التحكم
+│   ├── wallet/                # المحفظة
+│   │   ├── index.blade.php    # صفحة المحفظة الرئيسية
+│   │   ├── transactions.blade.php # سجل المعاملات
+│   │   └── ...
+│   ├── messaging/             # المراسلة
+│   ├── shop/                  # التسوق
+│   └── ...
+└── welcome.blade.php          # الصفحة الرئيسية
+5.5.2 مثال على قالب Blade
+html
+Copy
+@extends('layouts.app')
+
+@section('title', 'المحفظة')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">محافظي</h5>
+                </div>
+                <div class="card-body">
+                    @if(count($wallets) > 0)
+                        <div class="row">
+                            @foreach($wallets as $wallet)
+                                <div class="col-md-4 mb-4">
+                                    <div class="wallet-card">
+                                        <div class="wallet-header">
+                                            <h6>{{ $wallet->currency->currency_fullname }}</h6>
+                                            <span class="currency-code">{{ $wallet->currency_code }}</span>
+                                        </div>
+                                        <div class="wallet-balance">
+                                            <span class="amount">{{ $wallet->formatted_balance }}</span>
+                                            <span class="symbol">{{ $wallet->currency->currency_symbol }}</span>
+                                        </div>
+                                        <div class="wallet-actions">
+                                            <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transferModal" data-wallet-id="{{ $wallet->id }}" data-currency="{{ $wallet->currency_code }}">
+                                                <i class="fas fa-paper-plane"></i> تحويل
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#requestModal" data-wallet-id="{{ $wallet->id }}" data-currency="{{ $wallet->currency_code }}">
+                                                <i class="fas fa-hand-holding-usd"></i> طلب
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="alert alert-info">
+                            لا توجد محافظ مفعلة حاليًا. يرجى الاتصال بالدعم.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">آخر المعاملات</h5>
+                    <a href="{{ route('wallet.transactions') }}" class="btn btn-sm btn-primary float-right">
+                        عرض الكل
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if(count($recentTransactions) > 0)
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>المعرف</th>
+                                        <th>النوع</th>
+                                        <th>المبلغ</th>
+                                        <th>العملة</th>
+                                        <th>التفاصيل</th>
+                                        <th>التاريخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recentTransactions as $transaction)
+                                        <tr class="{{ $transaction->trx_type == '+' ? 'table-success' : 'table-danger' }}">
+                                            <td>{{ $transaction->trx }}</td>
+                                            <td>
+                                                @if($transaction->trx_type == '+')
+                                                    <span class="badge badge-success">إضافة</span>
+                                                @else
+                                                    <span class="badge badge-danger">خصم</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $transaction->formatted_amount }}</td>
+                                            <td>{{ $transaction->currency->currency_code }}</td>
+                                            <td>{{ $transaction->details }}</td>
+                                            <td>{{ $transaction->created_at->format('Y-m-d H:i') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="alert alert-info">
+                            لا توجد معاملات حتى الآن.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Transfer -->
+<div class="modal fade" id="transferModal" tabindex="-1" role="dialog" aria-labelledby="transferModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('wallet.transfer') }}">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transferModalLabel">تحويل الأموال</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="wallet_id" id="transferWalletId">
+                    
+                    <div class="form-group">
+                        <label for="recipient_identifier">المستلم (اسم المستخدم / البريد الإلكتروني / رقم الهاتف)</label>
+                        <input type="text" class="form-control" id="recipient_identifier" name="recipient_identifier" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">المبلغ <span class="currencyCode"></span></label>
+                        <input type="number" class="form-control" id="amount" name="amount" step="0.00000001" min="0.00000001" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="note
+<label for="note">ملاحظة (اختياري)</label> <textarea class="form-control" id="note" name="note" rows="3"></textarea> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button> <button type="submit" class="btn btn-primary">تحويل</button> </div> </form> </div> </div>
+</div> <!-- Modal: Request --> <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true"> <div class="modal-dialog" role="document"> <div class="modal-content"> <form method="POST" action="{{ route('wallet.request-money') }}"> @csrf <div class="modal-header"> <h5 class="modal-title" id="requestModalLabel">طلب الأموال</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <input type="hidden" name="wallet_id" id="requestWalletId">
+Copy
+               <div class="form-group">
+                    <label for="sender_identifier">المرسل (اسم المستخدم / البريد الإلكتروني / رقم الهاتف)</label>
+                    <input type="text" class="form-control" id="sender_identifier" name="sender_identifier" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount">المبلغ <span class="currencyCode"></span></label>
+                    <input type="number" class="form-control" id="amount" name="amount" step="0.00000001" min="0.00000001" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="note">ملاحظة (اختياري)</label>
+                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+                <button type="submit" class="btn btn-primary">طلب</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div> @endsection
+@push('scripts')
+<script> $(document).ready(function() { $('#transferModal').on('show.bs.modal', function (event) { var button = $(event.relatedTarget); var walletId = button.data('wallet-id'); var currency = button.data('currency'); var modal = $(this); modal.find('#transferWalletId').val(walletId); modal.find('.currencyCode').text(currency); }); $('#requestModal').on('show.bs.modal', function (event) { var button = $(event.relatedTarget); var walletId = button.data('wallet-id'); var currency = button.data('currency'); var modal = $(this); modal.find('#requestWalletId').val(walletId); modal.find('.currencyCode').text(currency); }); }); </script>
+@endpush
+Copy
+
+### 5.6 الخدمات (Services)
+
+طبقة الخدمات تحتوي على المنطق التجاري وتفصل المنطق عن المتحكمات:
+
+#### 5.6.1 خدمة المعاملات
+
+```php
+namespace App\Services\Transaction;
+
+use App\Models\Currency;
+use App\Models\RequestMoney;
+use App\Models\Transaction;
+use App\Models\TransactionCharge;
+use App\Models\User;
+use App\Models\Voucher;
+use App\Models\Wallet;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
+class TransactionService
+{
+    /**
+     * تنفيذ عملية تحويل بين المستخدمين
+     *
+     * @param mixed $sender المستخدم المرسل
+     * @param int $walletId معرف المحفظة
+     * @param string $recipientIdentifier معرف المستلم (اسم المستخدم، البريد الإلكتروني، رقم الهاتف)
+     * @param float $amount المبلغ المراد تحويله
+     * @param string|null $note ملاحظة اختيارية
+     * @return array نتيجة العملية
+     */
+    public function transfer($sender, $walletId, $recipientIdentifier, $amount, $note = null)
+    {
+        try {
+            // التحقق من المحفظة
+            $wallet = Wallet::where('id', $walletId)
+                ->where('user_id', $sender->id)
+                ->where('user_type', get_class($sender))
+                ->first();
+                
+            if (!$wallet) {
+                return [
+                    'status' => 'error',
+                    'message' => 'المحفظة غير موجودة'
+                ];
+            }
+            
+            // التحقق من الرصيد
+            if ($wallet->balance < $amount) {
+                return [
+                    'status' => 'error',
+                    'message' => 'رصيد غير كافٍ'
+                ];
+            }
+            
+            // البحث عن المستلم
+            $recipient = $this->findRecipient($recipientIdentifier);
+            
+            if (!$recipient) {
+                return [
+                    'status' => 'error',
+                    'message' => 'لم يتم العثور على المستلم'
+                ];
+            }
+            
+            // التحقق من أن المستلم ليس المرسل نفسه
+            if ($recipient->id == $sender->id && get_class($recipient) == get_class($sender)) {
+                return [
+                    'status' => 'error',
+                    'message' => 'لا يمكنك التحويل لنفسك'
+                ];
+            }
+            
+            // حساب الرسوم
+            $charge = $this->calculateTransferCharge($amount);
+            $finalAmount = $amount - $charge;
+            
+            // الحصول على أو إنشاء محفظة المستلم
+            $recipientWallet = $this->getOrCreateWallet($recipient, $wallet->currency_id);
+            
+            // بدء المعاملة
+            DB::beginTransaction();
+            
+            // خصم من محفظة المرسل
+            $wallet->decrement('balance', $amount);
+            
+            // إضافة إلى محفظة المستلم
+            $recipientWallet->increment('balance', $finalAmount);
+            
+            // إنشاء سجل معاملة للمرسل
+            $senderTransaction = new Transaction();
+            $senderTransaction->user_id = $sender->id;
+            $senderTransaction->user_type = get_class($sender);
+            $senderTransaction->receiver_id = $recipient->id;
+            $senderTransaction->receiver_type = get_class($recipient);
+            $senderTransaction->currency_id = $wallet->currency_id;
+            $senderTransaction->wallet_id = $wallet->id;
+            $senderTransaction->before_charge = $amount;
+            $senderTransaction->amount = $amount;
+            $senderTransaction->charge = $charge;
+            $senderTransaction->post_balance = $wallet->balance;
+            $senderTransaction->trx_type = '-';
+            $senderTransaction->trx = $this->generateTrxNumber();
+            $senderTransaction->details = 'تحويل أموال إلى ' . $recipient->username;
+            $senderTransaction->remark = 'transfer_money';
+            $senderTransaction->save();
+            
+            // إنشاء سجل معاملة للمستلم
+            $receiverTransaction = new Transaction();
+            $receiverTransaction->user_id = $recipient->id;
+            $receiverTransaction->user_type = get_class($recipient);
+            $receiverTransaction->currency_id = $recipientWallet->currency_id;
+            $receiverTransaction->wallet_id = $recipientWallet->id;
+            $receiverTransaction->before_charge = $finalAmount;
+            $receiverTransaction->amount = $finalAmount;
+            $receiverTransaction->charge = 0;
+            $receiverTransaction->post_balance = $recipientWallet->balance;
+            $receiverTransaction->trx_type = '+';
+            $receiverTransaction->trx = $senderTransaction->trx;
+            $receiverTransaction->details = 'استلام أموال من ' . $sender->username . ($note ? ' ملاحظة: ' . $note : '');
+            $receiverTransaction->remark = 'receive_money';
+            $receiverTransaction->save();
+            
+            // إنهاء المعاملة
+            DB::commit();
+            
+            return [
+                'status' => 'success',
+                'message' => 'تم التحويل بنجاح',
+                'transaction' => $senderTransaction
+            ];
+        } catch (\Exception $e) {
+            DB::rollback();
+            
+            return [
+                'status' => 'error',
+                'message' => 'حدث خطأ أثناء التحويل: ' . $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * طلب أموال من مستخدم آخر
+     *
+     * @param mixed $receiver مستلم الطلب
+     * @param int $walletId معرف المحفظة
+     * @param string $senderIdentifier معرف المرسل (اسم المستخدم، البريد الإلكتروني، رقم الهاتف)
+     * @param float $amount المبلغ المطلوب
+     * @param string|null $note ملاحظة اختيارية
+     * @return array نتيجة العملية
+     */
+    public function requestMoney($receiver, $walletId, $senderIdentifier, $amount, $note = null)
+    {
+        try {
+            // التحقق من المحفظة
+            $wallet = Wallet::where('id', $walletId)
+                ->where('user_id', $receiver->id)
+                ->where('user_type', get_class($receiver))
+                ->first();
+                
+            if (!$wallet) {
+                return [
+                    'status' => 'error',
+                    'message' => 'المحفظة غير موجودة'
+                ];
+            }
+            
+            // البحث عن المرسل
+            $sender = $this->findRecipient($senderIdentifier);
+            
+            if (!$sender) {
+                return [
+                    'status' => 'error',
+                    'message' => 'لم يتم العثور على المرسل'
+                ];
+            }
+            
+            // التحقق من أن المرسل ليس المستلم نفسه
+            if ($sender->id == $receiver->id && get_class($sender) == get_class($receiver)) {
+                return [
+                    'status' => 'error',
+                    'message' => 'لا يمكنك طلب المال من نفسك'
+                ];
+            }
+            
+            // حساب الرسوم
+            $charge = $this->calculateRequestCharge($amount);
+            
+            // إنشاء طلب الأموال
+            $request = new RequestMoney();
+            $request->currency_id = $wallet->currency_id;
+            $request->wallet_id = $wallet->id;
+            $request->charge = $charge;
+            $request->request_amount = $amount;
+            $request->sender_id = $sender->id;
+            $request->receiver_id = $receiver->id;
+            $request->note = $note;
+            $request->save();
+            
+            return [
+                'status' => 'success',
+                'message' => 'تم إرسال طلب الأموال بنجاح',
+                'request' => $request
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status' => 'error',
+                'message' => 'حدث خطأ أثناء طلب الأموال: ' . $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * إنشاء قسيمة إلكترونية
+     *
+     * @param mixed $user المستخدم
+     * @param int $walletId معرف المحفظة
+     * @param float $amount المبلغ
+     * @return array نتيجة العملية
+     */
+    public function createVoucher($user, $walletId, $amount)
+    {
+        try {
+            // التحقق من المحفظة
+            $wallet = Wallet::where('id', $walletId)
+                ->where('user_id', $user->id)
+                ->where('user_type', get_class($user))
+                ->first();
+                
+            if (!$wallet) {
+                return [
+                    'status' => 'error',
+                    'message' => 'المحفظة غير موجودة'
+                ];
+            }
+            
+            // التحقق من الرصيد
+            if ($wallet->balance < $amount) {
+                return [
+                    'status' => 'error',
+                    'message' => 'رصيد غير كافٍ'
+                ];
+            }
+            
+            // إنشاء رمز القسيمة
+            $voucherCode = $this->generateVoucherCode();
+            
+            // بدء المعاملة
+            DB::beginTransaction();
+            
+            // خصم من محفظة المستخدم
+            $wallet->decrement('balance', $amount);
+            
+            // إنشاء القسيمة
+            $voucher = new Voucher();
+            $voucher->user_id = $user->id;
+            $voucher->user_type = get_class($user);
+            $voucher->amount = $amount;
+            $voucher->currency_id = $wallet->currency_id;
+            $voucher->voucher_code = $voucherCode;
+            $voucher->save();
+            
+            // إنشاء سجل معاملة
+            $transaction = new Transaction();
+            $transaction->user_id = $user->id;
+            $transaction->user_type = get_class($user);
+            $transaction->currency_id = $wallet->currency_id;
+            $transaction->wallet_id = $wallet->id;
+            $transaction->before_charge = $amount;
+            $transaction->amount = $amount;
+            $transaction->charge = 0;
+            $transaction->post_balance = $wallet->balance;
+            $transaction->trx_type = '-';
+            $transaction->trx = $this->generateTrxNumber();
+            $transaction->details = 'إنشاء قسيمة إلكترونية';
+            $transaction->remark = 'create_voucher';
+            $transaction->save();
+            
+            // إنهاء المعاملة
+            DB::commit();
+            
+            return [
+                'status' => 'success',
+                'message' => 'تم إنشاء القسيمة بنجاح',
+                'voucher' => $voucher
+            ];
+        } catch (\Exception $e) {
+            DB::rollback();
+            
+            return [
+                'status' => 'error',
+                'message' => 'حدث خطأ أثناء إنشاء القسيمة: ' . $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * البحث عن مستخدم
+     *
+     * @param string $identifier المعرف (اسم المستخدم، البريد الإلكتروني، رقم الهاتف)
+     * @return mixed|null المستخدم أو null
+     */
+    protected function findRecipient($identifier)
+    {
+        // البحث في جدول المستخدمين
+        $user = User::where('username', $identifier)
+            ->orWhere('email', $identifier)
+            ->orWhere('mobile', $identifier)
+            ->first();
+            
+        if ($user) {
+            return $user;
+        }
+        
+        // البحث في جدول الوكلاء
+        $agent = \App\Models\Agent::where('username', $identifier)
+            ->orWhere('email', $identifier)
+            ->orWhere('mobile', $identifier)
+            ->first();
+            
+        if ($agent) {
+            return $agent;
+        }
+        
+        // البحث في جدول التجار
+        $merchant = \App\Models\Merchant::where('username', $identifier)
+            ->orWhere('email', $identifier)
+            ->orWhere('mobile', $identifier)
+            ->first();
+            
+        if ($merchant) {
+            return $merchant;
+        }
+        
+        return null;
+    }
+    
+    /**
+     * الحصول على أو إنشاء محفظة
+     *
+     * @param mixed $user المستخدم
+     * @param int $currencyId معرف العملة
+     * @return Wallet المحفظة
+     */
+    protected function getOrCreateWallet($user, $currencyId)
+    {
+        $wallet = Wallet::where('user_id', $user->id)
+            ->where('user_type', get_class($user))
+            ->where('currency_id', $currencyId)
+            ->first();
+            
+        if (!$wallet) {
+            $currency = Currency::find($currencyId);
+            
+            $wallet = new Wallet();
+            $wallet->user_id = $user->id;
+            $wallet->user_type = get_class($user);
+            $wallet->currency_id = $currencyId;
+            $wallet->currency_code = $currency->currency_code;
+            $wallet->balance = 0;
+            $wallet->save();
+        }
+        
+        return $wallet;
+    }
+    
+    /**
+     * حساب رسوم التحويل
+     *
+     * @param float $amount المبلغ
+     * @return float الرسوم
+     */
+    protected function calculateTransferCharge($amount)
+    {
+        $charge = TransactionCharge::where('slug', 'transfer')->first();
+        
+        if (!$charge) {
+            return 0;
+        }
+        
+        $fixedCharge = $charge->fixed_charge;
+        $percentCharge = ($amount * $charge->percent_charge) / 100;
+        
+        $totalCharge = $fixedCharge + $percentCharge;
+        
+        if ($charge->cap > 0 && $totalCharge > $charge->cap) {
+            $totalCharge = $charge->cap;
+        }
+        
+        return $totalCharge;
+    }
+    
+    /**
+     * حساب رسوم طلب الأموال
+     *
+     * @param float $amount المبلغ
+     * @return float الرسوم
+     */
+    protected function calculateRequestCharge($amount)
+    {
+        $charge = TransactionCharge::where('slug', 'request')->first();
+        
+        if (!$charge) {
+            return 0;
+        }
+        
+        $fixedCharge = $charge->fixed_charge;
+        $percentCharge = ($amount * $charge->percent_charge) / 100;
+        
+        $totalCharge = $fixedCharge + $percentCharge;
+        
+        if ($charge->cap > 0 && $totalCharge > $charge->cap) {
+            $totalCharge = $charge->cap;
+        }
+        
+        return $totalCharge;
+    }
+    
+    /**
+     * إنشاء رقم معاملة فريد
+     *
+     * @return string رقم المعاملة
+     */
+    protected function generateTrxNumber()
+    {
+        return strtoupper(Str::random(12));
+    }
+    
+    /**
+     * إنشاء رمز قسيمة فريد
+     *
+     * @return string رمز القسيمة
+     */
+    protected function generateVoucherCode()
+    {
+        // إنشاء رمز قسيمة بتنسيق XXXX-XXXX-XXXX-XXXX
+        $parts = [];
+        for ($i = 0; $i < 4; $i++) {
+            $parts[] = strtoupper(Str::random(4));
+        }
+        
+        $code = implode('-', $parts);
+        
+        // التحقق من عدم وجود تكرار
+        $exists = Voucher::where('voucher_code', $code)->exists();
+        if ($exists) {
+            return $this->generateVoucherCode();
+        }
+        
+        return $code;
+    }
+}
+5.6.2 خدمة المراسلة
+php
+Copy
+namespace App\Services\Messaging;
+
+use App\Models\Conversation;
+use App\Models\Group;
+use App\Models\GroupMember;
+use App\Models\Message;
+use App\Models\MessageAttachment;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+class MessagingService
+{
+    /**
+     * إنشاء أو استرجاع محادثة بين مستخدمين
+     *
+     * @param mixed $creator منشئ المحادثة
+     * @param mixed $receiver مستلم المحادثة
+     * @return Conversation المحادثة
+     */
+    public function getOrCreateConversation($creator, $receiver)
+    {
+        // البحث عن محادثة موجودة بين المستخدمين
+        $conversation = Conversation::where(function ($query) use ($creator, $receiver) {
+                $query->where('creator_id', $creator->id)
+                    ->where('creator_type', get_class($creator))
+                    ->where('receiver_id', $receiver->id)
+                    ->where('receiver_type', get_class($receiver))
+                    ->where('is_group', 0);
+            })
+            ->orWhere(function ($query) use ($creator, $receiver) {
+                $query->where('creator_id', $receiver->id)
+                    ->where('creator_type', get_class($receiver))
+                    ->where('receiver_id', $creator->id)
+                    ->where('receiver_type', get_class($creator))
+                    ->where('is_group', 0);
+            })
+            ->first();
+            
+        // إنشاء محادثة جديدة إذا لم تكن موجودة
+        if (!$conversation) {
+            $conversation = new Conversation();
+            $conversation->creator_id = $creator->id;
+            $conversation->creator_type = get_class($creator);
+            $conversation->receiver_id = $receiver->id;
+            $conversation->receiver_type = get_class($receiver);
+            $conversation->is_group = 0;
+            $conversation->save();
+        }
+        
+        return $conversation;
+    }
+    
+    /**
+     * إرسال رسالة
+     *
+     * @param mixed $sender المرسل
+     * @param Conversation $conversation المحادثة
+     * @param string $messageText نص الرسالة
+     * @param array|null $files ملفات مرفقة اختيارية
+     * @return Message الرسالة
+     */
+    public function sendMessage($sender, $conversation, $messageText, $files = null)
+    {
+        try {
+            DB::beginTransaction();
+            
+            // إنشاء رسالة جديدة
+            $message = new Message();
+            $message->conversation_id = $conversation->id;
+            $message->sender_id = $sender->id;
+            $message->sender_type = get_class($sender);
+            $message->message_type = 'text';
+            $message->message = $messageText;
+            $message->save();
+            
+            // معالجة الملفات المرفقة إن وجدت
+            if ($files && is_array($files)) {
+                foreach ($files as $file) {
+                    $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                    $filePath = $file->storeAs('messages/attachments', $fileName, 'public');
+                    
+                    $attachment = new MessageAttachment();
+                    $attachment->message_id = $message->id;
+                    $attachment->file_name = $file->getClientOriginalName();
+                    $attachment->file_path = $filePath;
+                    $attachment->file_type = $file->getClientMimeType();
+                    $attachment->file_size = $file->getSize();
+                    $attachment->save();
+                    
+                    // تعديل نوع الرسالة إذا كانت تحتوي على مرفقات
+                    if ($message->message_type == 'text') {
+                        $message->message_type = 'attachment';
+                        $message->save();
+                    }
+                }
+            }
+            
+            // تحديث آخر رسالة في المحادثة
+            $conversation->last_message_id = $message->id;
+            $conversation->save();
+            
+            DB::commit();
+            
+            return $message;
+        } catch (\Exception $e) {
+            DB::rollback();
+            
+            throw $e;
+        }
+    }
+    
+    /**
+     * إنشاء مجموعة
+     *
+     * @param mixed $creator منشئ المجموعة
+     * @param string $name اسم المجموعة
+     * @param string|null $description وصف المجموعة
+     * @param array $memberIds معرفات الأعضاء
+     * @param array|null $memberTypes أنواع الأعضاء
+     * @param mixed|null $image صورة المجموعة
+     * @return Group المجموعة
+     */
+    public function createGroup($creator, $name, $description = null, $memberIds = [], $memberTypes = [], $image = null)
+    {
+        try {
+            DB::beginTransaction();
+            
+            // إنشاء محادثة للمجموعة
+            $conversation = new Conversation();
+            $conversation->creator_id = $creator->id;
+            $conversation->creator_type = get_class($creator);
+            $conversation->is_group = 1;
+            $conversation->title = $name;
+            
+            // معالجة صورة المجموعة
+            if ($image) {
+                $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
+                $imagePath = $image->storeAs('groups/images', $imageName, 'public');
+                $conversation->image = $imagePath;
+            }
+            
+            $conversation->save();
+            
+            // إنشاء مجموعة
+            $group = new Group();
+            $group->conversation_id = $conversation->id;
+            $group->name = $name;
+            $group->description = $description;
+            if ($conversation->image) {
+                $group->image = $conversation->image;
+            }
+            $group->creator_id = $creator->id;
+            $group->creator_type = get_class($creator);
+            $group->save();
+            
+            // إضافة المنشئ كعضو ومشرف
+            $creatorMember = new GroupMember();
+            $creatorMember->group_id = $group->id;
+            $creatorMember->user_id = $creator->id;
+            $creatorMember->user_type = get_class($creator);
+            $creatorMember->is_admin = 1;
+            $creatorMember->save();
+            
+            // إضافة باقي الأعضاء
+            if (!empty($memberIds) && !empty($memberTypes) && count($memberIds) === count($memberTypes)) {
+                for ($i = 0; $i < count($memberIds); $i++) {
+                    $member = new GroupMember();
+                    $member->group_id = $group->id;
+                    $member->user_id = $memberIds[$i];
+                    $member->user_type = $memberTypes[$i];
+                    $member->is_admin = 0;
+                    $member->save();
+                }
+            }
+            
+            // إنشاء رسالة الترحيب
+            $welcomeMessage = new Message();
+            $welcomeMessage->conversation_id = $conversation->id;
+            $welcomeMessage->sender_id = $creator->id;
+            $welcomeMessage->sender_type = get_class($creator);
+            $welcomeMessage->message_type = 'system';
+            $welcomeMessage->message = 'تم إنشاء المجموعة';
+            $welcomeMessage->save();
+            
+            // تحديث آخر رسالة في المحادثة
+            $conversation->last_message_id = $welcomeMessage->id;
+            $conversation->save();
+            
+            DB::commit();
+            
+            return $group;
+        } catch (\Exception $e) {
+            DB::rollback();
+            
+            throw $e;
+        }
+    }
+    
+    /**
+     * إضافة عضو إلى مجموعة
+     *
+     * @param Group $group المجموعة
+     * @param mixed $user المستخدم المضاف
+     * @param mixed $addedBy المستخدم الذي قام بالإضافة
+     * @return GroupMember العضوية
+     */
+    public function addMemberToGroup($group, $user, $addedBy)
+    {
+        try {
+            DB::beginTransaction();
+            
+            // التحقق من عدم وجود العضو بالفعل
+            $existingMember = GroupMember::where('group_id', $group->id)
+                ->where('user_id', $user->id)
+                ->where('user_type', get_class($user))
+                ->first();
+                
+            if ($existingMember) {
+                throw new \Exception('المستخدم عضو في المجموعة بالفعل');
+            }
+            
+            // إضافة العضو
+            $member = new GroupMember();
+            $member->group_id = $group->id;
+            $member->user_id = $user->id;
+            $member->user_type = get_class($user);
+            $member->is_admin = 0;
+            $member->save();
+            
+            // إنشاء رسالة نظام
+            $conversation = Conversation::find($group->conversation_id);
+            
+            $message = new Message();
+            $message->conversation_id = $conversation->id;
+            $message->sender_id = $addedBy->id;
+            $message->sender_type = get_class
+$message->sender_type = get_class($addedBy); $message->message_type = 'system'; $message->message = 'تمت إضافة ' . $user->username . ' إلى المجموعة'; $message->save();
+Copy
+       // تحديث آخر رسالة في المحادثة
+        $conversation->last_message_id = $message->id;
+        $conversation->save();
+        
+        DB::commit();
+        
+        return $member;
+    } catch (\Exception $e) {
+        DB::rollback();
+        
+        throw $e;
+    }
+}
+}
+Copy
+
+### 5.7 الوظائف المجدولة (Jobs)
+
+الوظائف المجدولة تنفذ مهاماً في الخلفية، مثل المزامنة والتنبيهات:
+
+#### 5.7.1 وظيفة مزامنة المعاملات غير المتصلة
+
+```php
+namespace App\Jobs;
+
+use App\Models\OfflineTransaction;
+use App\Models\Transaction;
+use App\Models\Wallet;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+class SyncOfflineTransactions implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * عدد المحاولات القصوى
+     *
+     * @var int
+     */
+    public $tries = 3;
+
+    /**
+     * معرف المستخدم
+     *
+     * @var int
+     */
+    protected $userId;
+    
+    /**
+     * نوع المستخدم
+     *
+     * @var string
+     */
+    protected $userType;
+
+    /**
+     * إنشاء مثيل جديد للوظيفة
+     *
+     * @param int $userId معرف المستخدم
+     * @param string $userType نوع المستخدم
+     * @return void
+     */
+    public function __construct($userId, $userType)
+    {
+        $this->userId = $userId;
+        $this->userType = $userType;
+    }
+
+    /**
+     * تنفيذ الوظيفة
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        // الحصول على المعاملات غير المتزامنة
+        $offlineTransactions = OfflineTransaction::where('user_id', $this->userId)
+            ->where('user_type', $this->userType)
+            ->where('sync_status', 0)
+            ->orderBy('created_at', 'asc')
+            ->get();
+        
+        if ($offlineTransactions->isEmpty()) {
+            return;
+        }
+        
+        foreach ($offlineTransactions as $offlineTransaction) {
+            try {
+                DB::beginTransaction();
+                
+                // معالجة المعاملة بناءً على نوعها
+                switch ($offlineTransaction->transaction_type) {
+                    case 'transfer':
+                        $this->handleTransfer($offlineTransaction);
+                        break;
+                        
+                    case 'voucher_redemption':
+                        $this->handleVoucherRedemption($offlineTransaction);
+                        break;
+                        
+                    case 'payment':
+                        $this->handlePayment($offlineTransaction);
+                        break;
+                        
+                    default:
+                        Log::warning('نوع معاملة غير مدعوم: ' . $offlineTransaction->transaction_type);
+                        continue 2; // تخطي هذه المعاملة
+                }
+                
+                // تحديث حالة المزامنة
+                $offlineTransaction->sync_status = 1;
+                $offlineTransaction->synced_at = now();
+                $offlineTransaction->save();
+                
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                
+                Log::error('خطأ في مزامنة المعاملة غير المتصلة: ' . $e->getMessage(), [
+                    'offline_transaction_id' => $offlineTransaction->id,
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+            }
+        }
+    }
+    
+    /**
+     * معالجة معاملة تحويل
+     *
+     * @param OfflineTransaction $offlineTransaction المعاملة غير المتصلة
+     * @return void
+     */
+    protected function handleTransfer($offlineTransaction)
+    {
+        $details = json_decode($offlineTransaction->details, true);
+        
+        // التحقق من المحفظة
+        $wallet = Wallet::where('user_id', $this->userId)
+            ->where('user_type', $this->userType)
+            ->where('currency_id', $offlineTransaction->currency_id)
+            ->first();
+            
+        if (!$wallet) {
+            throw new \Exception('المحفظة غير موجودة');
+        }
+        
+        // التحقق من محفظة المستلم
+        $receiverWallet = Wallet::where('user_id', $details['receiver_id'])
+            ->where('user_type', $details['receiver_type'])
+            ->where('currency_id', $offlineTransaction->currency_id)
+            ->first();
+            
+        if (!$receiverWallet) {
+            // إنشاء محفظة للمستلم إن لم تكن موجودة
+            $receiverWallet = new Wallet();
+            $receiverWallet->user_id = $details['receiver_id'];
+            $receiverWallet->user_type = $details['receiver_type'];
+            $receiverWallet->currency_id = $offlineTransaction->currency_id;
+            $receiverWallet->currency_code = $wallet->currency_code;
+            $receiverWallet->balance = 0;
+            $receiverWallet->save();
+        }
+        
+        // ضمان المبلغ الصحيح في المحفظة بعد المعاملات المتعددة
+        $wallet->refresh();
+        
+        // خصم من محفظة المرسل
+        $wallet->decrement('balance', $offlineTransaction->amount);
+        
+        // إضافة إلى محفظة المستلم
+        $receiverWallet->increment('balance', $details['final_amount']);
+        
+        // إنشاء سجل معاملة للمرسل
+        $senderTransaction = new Transaction();
+        $senderTransaction->user_id = $this->userId;
+        $senderTransaction->user_type = $this->userType;
+        $senderTransaction->receiver_id = $details['receiver_id'];
+        $senderTransaction->receiver_type = $details['receiver_type'];
+        $senderTransaction->currency_id = $offlineTransaction->currency_id;
+        $senderTransaction->wallet_id = $wallet->id;
+        $senderTransaction->before_charge = $offlineTransaction->amount;
+        $senderTransaction->amount = $offlineTransaction->amount;
+        $senderTransaction->charge = $details['charge'];
+        $senderTransaction->post_balance = $wallet->balance;
+        $senderTransaction->trx_type = '-';
+        $senderTransaction->trx = $offlineTransaction->reference;
+        $senderTransaction->details = $details['details'];
+        $senderTransaction->remark = 'transfer_money_offline';
+        $senderTransaction->save();
+        
+        // إنشاء سجل معاملة للمستلم
+        $receiverTransaction = new Transaction();
+        $receiverTransaction->user_id = $details['receiver_id'];
+        $receiverTransaction->user_type = $details['receiver_type'];
+        $receiverTransaction->currency_id = $receiverWallet->currency_id;
+        $receiverTransaction->wallet_id = $receiverWallet->id;
+        $receiverTransaction->before_charge = $details['final_amount'];
+        $receiverTransaction->amount = $details['final_amount'];
+        $receiverTransaction->charge = 0;
+        $receiverTransaction->post_balance = $receiverWallet->balance;
+        $receiverTransaction->trx_type = '+';
+        $receiverTransaction->trx = $offlineTransaction->reference;
+        $receiverTransaction->details = $details['receiver_details'];
+        $receiverTransaction->remark = 'receive_money_offline';
+        $receiverTransaction->save();
+    }
+    
+    /**
+     * معالجة استبدال قسيمة
+     *
+     * @param OfflineTransaction $offlineTransaction المعاملة غير المتصلة
+     * @return void
+     */
+    protected function handleVoucherRedemption($offlineTransaction)
+    {
+        $details = json_decode($offlineTransaction->details, true);
+        
+        // التحقق من المحفظة
+        $wallet = Wallet::where('user_id', $this->userId)
+            ->where('user_type', $this->userType)
+            ->where('currency_id', $offlineTransaction->currency_id)
+            ->first();
+            
+        if (!$wallet) {
+            throw new \Exception('المحفظة غير موجودة');
+        }
+        
+        // ضمان المبلغ الصحيح في المحفظة بعد المعاملات المتعددة
+        $wallet->refresh();
+        
+        // التحقق من حالة القسيمة
+        $voucher = \App\Models\Voucher::where('voucher_code', $details['voucher_code'])->first();
+        
+        if (!$voucher) {
+            throw new \Exception('القسيمة غير موجودة');
+        }
+        
+        if ($voucher->is_used) {
+            throw new \Exception('القسيمة مستخدمة بالفعل');
+        }
+        
+        // إضافة المبلغ إلى المحفظة
+        $wallet->increment('balance', $voucher->amount);
+        
+        // تحديث حالة القسيمة
+        $voucher->is_used = 1;
+        $voucher->redeemer_id = $this->userId;
+        $voucher->save();
+        
+        // إنشاء سجل معاملة
+        $transaction = new Transaction();
+        $transaction->user_id = $this->userId;
+        $transaction->user_type = $this->userType;
+        $transaction->currency_id = $offlineTransaction->currency_id;
+        $transaction->wallet_id = $wallet->id;
+        $transaction->before_charge = $voucher->amount;
+        $transaction->amount = $voucher->amount;
+        $transaction->charge = 0;
+        $transaction->post_balance = $wallet->balance;
+        $transaction->trx_type = '+';
+        $transaction->trx = $offlineTransaction->reference;
+        $transaction->details = 'استبدال قسيمة: ' . $details['voucher_code'];
+        $transaction->remark = 'voucher_redemption_offline';
+        $transaction->save();
+    }
+    
+    /**
+     * معالجة معاملة دفع
+     *
+     * @param OfflineTransaction $offlineTransaction المعاملة غير المتصلة
+     * @return void
+     */
+    protected function handlePayment($offlineTransaction)
+    {
+        $details = json_decode($offlineTransaction->details, true);
+        
+        // التحقق من المحفظة
+        $wallet = Wallet::where('user_id', $this->userId)
+            ->where('user_type', $this->userType)
+            ->where('currency_id', $offlineTransaction->currency_id)
+            ->first();
+            
+        if (!$wallet) {
+            throw new \Exception('المحفظة غير موجودة');
+        }
+        
+        // التحقق من محفظة التاجر
+        $merchantWallet = Wallet::where('user_id', $details['merchant_id'])
+            ->where('user_type', 'App\\Models\\Merchant')
+            ->where('currency_id', $offlineTransaction->currency_id)
+            ->first();
+            
+        if (!$merchantWallet) {
+            // إنشاء محفظة للتاجر إن لم تكن موجودة
+            $merchantWallet = new Wallet();
+            $merchantWallet->user_id = $details['merchant_id'];
+            $merchantWallet->user_type = 'App\\Models\\Merchant';
+            $merchantWallet->currency_id = $offlineTransaction->currency_id;
+            $merchantWallet->currency_code = $wallet->currency_code;
+            $merchantWallet->balance = 0;
+            $merchantWallet->save();
+        }
+        
+        // ضمان المبلغ الصحيح في المحفظة بعد المعاملات المتعددة
+        $wallet->refresh();
+        
+        // خصم من محفظة المستخدم
+        $wallet->decrement('balance', $offlineTransaction->amount);
+        
+        // إضافة إلى محفظة التاجر
+        $merchantWallet->increment('balance', $details['merchant_amount']);
+        
+        // إنشاء سجل معاملة للمستخدم
+        $userTransaction = new Transaction();
+        $userTransaction->user_id = $this->userId;
+        $userTransaction->user_type = $this->userType;
+        $userTransaction->receiver_id = $details['merchant_id'];
+        $userTransaction->receiver_type = 'App\\Models\\Merchant';
+        $userTransaction->currency_id = $offlineTransaction->currency_id;
+        $userTransaction->wallet_id = $wallet->id;
+        $userTransaction->before_charge = $offlineTransaction->amount;
+        $userTransaction->amount = $offlineTransaction->amount;
+        $userTransaction->charge = $details['charge'];
+        $userTransaction->post_balance = $wallet->balance;
+        $userTransaction->trx_type = '-';
+        $userTransaction->trx = $offlineTransaction->reference;
+        $userTransaction->details = 'دفع إلى ' . $details['merchant_name'] . ': ' . $details['payment_details'];
+        $userTransaction->remark = 'payment_offline';
+        $userTransaction->save();
+        
+        // إنشاء سجل معاملة للتاجر
+        $merchantTransaction = new Transaction();
+        $merchantTransaction->user_id = $details['merchant_id'];
+        $merchantTransaction->user_type = 'App\\Models\\Merchant';
+        $merchantTransaction->currency_id = $merchantWallet->currency_id;
+        $merchantTransaction->wallet_id = $merchantWallet->id;
+        $merchantTransaction->before_charge = $details['merchant_amount'];
+        $merchantTransaction->amount = $details['merchant_amount'];
+        $merchantTransaction->charge = $details['merchant_charge'];
+        $merchantTransaction->post_balance = $merchantWallet->balance;
+        $merchantTransaction->trx_type = '+';
+        $merchantTransaction->trx = $offlineTransaction->reference;
+        $merchantTransaction->details = 'استلام دفعة من ' . $this->userType . ' #' . $this->userId . ': ' . $details['payment_details'];
+        $merchantTransaction->remark = 'receive_payment_offline';
+        $merchantTransaction->save();
+        
+        // تحديث الطلب إذا كان مرتبطاً
+        if (!empty($details['order_id'])) {
+            $order = \App\Models\Order::find($details['order_id']);
+            if ($order) {
+                $order->payment_status = 'completed';
+                $order->save();
+                
+                // إنشاء سجل معاملة للطلب
+                $orderTransaction = new \App\Models\OrderTransaction();
+                $orderTransaction->order_id = $order->id;
+                $orderTransaction->transaction_id = $userTransaction->id;
+                $orderTransaction->payment_method = 'wallet';
+                $orderTransaction->amount = $offlineTransaction->amount;
+                $orderTransaction->status = 'completed';
+                $orderTransaction->save();
+            }
+        }
+    }
+}
+5.7.2 وظيفة إرسال الإشعارات
+php
+Copy
+namespace App\Jobs;
+
+use App\Models\Notification;
+use App\Services\Notification\NotificationService;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+
+class SendNotification implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * معرف الإشعار
+     *
+     * @var int
+     */
+    protected $notificationId;
+
+    /**
+     * إنشاء مثيل جديد للوظيفة
+     *
+     * @param int $notificationId معرف الإشعار
+     * @return void
+     */
+    public function __construct($notificationId)
+    {
+        $this->notificationId = $notificationId;
+    }
+
+    /**
+     * تنفيذ الوظيفة
+     *
+     * @param NotificationService $notificationService خدمة الإشعارات
+     * @return void
+     */
+    public function handle(NotificationService $notificationService)
+    {
+        $notification = Notification::find($this->notificationId);
+        
+        if (!$notification) {
+            Log::warning('الإشعار غير موجود: ' . $this->notificationId);
+            return;
+        }
+        
+        try {
+            // تحديد نوع المستخدم وجلب النموذج المناسب
+            $userClass = $notification->user_type;
+            $user = $userClass::find($notification->user_id);
+            
+            if (!$user) {
+                Log::warning('المستخدم غير موجود: ' . $notification->user_id);
+                return;
+            }
+            
+            // إرسال الإشعار عبر القنوات المختلفة
+            
+            // إشعار البريد الإلكتروني
+            if ($user->ev == 1) {
+                $notificationService->sendEmail(
+                    $user->email,
+                    $notification->title,
+                    $notification->message
+                );
+            }
+            
+            // إشعار الهاتف
+            if ($user->sv == 1) {
+                $notificationService->sendSMS(
+                    $user->formatted_mobile,
+                    $notification->message
+                );
+            }
+            
+            // إشعار دفع الويب
+            $notificationService->sendWebPushNotification(
+                $user->id,
+                $notification->user_type,
+                $notification->title,
+                $notification->message,
+                $notification->image,
+                [
+                    'notification_id' => $notification->id,
+                    'reference_id' => $notification->reference_id,
+                    'reference_type' => $notification->reference_type
+                ]
+            );
+            
+            // إشعار التطبيق
+            $notificationService->sendMobilePushNotification(
+                $user->id,
+                $notification->user_type,
+                $notification->title,
+                $notification->message,
+                $notification->image,
+                [
+                    'notification_id' => $notification->id,
+                    'reference_id' => $notification->reference_id,
+                    'reference_type' => $notification->reference_type
+                ]
+            );
+        } catch (\Exception $e) {
+            Log::error('خطأ في إرسال الإشعار: ' . $e->getMessage(), [
+                'notification_id' => $notification->id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
+    }
+}
+6. وحدة المستخدمين والصلاحيات
+6.1 أنواع المستخدمين
+نظام AURA يدعم عدة أنواع من المستخدمين، كل منهم له دور ووظائف محددة:
+6.1.1 المستخدم العادي (User)
+المستخدم العادي هو المستهلك الأساسي لخدمات AURA، ويتمتع بالوظائف التالية:
+إنشاء وإدارة محفظة إلكترونية
+إرسال واستلام الأموال
+استخدام خدمات التسوق والدفع
+المشاركة في المراسلة والتواصل الاجتماعي
+6.1.2 التاجر (Merchant)
+التاجر هو مالك متجر أو خدمة يستفيد من AURA لتقديم منتجاته للمستخدمين:
+إنشاء وإدارة متاجر إلكترونية
+إدارة المنتجات والخدمات
+استلام المدفوعات من المستخدمين
+تتبع الطلبات وإدارة المخزون
+الوصول إلى إحصائيات المبيعات والتقارير
+6.1.3 الوكيل (Agent)
+الوكيل هو نقطة خدمة تسهل عمليات الإيداع والسحب للمستخدمين:
+إيداع الأموال في حسابات المستخدمين
+تسهيل عمليات السحب النقدي
+إدارة فروع متعددة في مواقع مختلفة
+كسب عمولات على المعاملات
+6.1.4 المشرف (Admin)
+المشرف هو المسؤول عن إدارة النظام بأكمله:
+إدارة المستخدمين والتجار والوكلاء
+إدارة العملات وأسعار الصرف
+مراقبة المعاملات وتسويتها
+إدارة الإعدادات والتكوينات
+6.1.5 مزود الخدمة (Service Provider)
+مزود الخدمة هو كيان مثل شركة التوصيل أو مقدم خدمة مهنية:
+إدارة عمليات التوصيل والخدمات اللوجستية
+تقديم خدمات متخصصة ضمن النظام
+استلام المدفوعات مقابل الخدمات
+6.2 نظام التسجيل والمصادقة
+6.2.1 عملية التسجيل
+البيانات الأساسية:
+الاسم الكامل
+اسم المستخدم (فريد)
+البريد الإلكتروني (فريد)
+رقم الهاتف
+كلمة المرور (تخضع لمتطلبات التعقيد)
+التحقق من البيانات:
+التحقق من صحة البريد الإلكتروني عبر رمز التحقق
+التحقق من رقم الهاتف عبر رسالة SMS أو واتساب أو تلغرام
+تفعيل المصادقة الثنائية (اختياري)
+استكمال الملف الشخصي:
+معلومات العنوان
+بيانات التحقق من الهوية (KYC)
+الصورة الشخصية (اختياري)
+إنشاء الحسابات الداخلية:
+إنشاء محفظة افتراضية بالعملة المحلية
+إنشاء رمز QR فريد للمستخدم
+إعداد تفضيلات الإشعارات
+6.2.2 نظام المصادقة
+يستخدم النظام آليات متعددة للمصادقة للحفاظ على أمان الحسابات:
+المصادقة القياسية:
+تسجيل الدخول باسم المستخدم/البريد الإلكتروني وكلمة المرور
+جلسات مؤقتة مع خيار "تذكرني"
+تسجيل خروج تلقائي بعد فترة خمول
+المصادقة الثنائية (2FA):
+تطبيقات المصادقة مثل Google Authenticator أو Authy
+رمز تحقق لمرة واحدة (OTP) عبر البريد الإلكتروني أو SMS أو تطبيقات المراسلة
+اختياري للمستخدمين العاديين، إلزامي للتجار والوكلاء والمشرفين
+المصادقة الاجتماعية:
+تسجيل الدخول عبر حسابات Google وFacebook وApple
+ربط الحسابات الاجتماعية بحساب AURA
+أمان متقدم:
+اكتشاف نشاط مشبوه (تسجيل دخول من موقع جديد)
+حظر تلقائي بعد محاولات تسجيل دخول فاشلة متعددة
+معلومات الجهاز والموقع للمصادقة المتقدمة
+6.3 نظام الصلاحيات والأدوار
+6.3.1 إدارة الأدوار
+يستخدم AURA نظام أدوار مرن ومتعدد المستويات:
+الأدوار الرئيسية:
+مستخدم عادي
+تاجر
+وكيل
+مشرف
+الأدوار الفرعية:
+يمكن للمشرفين إنشاء أدوار فرعية بصلاحيات محددة
+يمكن للتجار تعيين موظفين بوصول محدود لإدارة المتاجر
+يمكن للوكلاء تعيين مشرفين على الفروع
+إدارة الصلاحيات:
+الصلاحيات قائمة على الوظائف والإجراءات
+يمكن منح أو سحب صلاحيات محددة لكل دور
+دعم الصلاحيات المتداخلة والمتعددة
+6.3.2 نموذج الصلاحيات
+يتم تنظيم الصلاحيات في مجموعات وظيفية:
+إدارة الحساب:
+عرض البيانات الشخصية
+تعديل البيانات الشخصية
+تغيير كلمة المرور
+إدارة إعدادات الأمان
+إدارة المالية:
+عرض الرصيد والمعاملات
+إجراء تحويلات وعمليات دفع
+سحب وإيداع الأموال
+إنشاء واستخدام القسائم
+إدارة المتاجر والمنتجات:
+إنشاء وتعديل المتاجر
+إضافة وتعديل المنتجات
+إدارة المخزون والأسعار
+إدارة الطلبات والشحنات
+إدارة النظام (للمشرفين):
+إدارة المستخدمين
+إدارة العملات والرسوم
+مراقبة المعاملات
+إدارة التقارير والإحصائيات
+6.4 التحقق من الهوية (KYC)
+6.4.1 مستويات التحقق
+AURA يدعم مستويات متعددة من التحقق لتلبية المتطلبات التنظيمية:
+المستوى الأساسي:
+التحقق من البريد الإلكتروني ورقم الهاتف
+بيانات شخصية أساسية
+المستوى المتوسط:
+صورة وثيقة هوية رسمية (بطاقة هوية، جواز سفر، رخصة قيادة)
+سيلفي مع الوثيقة
+إثبات العنوان (فاتورة مرافق، كشف حساب بنكي)
+المستوى المتقدم (للتجار والوكلاء):
+التحقق من وثائق الشركة والتراخيص
+التحقق من الهوية القانونية للممثل
+تاريخ العمليات والسمعة
+6.4.2 عملية التحقق
+تقديم الوثائق:
+تحميل صور الوثائق المطلوبة
+إدخال بيانات الهوية والعنوان
+ملء نموذج معلومات تكميلية
+المراجعة:
+مراجعة أولية آلية باستخدام الذكاء الاصطناعي
+مراجعة يدوية من قبل فريق التحقق
+طلب وثائق إضافية عند الحاجة
+النتيجة:
+قبول التحقق
+قبول التحقق
+رفض التحقق مع توضيح السبب
+طلب وثائق إضافية أو تصحيح معلومات
+إعادة التحقق الدوري:
+تحديث الوثائق بشكل دوري
+مراجعة عند تغيير بيانات المستخدم الرئيسية
+تعليق الحساب عند انتهاء صلاحية الوثائق
+6.5 نظام OTP متعدد القنوات
+6.5.1 آلية عمل OTP
+نظام AURA يوفر خيارات متعددة لتوصيل رموز التحقق لمرة واحدة (OTP):
+توليد الرموز:
+رموز عشوائية قوية (6-8 أرقام أو أرقام وحروف)
+فترة صلاحية محدودة (عادة 3-10 دقائق)
+آلية منع إعادة الاستخدام
+قاعدة بيانات OTP:
+تخزين مشفر للرموز
+تسجيل محاولات الاستخدام
+آلية منع هجمات القوة الغاشمة
+منطق التحقق:
+مطابقة الرمز بالرمز المخزن
+التحقق من عدم انتهاء الصلاحية
+التحقق من بيانات السياق (نفس الجهاز/المتصفح)
+6.5.2 قنوات إرسال OTP
+تدعم AURA قنوات متعددة لإرسال رموز التحقق:
+البريد الإلكتروني:
+إرسال رموز OTP للبريد المسجل
+قوالب رسائل مخصصة ومتعددة اللغات
+تتبع استلام وفتح الرسائل
+الرسائل النصية (SMS):
+إرسال رموز OTP لرقم الهاتف المسجل
+دعم أرقام هواتف دولية
+تتبع حالة التسليم
+تطبيقات المراسلة:
+إرسال رموز OTP عبر WhatsApp
+إرسال رموز OTP عبر Telegram
+دعم الإشعارات المباشرة في تطبيق AURA
+آلية احتياطية:
+إمكانية الاختيار بين القنوات المختلفة
+تبديل تلقائي للقناة البديلة عند فشل القناة الأساسية
+آلية استعادة الحساب عند تعذر الوصول لجميع القنوات
+6.5.3 حالات استخدام OTP
+يتم استخدام نظام OTP في حالات متعددة لضمان أمان العمليات الحساسة:
+المصادقة:
+تسجيل الدخول (للحسابات المؤمنة بـ 2FA)
+تسجيل الدخول من جهاز أو موقع جديد
+إعادة تعيين كلمة المرور
+المعاملات المالية:
+تأكيد عمليات التحويل فوق حد معين
+سحب أو إيداع الأموال
+تغيير إعدادات المحفظة أو الحدود اليومية
+تغييرات في الحساب:
+تغيير معلومات الاتصال الرئيسية
+تغيير إعدادات الأمان
+ربط أو فصل حسابات خارجية
+7. وحدة المحفظة الإلكترونية
+7.1 بنية المحفظة
+المحفظة الإلكترونية في AURA مصممة لتوفير حل مالي شامل ومرن:
+7.1.1 هيكل المحفظة
+محفظة رئيسية لكل مستخدم:
+حساب رئيسي بالعملة المحلية (SDG للسودان)
+كل مستخدم (عادي، تاجر، وكيل) له محفظة خاصة
+رمز QR فريد مرتبط بكل محفظة
+تعدد العملات:
+دعم محافظ فرعية بعملات مختلفة
+إمكانية التحويل بين العملات المختلفة
+أسعار صرف تُحدث بشكل دوري
+مستويات المحافظ:
+مستوى أساسي: بعد التحقق الأساسي، حدود منخفضة للمعاملات
+مستوى متوسط: بعد KYC المتوسط، حدود أعلى
+مستوى متقدم: بعد KYC الكامل، حدود عالية وميزات إضافية
+7.1.2 أنواع المحافظ
+المحفظة الشخصية:
+للمستخدمين العاديين
+استخدام يومي للمعاملات الشخصية
+واجهة بسيطة وسهلة الاستخدام
+محفظة التاجر:
+تدعم استلام المدفوعات من العملاء
+دعم تقارير المبيعات والإيرادات
+تكامل مع المتاجر والمنتجات
+محفظة الوكيل:
+حسابات للإيداع والسحب
+تتبع العمولات والمكافآت
+أدوات إدارية للتعامل مع عملاء متعددين
+7.2 المعاملات وأنواعها
+7.2.1 أنواع المعاملات الرئيسية
+التحويل بين المستخدمين (P2P):
+تحويل مباشر بين محافظ المستخدمين
+دعم التحويل عبر اسم المستخدم، رقم الهاتف، رمز QR
+إمكانية إضافة ملاحظات أو وصف للتحويل
+عمليات الدفع:
+دفع لمتاجر (في الموقع أو عبر الإنترنت)
+دفع الفواتير والاشتراكات
+شراء المنتجات والخدمات
+عمليات الإيداع والسحب:
+إيداع نقدي عبر الوكلاء
+سحب نقدي من خلال الوكلاء
+تحويل من وإلى الحسابات المصرفية (حيثما أمكن)
+معاملات القسائم:
+إنشاء قسائم ذات قيمة محددة
+استرداد القسائم لإضافة الرصيد
+إرسال القسائم للأصدقاء والعائلة
+طلب الأموال:
+إرسال طلب أموال لمستخدم آخر
+تتبع حالة الطلبات
+الموافقة أو الرفض للطلبات الواردة
+7.2.2 سجل المعاملات
+تتبع المعاملات:
+سجل شامل لجميع المعاملات الصادرة والواردة
+تفاصيل كاملة لكل معاملة (المبلغ، التاريخ، الطرف الآخر، الحالة)
+تصنيف المعاملات حسب النوع والتاريخ
+تصدير البيانات:
+تصدير كشوف حساب بتنسيقات متعددة (PDF, CSV)
+إمكانية تحديد فترة زمنية معينة
+فلترة حسب نوع المعاملة أو المبلغ
+إشعارات المعاملات:
+إشعارات فورية لكل معاملة
+تنبيهات عن المعاملات المشبوهة
+ملخصات دورية (يومية، أسبوعية، شهرية)
+7.2.3 الرسوم والحدود
+هيكل الرسوم:
+رسوم ثابتة أو نسبية حسب نوع المعاملة
+إعفاءات أو تخفيضات للمستخدمين النشطين
+شفافية كاملة في عرض الرسوم قبل تأكيد المعاملة
+حدود المعاملات:
+حدود يومية وشهرية للتحويلات والمدفوعات
+حدود مختلفة حسب مستوى التحقق (KYC)
+إمكانية طلب زيادة مؤقتة للحدود
+7.3 آلية العمل أثناء الاتصال وعدمه
+7.3.1 وضع الاتصال (Online Mode)
+في حالة توفر اتصال بالإنترنت، تعمل المحفظة بكامل وظائفها:
+المعالجة الفورية:
+تنفيذ المعاملات مباشرة وتحديث الأرصدة فورًا
+التحقق المباشر من صحة المعاملات والأرصدة
+تواصل مستمر مع خادم AURA المركزي
+الميزات الكاملة:
+الوصول إلى جميع وظائف المحفظة
+تحديثات فورية لسجل المعاملات
+تنبيهات وإشعارات في الوقت الفعلي
+آلية المعاملة:
+ Copy
+1. المستخدم يبدأ معاملة
+2. التحقق من الرصيد والحدود
+3. إنشاء معاملة معلقة
+4. التأكيد والمصادقة (OTP إذا لزم الأمر)
+5. تنفيذ المعاملة وتحديث الأرصدة
+6. تسجيل المعاملة وإرسال الإشعارات
+
+
+7.3.2 وضع عدم الاتصال (Offline Mode)
+تتميز AURA بقدرتها على العمل دون اتصال بالإنترنت:
+تخزين محلي:
+نسخة مخزنة محليًا من بيانات المحفظة والرصيد
+تخزين المعاملات في قاعدة بيانات محلية
+تخزين مؤقت للبيانات الضرورية للعمل دون اتصال
+المعاملات المحلية:
+القدرة على إجراء معاملات مباشرة دون اتصال (P2P عبر NFC أو Bluetooth)
+التحقق من العمليات باستخدام تقنيات التشفير والتوقيع الرقمي
+تسجيل المعاملات مؤقتًا حتى تتم المزامنة
+القيود في وضع عدم الاتصال:
+حدود أقل للمعاملات في وضع عدم الاتصال
+عدم توفر بعض الميزات المتقدمة
+قيود على عدد وحجم المعاملات قبل المزامنة
+آلية المعاملة دون اتصال:
+ Copy
+1. المستخدم يبدأ معاملة دون اتصال
+2. التحقق من الرصيد المخزن محليًا والحدود
+3. التأكيد عبر رمز PIN محلي أو بصمة
+4. توقيع المعاملة رقميًا
+5. تحديث الرصيد المحلي
+6. تخزين المعاملة في قائمة انتظار المزامنة
+
+
+7.4 المزامنة بين الوضعين
+7.4.1 آلية المزامنة
+عند استعادة الاتصال، تتم المزامنة بين حالتي المحفظة:
+استراتيجية المزامنة:
+مزامنة تدريجية (تنزيل/رفع التغييرات منذ آخر مزامنة فقط)
+مزامنة ذكية (الأولوية للمعاملات الأعلى قيمة)
+ضغط البيانات لتقليل استهلاك الإنترنت
+عملية المزامنة:
+ Copy
+1. التحقق من وجود اتصال مستقر
+2. إرسال المعاملات غير المتزامنة إلى الخادم
+3. التحقق من صحة المعاملات المحلية
+4. حل التعارضات (إن وجدت)
+5. تنزيل المعاملات الجديدة من الخادم
+6. تحديث الرصيد المحلي والبيانات
+7. تأكيد اكتمال المزامنة
+
+
+7.4.2 معالجة التعارضات
+قد تحدث تعارضات بين المعاملات المحلية والحالة على الخادم:
+أنواع التعارضات:
+رصيد غير كافٍ (بسبب معاملات أخرى تمت عبر الإنترنت)
+تجاوز الحدود (بسبب معاملات أخرى لم تكن معروفة محليًا)
+تعارض في بيانات المستخدم أو المستلم
+استراتيجيات الحل:
+سياسة الأولوية: المعاملات على الخادم لها الأولوية
+إعادة محاولة: وضع المعاملات المتعارضة في قائمة إعادة محاولة
+إشعارات للمستخدم: إبلاغ المستخدم بالتعارضات وخيارات الحل
+آلية التعافي:
+التراجع عن المعاملات المحلية المتعارضة
+إعادة محاولة المعاملات الفاشلة تلقائيًا عند توفر الشروط
+تسجيل تفاصيل التعارضات للتحليل وتحسين النظام
+7.5 واجهات برمجة التطبيقات للمحفظة
+7.5.1 API الداخلية للمحفظة
+واجهات برمجية داخلية للتواصل بين مكونات النظام:
+javascript
+Copy
+// مثال على بنية API الداخلية للمحفظة
+
+// الحصول على معلومات المحفظة
+GET /api/v1/wallet/{id}
+Response: {
+  id: "wallet_123456",
+  user_id: "user_789",
+  user_type: "USER",
+  currency_id: 1,
+  currency_code: "SDG",
+  balance: 5000.00,
+  status: "active",
+  created_at: "2023-01-15T08:30:00Z",
+  updated_at: "2023-02-10T14:25:30Z"
+}
+
+// إجراء تحويل
+POST /api/v1/wallet/transfer
+Request: {
+  sender_wallet_id: "wallet_123456",
+  receiver_identifier: "username_or_phone_or_email",
+  amount: 500,
+  note: "دفعة شهرية",
+  otp: "123456" // اختياري حسب سياسة الأمان
+}
+Response: {
+  status: "success",
+  transaction_id: "trx_987654",
+  amount: 500,
+  fee: 5,
+  sender_balance: 4495,
+  timestamp: "2023-02-15T10:20:00Z"
+}
+
+// الحصول على سجل المعاملات
+GET /api/v1/wallet/{id}/transactions
+Query: {
+  page: 1,
+  limit: 20,
+  type: "all", // or "incoming", "outgoing"
+  start_date: "2023-01-01",
+  end_date: "2023-01-31"
+}
+Response: {
+  total: 42,
+  page: 1,
+  limit: 20,
+  transactions: [
+    {
+      id: "trx_987654",
+      type: "outgoing",
+      amount: 500,
+      fee: 5,
+      net_amount: 495,
+      recipient: {
+        id: "user_456",
+        name: "محمد أحمد",
+        username: "mohamed"
+      },
+      timestamp: "2023-02-15T10:20:00Z",
+      status: "completed",
+      note: "دفعة شهرية"
+    },
+    // ... المزيد من المعاملات
+  ]
+}
+7.5.2 API للتجار والمطورين الخارجيين
+واجهات برمجية للتكامل مع أنظمة التجار والتطبيقات الخارجية:
+javascript
+Copy
+// مثال على API للتجار
+
+// إنشاء طلب دفع
+POST /api/v1/merchant/payment/create
+Request: {
+  merchant_id: "merchant_123",
+  amount: 150.75,
+  currency: "SDG",
+  order_id: "order_456", // معرف الطلب في نظام التاجر
+  description: "شراء منتجات إلكترونية",
+  redirect_url: "https://merchant.com/success",
+  callback_url: "https://merchant.com/api/payment/callback"
+}
+Response: {
+  payment_id: "payment_789",
+  status: "pending",
+  payment_url: "https://aura.com/pay/payment_789",
+  expires_at: "2023-02-15T11:20:00Z",
+  qr_code: "data:image/png;base64,..."
+}
+
+// التحقق من حالة الدفع
+GET /api/v1/merchant/payment/{payment_id}
+Response: {
+  payment_id: "payment_789",
+  merchant_id: "merchant_123",
+  order_id: "order_456",
+  amount: 150.75,
+  currency: "SDG",
+  status: "completed", // or "pending", "failed", "expired"
+  paid_at: "2023-02-15T10:55:30Z",
+  customer_id: "user_789" // إذا كان مسموحًا بمشاركة البيانات
+}
+8. وحدة المراسلة والاتصالات
+8.1 بنية نظام المراسلة
+8.1.1 المكونات الرئيسية
+خادم المراسلة المركزي:
+معالجة الرسائل وتوجيهها
+إدارة حالة الاتصال للمستخدمين
+تخزين الرسائل وإدارة المحادثات
+واجهة المستخدم للمراسلة:
+واجهة محادثات متطورة
+دعم الوسائط المتعددة (نص، صور، فيديو، ملفات)
+مؤشرات الحالة (تم الاستلام، تم القراءة، يكتب الآن)
+نظام تخزين الرسائل:
+تخزين مركزي للرسائل والمحادثات
+تخزين محلي للرسائل للعمل دون اتصال
+آلية مزامنة من طرفين
+نظام إشعارات المراسلة:
+إشعارات في الوقت الفعلي للرسائل الجديدة
+تخصيص الإشعارات حسب المحادثة
+إشعارات الاتصالات الفائتة
+8.2 بروتوكولات الاتصال
+8.2.1 النقل والتوصيل
+WebSockets:
+اتصال ثنائي الاتجاه في الوقت الفعلي
+استخدام Socket.io لضمان التوافق عبر المتصفحات والأجهزة
+آلية التعامل مع انقطاع الاتصال وإعادة الاتصال تلقائيًا
+XMPP (بروتوكول مخصص):
+بروتوكول مراسلة قوي ومرن
+تنفيذ مخصص يلبي احتياجات AURA
+امتدادات للوظائف المخصصة
+HTTP/REST:
+للعمليات غير الفورية وتحميل الرسائل القديمة
+دعم التخزين المؤقت وتحسين الأداء
+احتياطي في حالة عدم توفر WebSockets
+MQTT (للأجهزة منخفضة الموارد):
+بروتوكول خفيف للأجهزة المحمولة والبيئات ذات الاتصال المحدود
+استهلاك أقل للبيانات
+توفير الطاقة للأجهزة المحمولة
+8.2.2 نقل البيانات
+JSON لتمثيل البيانات:
+ json
+Copy
+{
+  "type": "message",
+  "id": "msg_123456",
+  "conversation_id": "conv_789",
+  "sender_id": "user_123",
+  "sender_type": "USER",
+  "content": "مرحبا، كيف حالك؟",
+  "message_type": "text",
+  "timestamp": "2023-03-15T10:30:45Z",
+  "metadata": {
+    "client_id": "device_456",
+    "is_edited": false
+  }
+}
+
+
+Protocol Buffers للاتصالات عالية الأداء:
+تمثيل أصغر حجمًا للبيانات
+معالجة أسرع
+استخدام في سيناريوهات الأداء العالي
+8.3 تخزين ومعالجة الرسائل
+8.3.1 نموذج البيانات
+المحادثات:
+ sql
+Copy
+CREATE TABLE conversations (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  creator_id INT UNSIGNED NOT NULL,
+  creator_type VARCHAR(40) NOT NULL,
+  receiver_id INT UNSIGNED NULL,
+  receiver_type VARCHAR(40) NULL,
+  is_group TINYINT NOT NULL DEFAULT 0,
+  title VARCHAR(255) NULL,
+  image VARCHAR(255) NULL,
+  last_message_id BIGINT UNSIGNED NULL,
+  created_at TIMESTAMP NULL,
+  updated_at TIMESTAMP NULL,
+  KEY idx_creator (creator_id, creator_type),
+  KEY idx_receiver (receiver_id, receiver_type)
+);
+
+
+الرسائل:
+ sql
+Copy
+CREATE TABLE messages (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  conversation_id BIGINT UNSIGNED NOT NULL,
+  sender_id INT UNSIGNED NOT NULL,
+  sender_type VARCHAR(40) NOT NULL,
+  message_type VARCHAR(40) NOT NULL DEFAULT 'text',
+  message TEXT NULL,
+  file_path VARCHAR(255) NULL,
+  is_read TINYINT NOT NULL DEFAULT 0,
+  is_delivered TINYINT NOT NULL DEFAULT 0,
+  is_deleted TINYINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NULL,
+  updated_at TIMESTAMP NULL,
+  KEY idx_conversation (conversation_id),
+  KEY idx_sender (sender_id, sender_type)
+);
+
+
+8.3.2 معالجة الرسائل
+تدفق الرسائل:
+ Copy
+1. المستخدم يرسل رسالة
+2. التطبيق ينشئ المعرف المحلي ويعرض الرسالة مع حالة "جاري الإرسال"
+3. الرسالة تُرسل إلى خادم المراسلة
+4. الخادم يتحقق من صحة الرسالة والصلاحيات
+5. الخادم يخزن الرسالة في قاعدة البيانات
+6. الخادم يرسل تأكيد الاستلام للمرسل
+7. الخادم يوزع الرسالة على المستلمين المتصلين
+8. الخادم يحفظ الرسالة للمستلمين غير المتصلين
+9. المستلمون يرسلون تأكيد الاستلام
+10. عند فتح الرسالة، يرسل المستلم تأكيد القراءة
+
+
+تسليم الرسائل المؤجلة:
+عند اتصال المستلم، يتم سحب الرسائل غير المسلمة
+آلية طلب الرسائل المفقودة بناءً على التسلسل
+استخدام طوابع زمنية لضمان ترتيب الرسائل
+8.4 نظام الاتصالات الصوتية والمرئية
+8.4.1 البنية الأساسية
+بروتوكول WebRTC:
+اتصال من نظير إلى نظير للصوت والفيديو
+تشفير الاتصالات من طرف إلى طرف
+جودة وسرعة عالية
+خوادم TURN/STUN:
+خوادم STUN للكشف عن نوع NAT والعناوين العامة
+خوادم TURN لتجاوز قيود جدران الحماية وNAT
+توزيع جغرافي للخوادم لتقليل زمن الاستجابة
+آلية الاتصال:
+ Copy
+1. المستخدم يبدأ مكالمة
+2. النظام يتحقق من توفر المستلم
+3. إرسال إشعار بالمكالمة الواردة
+4. تبادل عروض وإجابات SDP
+5. إنشاء اتصال P2P من خلال ICE
+6. بدء تدفق الوسائط (صوت/فيديو)
+7. مراقبة جودة الاتصال
+8. إغلاق الاتصال وتنظيف الموارد
+
+
+8.4.2 نظام المكالمات الجماعية
+بنية SFU (Selective Forwarding Unit):
+خادم مركزي لتوزيع الوسائط بين المشاركين
+توفير موارد الأجهزة مقارنة بالاتصال المباشر بين الأطراف
+دعم مكالمات متعددة المشاركين
+
+
+إدارة المشاركين:
+إضافة/إزالة المشاركين أثناء المكالمة
+تنظيم الأدوار والصلاحيات (مضيف، مشارك، مستمع)
+عرض مؤشرات حالة المشاركين (ميكروفون، كاميرا، مشاركة الشاشة)
+ميزات متقدمة:
+مشاركة الشاشة
+تغيير خلفية الفيديو
+تسجيل المكالمات (اختياري وبموافقة المشاركين)
+تقليل الضوضاء وتحسين الصوت
+8.5 واجهات برمجة التطبيقات للمراسلة
+8.5.1 API داخلية للمراسلة
+واجهات برمجية داخلية للتكامل بين مكونات النظام:
+javascript
+Copy
+// الحصول على قائمة المحادثات
+GET /api/v1/messaging/conversations
+Response: {
+  conversations: [
+    {
+      id: "conv_123",
+      type: "individual", // أو "group"
+      title: null, // فقط للمجموعات
+      participants: [
+        {
+          id: "user_456",
+          name: "أحمد محمد",
+          avatar: "https://aura.com/avatars/user_456.jpg",
+          status: "online"
+        }
+      ],
+      last_message: {
+        id: "msg_789",
+        sender_id: "user_456",
+        content: "متى سنجتمع غدًا؟",
+        type: "text",
+        timestamp: "2023-03-16T15:30:00Z",
+        is_read: true
+      },
+      unread_count: 0,
+      updated_at: "2023-03-16T15:30:00Z"
+    },
+    // ... المزيد من المحادثات
+  ]
+}
+
+// الحصول على رسائل محادثة
+GET /api/v1/messaging/conversations/{id}/messages
+Query: {
+  limit: 50,
+  before_id: "msg_123", // لتحميل المزيد من الرسائل القديمة
+  after_id: "msg_456"   // لتحميل الرسائل الجديدة
+}
+Response: {
+  conversation_id: "conv_123",
+  messages: [
+    {
+      id: "msg_789",
+      sender: {
+        id: "user_456",
+        name: "أحمد محمد",
+        avatar: "https://aura.com/avatars/user_456.jpg"
+      },
+      content: "متى سنجتمع غدًا؟",
+      type: "text",
+      timestamp: "2023-03-16T15:30:00Z",
+      status: "read", // أو "delivered", "sent", "pending", "failed"
+      reactions: [
+        { emoji: "👍", users: ["user_123"] }
+      ]
+    },
+    // ... المزيد من الرسائل
+  ],
+  has_more_before: true,
+  has_more_after: false
+}
+
+// إرسال رسالة
+POST /api/v1/messaging/conversations/{id}/messages
+Request: {
+  content: "سنجتمع في العاشرة صباحًا",
+  type: "text",
+  client_id: "client_msg_123" // معرف محلي للمزامنة
+}
+Response: {
+  id: "msg_790",
+  conversation_id: "conv_123",
+  client_id: "client_msg_123",
+  status: "sent",
+  timestamp: "2023-03-16T15:35:00Z"
+}
+
+// إنشاء محادثة جديدة
+POST /api/v1/messaging/conversations
+Request: {
+  type: "individual", // أو "group"
+  participants: ["user_456"], // معرفات المشاركين
+  title: "فريق العمل", // فقط للمجموعات
+  initial_message: {
+    content: "مرحبا، كيف حالك؟",
+    type: "text"
+  }
+}
+Response: {
+  conversation_id: "conv_124",
+  message_id: "msg_791",
+  status: "created"
+}
+
+// بدء مكالمة
+POST /api/v1/messaging/conversations/{id}/calls
+Request: {
+  type: "audio", // أو "video"
+  client_id: "call_123" // معرف محلي للمكالمة
+}
+Response: {
+  call_id: "call_456",
+  client_id: "call_123",
+  status: "initiated",
+  signaling_channel: "channel_789",
+  ice_servers: [
+    { urls: "stun:stun.aura.com:3478" },
+    {
+      urls: "turn:turn.aura.com:3478",
+      username: "username",
+      credential: "password"
+    }
+  ]
+}
+8.5.2 واجهة Socket.io للاتصال المباشر
+javascript
+Copy
+// أحداث Socket.io
+
+// الاتصال بالخادم
+socket.on('connect', () => {
+  console.log('متصل بخادم المراسلة');
+  socket.emit('authenticate', { token: 'auth_token_here' });
+});
+
+// نجاح المصادقة
+socket.on('authenticated', (data) => {
+  console.log('تم المصادقة بنجاح', data.user_id);
+});
+
+// استلام رسالة جديدة
+socket.on('message', (message) => {
+  console.log('رسالة جديدة:', message);
+  // message: { id, conversation_id, sender, content, type, timestamp, ... }
+});
+
+// تحديث حالة الرسالة
+socket.on('message_status', (data) => {
+  console.log('تحديث حالة الرسالة:', data);
+  // data: { message_id, status, timestamp, ... }
+});
+
+// إشعار بمكالمة واردة
+socket.on('incoming_call', (call) => {
+  console.log('مكالمة واردة:', call);
+  // call: { call_id, conversation_id, caller, type, timestamp, ... }
+});
+
+// تحديث حالة المستخدم
+socket.on('user_status', (data) => {
+  console.log('تحديث حالة المستخدم:', data);
+  // data: { user_id, status, last_seen, ... }
+});
+
+// تحديث المحادثة
+socket.on('conversation_update', (data) => {
+  console.log('تحديث المحادثة:', data);
+  // data: { conversation_id, type, field, value, ... }
+});
+
+// إرسال رسالة
+socket.emit('send_message', {
+  conversation_id: 'conv_123',
+  content: 'مرحبا!',
+  type: 'text',
+  client_id: 'client_msg_123'
+});
+
+// تغيير حالة القراءة
+socket.emit('mark_read', {
+  conversation_id: 'conv_123',
+  message_ids: ['msg_789', 'msg_790']
+});
+
+// بدء الكتابة
+socket.emit('typing_start', {
+  conversation_id: 'conv_123'
+});
+
+// توقف الكتابة
+socket.emit('typing_end', {
+  conversation_id: 'conv_123'
+});
+9. وحدة التجارة الإلكترونية
+9.1 بنية متاجر التجار
+9.1.1 هيكل المتاجر
+معلومات المتجر الأساسية:
+اسم المتجر والوصف
+الشعار وصور الغلاف
+معلومات الاتصال
+الفئات والتخصصات
+خيارات التخصيص:
+قوالب متعددة قابلة للتخصيص
+ألوان وتنسيقات مخصصة
+خيارات العرض وترتيب المنتجات
+صفحات مخصصة (من نحن، سياسة الإرجاع، إلخ)
+مستويات المتاجر:
+مستوى أساسي: عدد محدود من المنتجات وميزات أساسية
+مستوى متوسط: منتجات أكثر وميزات متقدمة
+مستوى متقدم: منتجات غير محدودة وكافة الميزات
+9.1.2 الميزات الإدارية
+لوحة تحكم التاجر:
+نظرة عامة على الإحصائيات والمبيعات
+إدارة المنتجات والمخزون
+معالجة الطلبات وتتبع الشحنات
+تقارير وتحليلات
+إدارة الطاقم:
+إضافة موظفين بصلاحيات مختلفة
+تحديد الأدوار والمسؤوليات
+تتبع نشاط الموظفين
+تقارير الأداء
+الإعدادات العامة:
+خيارات الدفع والضرائب
+إعدادات الشحن والتوصيل
+سياسات الاسترجاع والإلغاء
+تفضيلات الإشعارات
+9.2 نظام إدارة المنتجات
+9.2.1 بنية المنتجات
+المعلومات الأساسية:
+اسم المنتج ووصفه
+الصور والوسائط المتعددة
+السعر والتخفيضات
+التصنيفات والعلامات
+المعلومات المتقدمة:
+رمز SKU وباركود
+تتبع المخزون
+خيارات وتكوينات المنتج (اللون، الحجم، إلخ)
+المنتجات ذات الصلة والبدائل
+أنواع المنتجات:
+منتجات بسيطة
+منتجات متغيرة (بخيارات متعددة)
+منتجات رقمية (للتنزيل)
+منتجات قابلة للتخصيص
+منتجات اشتراك (شهري، سنوي)
+9.2.2 التسعير والمخزون
+استراتيجيات التسعير:
+سعر ثابت
+أسعار مختلفة حسب الكمية
+عروض وخصومات مجدولة
+أسعار خاصة لفئات العملاء
+إدارة المخزون:
+تتبع الكميات المتاحة
+تنبيهات انخفاض المخزون
+حجز المخزون أثناء عملية الشراء
+إدارة المخزون حسب المتغيرات
+المخزون المتقدم:
+إدارة المنتجات في مواقع متعددة
+تتبع حركة المخزون
+إعادة الطلب التلقائي
+تقارير المخزون
+9.2.3 تنظيم المنتجات
+التصنيفات والفئات:
+بنية هرمية متعددة المستويات
+خصائص مخصصة لكل فئة
+قوالب عرض مخصصة
+إحصائيات وتحليلات الفئات
+العلامات والسمات:
+وسم المنتجات بكلمات مفتاحية
+تصفية وفرز المنتجات حسب السمات
+علامات قابلة للبحث
+إحصائيات أداء العلامات
+9.3 نظام الطلب والدفع
+9.3.1 سلة التسوق
+وظائف سلة التسوق:
+إضافة/إزالة/تعديل المنتجات
+حفظ السلة عبر الجلسات
+حساب المجاميع والضرائب
+تطبيق القسائم والخصومات
+تجربة المستخدم:
+سهولة العرض والتحديث
+اقتراحات المنتجات المكملة
+خيارات حفظ للتسوق لاحقًا
+التحويل السلس إلى الدفع
+آلية السلة:
+ Copy
+1. المستخدم يضيف منتج إلى السلة
+2. نظام التحقق من توفر المخزون
+3. تحديث السلة وإعادة حساب المجاميع
+4. حفظ السلة في التخزين المحلي وعلى الخادم
+5. عرض ملخص السلة مع خيار متابعة التسوق أو الدفع
+
+
+9.3.2 عملية الدفع
+خطوات الدفع:
+إدخال/اختيار عنوان الشحن
+اختيار طريقة الشحن
+اختيار طريقة الدفع
+مراجعة الطلب وتأكيده
+خيارات الدفع:
+محفظة AURA (الخيار الأساسي)
+بطاقات الائتمان/الخصم (عند توفرها)
+الدفع عند الاستلام
+خيارات الدفع المحلية
+آلية الدفع باستخدام محفظة AURA:
+ Copy
+1. المستخدم يختار الدفع بمحفظة AURA
+2. التحقق من كفاية الرصيد
+3. طلب تأكيد (رمز OTP أو مصادقة بيومترية)
+4. تنفيذ المعاملة وخصم المبلغ
+5. إنشاء إيصال رقمي
+6. إشعار التاجر بإتمام الدفع
+
+
+9.3.3 إدارة الطلبات
+دورة حياة الطلب:
+انتظار الدفع
+تم الدفع / قيد المعالجة
+قيد التحضير
+قيد الشحن / التوصيل
+تم التسليم
+مكتمل / ملغي / مسترجع
+معالجة الطلبات:
+تنبيهات للطلبات الجديدة
+إدارة تحضير المنتجات
+توليد وثائق الشحن
+تتبع حالة الطلب
+إدارة الإرجاع واسترداد الأموال:
+طلبات الإرجاع
+المعالجة والموافقة
+استرداد الأموال للمحفظة أو البطاقة
+تتبع المنتجات المرتجعة
+9.4 التكامل مع المحفظة
+9.4.1 عملية الشراء المتكاملة
+تكامل عملية الدفع:
+اختيار محفظة AURA كطريقة دفع
+تأكيد المعاملة من داخل تطبيق AURA
+معالجة فورية وتأكيد
+تأمين المعاملة:
+مصادقة المستخدم للدفعات
+حماية المشتري والبائع
+تخزين آمن لمعلومات المعاملة
+سجل التسوق:
+عرض سجل الطلبات في المحفظة
+ربط المعاملات المالية بالمشتريات
+سهولة تتبع النفقات حسب الفئة
+9.4.2 ميزات للتجار
+حساب التاجر المتكامل:
+استلام المدفوعات مباشرة في محفظة التاجر
+تقارير المبيعات والإيرادات
+سهولة سحب الأموال أو استخدامها
+خيارات الدفع المرنة:
+قبول الدفعات الفورية
+خطط الدفع المقسط
+نماذج الاشتراك
+الإيصالات والفواتير:
+إصدار تلقائي للإيصالات الرقمية
+إنشاء وإرسال الفواتير
+سجل محاسبي متكامل
+9.5 واجهات برمجة التطبيقات للتجارة
+9.5.1 API الداخلية للتجارة
+javascript
+Copy
+// إدارة المنتجات
+
+// إنشاء منتج جديد
+POST /api/v1/commerce/products
+Request: {
+  store_id: "store_123",
+  name: "هاتف ذكي XYZ",
+  description: "هاتف ذكي بمواصفات عالية...",
+  price: 1500.00,
+  discount_price: 1399.99,
+  category_id: "cat_456",
+  images: ["img_url_1", "img_url_2"],
+  sku: "SKU123456",
+  stock: 50,
+  attributes: [
+    { name: "اللون", value: "أسود" },
+    { name: "الذاكرة", value: "128 GB" }
+  ],
+  is_featured: true,
+  status: "active"
+}
+Response: {
+  id: "prod_789",
+  store_id: "store_123",
+  slug: "هاتف-ذكي-xyz",
+  status: "active",
+  created_at: "2023-03-20T13:45:00Z"
+}
+
+// إدارة المتاجر
+
+// إنشاء متجر جديد
+POST /api/v1/commerce/stores
+Request: {
+  merchant_id: "merchant_123",
+  name: "متجر الإلكترونيات الحديثة",
+  slug: "modern-electronics",
+  logo: "logo_url",
+  cover_image: "cover_url",
+  description: "متجر متخصص في الإلكترونيات...",
+  address: "شارع الخرطوم الرئيسي، مبنى 45",
+  phone: "+249123456789",
+  email: "store@example.com"
+}
+Response: {
+  id: "store_456",
+  merchant_id: "merchant_123",
+  slug: "modern-electronics",
+  status: "active",
+  created_at: "2023-03-15T10:30:00Z"
+}
+
+// إدارة الطلبات
+
+// الحصول على تفاصيل طلب
+GET /api/v1/commerce/orders/{id}
+Response: {
+  id: "order_123",
+  order_number: "ORD123456",
+  user_id: "user_789",
+  store_id: "store_456",
+  status: "processing",
+  payment_status: "paid",
+  shipping_address: {
+    name: "أحمد محمد",
+    phone: "+249123456789",
+    address: "شارع النيل، مبنى 12، شقة 3",
+    city: "الخرطوم",
+    state: "الخرطوم",
+    postal_code: "12345"
+  },
+  items: [
+    {
+      id: "item_123",
+      product_id: "prod_789",
+      product_name: "هاتف ذكي XYZ",
+      variant_name: "أسود - 128GB",
+      price: 1399.99,
+      quantity: 1,
+      subtotal: 1399.99
+    }
+  ],
+  subtotal: 1399.99,
+  shipping_cost: 50.00,
+  tax: 0.00,
+  discount: 0.00,
+  total: 1449.99,
+  tracking_number: "TRK987654321",
+  notes: "الرجاء الاتصال قبل التسليم",
+  created_at: "2023-03-21T09:15:00Z",
+  updated_at: "2023-03-21T14:30:00Z"
+}
+
+// تحديث حالة طلب
+PATCH /api/v1/commerce/orders/{id}/status
+Request: {
+  status: "shipped",
+  tracking_number: "TRK987654321",
+  notes: "تم شحن الطلب مع شركة التوصيل XYZ"
+}
+Response: {
+  id: "order_123",
+  status: "shipped",
+  tracking_number: "TRK987654321",
+  updated_at: "2023-03-22T10:45:00Z"
+}
+9.5.2 API للتكامل الخارجي
+javascript
+Copy
+// API للتكامل مع أنظمة التجار الخارجية
+
+// جلب المنتجات
+GET /api/v1/merchant/products
+Query: {
+  store_id: "store_123",
+  category: "electronics",
+  status: "active",
+  page: 1,
+  limit: 20
+}
+Response: {
+  total: 156,
+  page: 1,
+  limit: 20,
+  products: [
+    {
+      id: "prod_789",
+      name: "هاتف ذكي XYZ",
+      price: 1500.00,
+      discount_price: 1399.99,
+      stock: 47,
+      thumbnail: "https://aura.com/images/prod_789_thumb.jpg",
+      url: "https://aura.com/store/modern-electronics/هاتف-ذكي-xyz"
+    },
+    // ... المزيد من المنتجات
+  ]
+}
+
+// جلب الطلبات
+GET /api/v1/merchant/orders
+Query: {
+  store_id: "store_123",
+  status: "processing,shipped",
+  start_date: "2023-03-01",
+  end_date: "2023-03-31",
+  page: 1,
+  limit: 50
+}
+Response: {
+  total: 35,
+  page: 1,
+  limit: 50,
+  orders: [
+    {
+      id: "order_123",
+      order_number: "ORD123456",
+      customer_name: "أحمد محمد",
+      status: "processing",
+      payment_status: "paid",
+      total: 1449.99,
+      item_count: 1,
+      created_at: "2023-03-21T09:15:00Z"
+    },
+    // ... المزيد من الطلبات
+  ]
+}
+
+// إنشاء منتج
+POST /api/v1/merchant/products
+Request: {
+  store_id: "store_123",
+  name: "سماعات بلوتوث ABC",
+  description: "سماعات لاسلكية عالية الجودة...",
+  price: 350.00,
+  sku: "SKU789012",
+  stock: 100,
+  category_id: "cat_789",
+  images: ["https://merchant-site.com/images/headphones1.jpg"]
+}
+Response: {
+  id: "prod_123",
+  status: "active",
+  url: "https://aura.com/store/modern-electronics/سماعات-بلوتوث-abc"
+}
+
+// تحديث حالة طلب
+POST /api/v1/merchant/webhook/orders
+Request: {
+  order_id: "ORD123456",
+  external_order_id: "EXT987654",
+  status: "shipped",
+  tracking_number: "TRK987654321",
+  tracking_url: "https://shipping.com/track?number=TRK987654321",
+  notes: "تم الشحن مع خدمة التوصيل السريع"
+}
+Response: {
+  success: true,
+  message: "تم تحديث الطلب بنجاح"
+}
+10. وحدة الذكاء الاصطناعي
+10.1 بنية نظام الذكاء الاصطناعي
+10.1.1 المكونات الرئيسية
+خدمة الذكاء الاصطناعي المركزية:
+معالجة الطلبات من مختلف أجزاء النظام
+إدارة الاتصال مع واجهات API الخارجية
+دمج نماذج محلية وخارجية
+محركات الذكاء الاصطناعي:
+محرك التعلم الآلي للتحليلات والتنبؤات
+محرك معالجة اللغة الطبيعية
+محرك اكتشاف الاحتيال
+محرك أنظمة التوصية
+واجهات برمجة خارجية (API):
+اتصال مع نماذج OpenAI للدعم والمساعدة
+اتصال مع خدمات الذكاء الاصطناعي الأخرى
+أنظمة تعرف على الصور والنصوص
+نظام تخزين البيانات والنماذج:
+تخزين وإدارة نماذج التعلم الآلي
+تخزين بيانات التدريب
+تخزين سجلات التفاعل للتحسين المستمر
+10.1.2 هيكل التكامل
+خدمات نقاط النهاية (API Endpoints):
+واجهات RESTful للاتصال بخدمات الذكاء الاصطناعي
+دعم الاستعلامات المتزامنة وغير المتزامنة
+إدارة التحميل والتوسع التلقائي
+صف الطلبات (Queue):
+معالجة الطلبات في الخلفية
+تعيين الأولويات للطلبات المختلفة
+آلية إعادة المحاولة للطلبات الفاشلة
+آلية التحسين المستمر:
+جمع بيانات التغذية الراجعة من المستخدمين
+تحليل أداء النماذج وتحسينها
+دورة تدريب وتقييم منتظمة
+10.2 خدمات الدعم والمساعدة
+10.2.1 المساعد الافتراضي
+الواجهة والتفاعل:
+واجهة محادثة طبيعية
+دعم الإدخال الصوتي والنصي
+شخصية المساعد وأسلوب التواصل
+القدرات:
+الإجابة على الأسئلة الشائعة
+توجيه المستخدم عبر العمليات المختلفة
+حل المشكلات البسيطة
+تقديم معلومات عن المنتجات والخدمات
+التخصيص والتعلم:
+تعلم تفضيلات المستخدم
+اقتراحات مخصصة بناء على المحادثات السابقة
+تحسين الردود بناء على التغذية الراجعة
+10.2.2 نظام الدعم الذكي
+خدمة العملاء:
+فرز الاستفسارات وتصنيفها
+حل المشكلات الشائعة تلقائيًا
+توجيه المشكلات المعقدة لوكلاء بشريين
+متابعة حالة طلبات الدعم
+قاعدة المعرفة:
+قاعدة معرفة متطورة وقابلة للبحث
+توليد إج
+قاعدة المعرفة:
+قاعدة معرفة متطورة وقابلة للبحث
+توليد إجابات من المستندات والأدلة
+تحديثات تلقائية للمحتوى بناءً على المشكلات الجديدة
+إمكانية تصدير واستيراد المعرفة
+التحليل والتحسين:
+تحليل أنماط المشكلات الشائعة
+قياس معدلات حل المشكلات
+تحديد مجالات تحسين المنتج والخدمة
+تقارير أداء خدمة العملاء
+10.3 أنظمة التوصية الذكية
+10.3.1 محرك التوصيات
+أنواع التوصيات:
+توصيات المنتجات والخدمات
+توصيات المستخدمين (للتواصل)
+توصيات المحتوى (منشورات، أخبار)
+توصيات الميزات الجديدة
+خوارزميات التوصية:
+تصفية تعاونية (Collaborative Filtering)
+تصفية قائمة على المحتوى (Content-Based Filtering)
+نماذج هجينة
+نماذج الشبكات العصبية العميقة
+تخصيص التوصيات:
+تعلم تفضيلات المستخدم
+مراعاة السياق (الوقت، المكان، الحالة)
+تنويع التوصيات لتجنب الفقاعة
+تحسين التوصيات بناءً على التغذية الراجعة
+10.3.2 تطبيقات التوصيات
+التوصيات في التسوق:
+"منتجات ذات صلة"
+"اشترى الآخرون أيضًا"
+توصيات مخصصة في الصفحة الرئيسية
+توصيات بناءً على سلة التسوق الحالية
+التوصيات في التواصل الاجتماعي:
+اقتراح أصدقاء ومتابعين
+اقتراح مجموعات ومجتمعات
+ترتيب المنشورات في التغذية
+اقتراح محادثات ومواضيع
+التوصيات المالية:
+اقتراح الخدمات المالية المناسبة
+اقتراح استراتيجيات التوفير
+تنبيهات بفرص الادخار
+نصائح للإنفاق الذكي
+10.4 تكامل واجهات API الخارجية
+10.4.1 تكامل نماذج OpenAI
+استخدامات نماذج OpenAI:
+دعم المحادثات المتقدمة
+توليد محتوى للمتاجر والمنتجات
+تحليل وتلخيص التعليقات والمراجعات
+الترجمة والتعريب
+آلية التكامل:
+واجهة وسيطة لتحسين الأداء
+تخزين مؤقت للاستجابات المتكررة
+آلية احتياطية عند فشل الاتصال
+نظام مراقبة الاستخدام والتكاليف
+معالجة النتائج:
+تنقية وتصفية المحتوى المولد
+تكييف النتائج مع سياق AURA
+تحسين الأداء عبر تعلم التعزيز
+تحليل جودة الاستجابات
+10.4.2 تكامل خدمات الذكاء الاصطناعي الأخرى
+التعرف على الصور:
+تصنيف صور المنتجات
+التحقق من جودة وملاءمة الصور
+تحسين البحث المرئي
+اكتشاف المحتوى غير المناسب
+معالجة اللغة المتخصصة:
+تحليل المشاعر في التعليقات والمراجعات
+استخراج المعلومات من الوثائق
+تصنيف المحتوى
+اكتشاف الاحتيال اللغوي
+خدمات أخرى:
+خرائط وخدمات المواقع المكانية
+خدمات ترجمة متخصصة
+أنظمة التحقق من الهوية
+بوابات بيانات خارجية
+10.5 تحليلات البيانات والتنبؤات
+10.5.1 لوحات المعلومات التحليلية
+لوحات معلومات للمستخدمين:
+تحليل أنماط الإنفاق
+توقعات واتجاهات الإنفاق المستقبلية
+مقارنات مع المتوسطات
+توصيات تحسين الاستخدام
+لوحات معلومات للتجار:
+تحليل المبيعات والإيرادات
+تحليل سلوك العملاء
+توقعات الطلب والمخزون
+فرص النمو والتحسين
+لوحات معلومات للإدارة:
+مؤشرات الأداء الرئيسية
+تحليل النمو واتجاهات السوق
+تحليل المخاطر
+تقارير الامتثال
+10.5.2 التنبؤات والنمذجة
+نماذج التنبؤ:
+التنبؤ بالمبيعات والطلب
+التنبؤ بسلوك المستخدم
+التنبؤ بالاحتيال والمخاطر
+التنبؤ بأنماط التداول
+تحليل السيناريوهات:
+تقييم تأثير التغييرات في الأسعار
+تقييم فعالية العروض الترويجية
+تقييم إستراتيجيات التوسع
+تقييم المخاطر والفرص
+علم البيانات التطبيقي:
+تحليل البيانات الضخمة
+اكتشاف الأنماط والعلاقات
+نمذجة السلوك
+التعلم من البيانات التاريخية
+11. وحدة التوصيل واللوجستيات
+11.1 بنية نظام التوصيل
+11.1.1 المكونات الرئيسية
+إدارة الطلبات والشحنات:
+ربط الطلبات بعمليات الشحن
+توزيع الشحنات على السائقين
+تتبع حالة الشحنات
+جدولة عمليات التوصيل
+نظام تتبع الشحنات:
+تتبع الشحنات في الوقت الفعلي
+خرائط المسارات وتقدم التوصيل
+تقديرات وقت الوصول
+إشعارات التوصيل
+نظام إدارة السائقين:
+تسجيل وإدارة السائقين
+توزيع المهام وجدولتها
+تتبع أداء السائقين
+نظام الحوافز والمكافآت
+تكامل مع الخدمات الخارجية:
+شركات الشحن الخارجية
+خدمات GPS والخرائط
+نظام تخطيط المسارات
+خدمات التقارير والتحليلات
+11.1.2 نموذج البيانات
+الشحنات:
+ sql
+Copy
+CREATE TABLE shipments (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT UNSIGNED NOT NULL,
+  tracking_number VARCHAR(100) NOT NULL,
+  status VARCHAR(40) NOT NULL COMMENT 'pending, assigned, in_transit, delivered, failed, cancelled',
+  driver_id INT UNSIGNED NULL,
+  estimated_delivery DATETIME NULL,
+  actual_delivery DATETIME NULL,
+  recipient_name VARCHAR(255) NOT NULL,
+  recipient_phone VARCHAR(40) NOT NULL,
+  delivery_address TEXT NOT NULL,
+  delivery_notes TEXT NULL,
+  created_at TIMESTAMP NULL,
+  updated_at TIMESTAMP NULL,
+  KEY idx_order_id (order_id),
+  KEY idx_tracking_number (tracking_number),
+  KEY idx_driver_id (driver_id),
+  KEY idx_status (status)
+);
+
+
+مراحل الشحنة:
+ sql
+Copy
+CREATE TABLE shipment_statuses (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  shipment_id BIGINT UNSIGNED NOT NULL,
+  status VARCHAR(40) NOT NULL,
+  location VARCHAR(255) NULL,
+  latitude DECIMAL(10, 8) NULL,
+  longitude DECIMAL(11, 8) NULL,
+  notes TEXT NULL,
+  created_at TIMESTAMP NULL,
+  KEY idx_shipment_id (shipment_id)
+);
+
+
+السائقين:
+ sql
+Copy
+CREATE TABLE drivers (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id INT UNSIGNED NOT NULL,
+  vehicle_type VARCHAR(40) NOT NULL,
+  vehicle_number VARCHAR(40) NOT NULL,
+  license_number VARCHAR(40) NOT NULL,
+  current_latitude DECIMAL(10, 8) NULL,
+  current_longitude DECIMAL(11, 8) NULL,
+  is_available TINYINT NOT NULL DEFAULT 1,
+  rating DECIMAL(3, 2) NULL,
+  created_at TIMESTAMP NULL,
+  updated_at TIMESTAMP NULL,
+  KEY idx_user_id (user_id),
+  KEY idx_is_available (is_available)
+);
+
+
+11.2 إدارة السائقين ومزودي الخدمة
+11.2.1 تسجيل وإدارة السائقين
+عملية التسجيل:
+طلب تسجيل من السائق
+تقديم الوثائق المطلوبة (رخصة القيادة، تأمين المركبة)
+التحقق من الوثائق والخلفية
+الموافقة وتفعيل الحساب
+إدارة بيانات السائقين:
+المعلومات الشخصية والاتصال
+معلومات المركبة ووثائقها
+مناطق التغطية وأوقات العمل
+الإعدادات والتفضيلات
+مراقبة الأداء:
+تقييمات العملاء
+زمن التوصيل
+معدل قبول الطلبات
+معدل إلغاء الطلبات
+11.2.2 توزيع المهام والجدولة
+توزيع الطلبات:
+توزيع تلقائي بناءً على الموقع والتوافر
+اقتراح الطلبات للسائقين مع خيار القبول أو الرفض
+تجميع عمليات التوصيل القريبة
+توزيع عادل للعبء
+جدولة التوصيلات:
+حجز مواعيد مسبقة للتوصيل
+نوافذ زمنية للتوصيل
+تنبيهات بالمواعيد القادمة
+إدارة التأخير والتعديلات
+نظام المكافآت والعمولات:
+عمولات ثابتة ومتغيرة
+مكافآت للأداء المتميز
+حوافز للعمل في أوقات الذروة
+برامج ولاء للسائقين النشطين
+11.3 تتبع الطلبات وتحديثات الحالة
+11.3.1 نظام تتبع الشحنات
+تحديثات في الوقت الفعلي:
+تحديث حالة الشحنة بانتظام
+تسجيل إحداثيات GPS للسائق
+عرض الموقع على الخريطة
+تقدير وقت الوصول المتبقي
+إشعارات التتبع:
+إشعارات بالتغييرات في حالة الشحنة
+إشعار قبل الوصول
+إشعار عند تسليم الطلب
+إشعارات في حالة التأخير أو المشكلات
+واجهة تتبع للعملاء:
+صفحة تتبع مباشرة للعميل
+سجل تحديثات الحالة
+خريطة تتبع الشحنة
+اتصال مباشر بالسائق (اختياري)
+11.3.2 إدارة تحديثات الحالة
+حالات الشحنة:
+انتظار المعالجة
+قيد التحضير
+في الطريق
+تم التسليم
+فشل التسليم
+تم الإلغاء
+تحديث الحالة:
+تحديث تلقائي من خلال تطبيق السائق
+تحديث آلي من خلال إشارات GPS
+تحديث يدوي من خلال لوحة التحكم
+تحديث عند تسليم الطلب بتوقيع العميل
+معالجة حالات الفشل:
+إعادة المحاولة عند فشل التسليم
+إعادة توجيه الشحنة
+إلغاء أو إرجاع الطلب
+تقارير المشكلات والحلول
+11.4 خوارزميات تحديد المسارات
+11.4.1 تخطيط المسارات
+خوارزميات المسارات:
+مسار أقصر (Dijkstra's Algorithm)
+تخطيط متعدد النقاط
+تحسين المسار مع تجنب الازدحام
+دعم لقيود الوقت والمسافة
+تطبيق المسارات:
+عرض المسار المقترح للسائق
+تحديثات المسار أثناء القيادة
+تنبيهات الانحراف عن المسار
+اقتراح البدائل عند الازدحام
+تحسينات المسار:
+تعلم من بيانات المسارات السابقة
+تكيف مع أنماط حركة المرور
+مراعاة أوقات الذروة والأحداث الخاصة
+تحسين استهلاك الوقود والكفاءة
+11.4.2 توزيع الشحنات المتعددة
+تجميع الشحنات:
+تجميع طلبات متعددة في مسار واحد
+ترتيب تسلسل التوصيل
+توزيع العبء بين السائقين
+تحسين كفاءة التوصيل
+خوارزميات التجميع:
+حل مشكلة البائع المتجول (TSP)
+تجميع K-Means بناءً على الموقع
+توزيع متوازن للحمولة
+مراعاة نوافذ التوصيل المطلوبة
+إدارة التغييرات:
+إعادة التجميع عند إضافة طلبات جديدة
+إعادة التوزيع عند تغير توافر السائقين
+التكيف مع الطوارئ والتأخيرات
+إعادة جدولة الطلبات الفاشلة
+11.5 واجهات برمجة التطبيقات للتوصيل
+11.5.1 API الداخلية للتوصيل
+javascript
+Copy
+// إنشاء شحنة جديدة
+POST /api/v1/delivery/shipments
+Request: {
+  order_id: "order_123",
+  recipient_name: "أحمد محمد",
+  recipient_phone: "+249123456789",
+  delivery_address: {
+    address: "شارع النيل، مبنى 12، شقة 3",
+    city: "الخرطوم",
+    state: "الخرطوم",
+    postal_code: "12345",
+    latitude: 15.5007,
+    longitude: 32.5599
+  },
+  estimated_weight: 2.5, // بالكيلوجرام
+  delivery_notes: "الرجاء الاتصال قبل التسليم",
+  preferred_delivery_time: "2023-04-05T14:00:00Z" // اختياري
+}
+Response: {
+  id: "shipment_456",
+  tracking_number: "TRK987654321",
+  status: "pending",
+  estimated_delivery: "2023-04-05T16:00:00Z",
+  created_at: "2023-04-04T10:30:00Z"
+}
+
+// الحصول على تفاصيل شحنة
+GET /api/v1/delivery/shipments/{id}
+Response: {
+  id: "shipment_456",
+  order_id: "order_123",
+  tracking_number: "TRK987654321",
+  status: "in_transit",
+  driver: {
+    id: "driver_789",
+    name: "عمر علي",
+    phone: "+249987654321",
+    vehicle: "دراجة نارية - س ع ص 123"
+  },
+  current_location: {
+    latitude: 15.5050,
+    longitude: 32.5520,
+    updated_at: "2023-04-05T15:30:45Z"
+  },
+  estimated_delivery: "2023-04-05T16:00:00Z",
+  delivery_address: {
+    // ... تفاصيل العنوان
+  },
+  status_history: [
+    {
+      status: "pending",
+      timestamp: "2023-04-04T10:30:00Z"
+    },
+    {
+      status: "assigned",
+      timestamp: "2023-04-05T14:15:00Z"
+    },
+    {
+      status: "in_transit",
+      timestamp: "2023-04-05T14:30:00Z"
+    }
+  ]
+}
+
+// تحديث حالة شحنة
+PATCH /api/v1/delivery/shipments/{id}/status
+Request: {
+  status: "delivered",
+  location: {
+    latitude: 15.5007,
+    longitude: 32.5599
+  },
+  notes: "تم التسليم للعميل مباشرة",
+  proof_of_delivery: "pod_image_url.jpg" // اختياري
+}
+Response: {
+  id: "shipment_456",
+  status: "delivered",
+  delivered_at: "2023-04-05T15:45:30Z",
+  updated_at: "2023-04-05T15:45:30Z"
+}
+
+// الحصول على قائمة السائقين المتاحين
+GET /api/v1/delivery/drivers/available
+Query: {
+  latitude: 15.5007,
+  longitude: 32.5599,
+  radius: 5000, // بالمتر
+  vehicle_type: "motorcycle" // اختياري
+}
+Response: {
+  drivers: [
+    {
+      id: "driver_789",
+      name: "عمر علي",
+      vehicle_type: "motorcycle",
+      distance: 1200, // بالمتر
+      estimated_arrival_time: 8 // بالدقائق
+    },
+    // ... المزيد من السائقين
+  ]
+}
+11.5.2 API السائقين
+javascript
+Copy
+// تحديث حالة السائق
+PATCH /api/v1/delivery/driver/status
+Request: {
+  is_available: true,
+  location: {
+    latitude: 15.5050,
+    longitude: 32.5520
+  }
+}
+Response: {
+  id: "driver_789",
+  status: "available",
+  updated_at: "2023-04-05T15:00:00Z"
+}
+
+// الحصول على قائمة الشحنات المخصصة
+GET /api/v1/delivery/driver/shipments
+Query: {
+  status: "assigned,in_transit",
+  sort_by: "delivery_time"
+}
+Response: {
+  shipments: [
+    {
+      id: "shipment_456",
+      tracking_number: "TRK987654321",
+      status: "in_transit",
+      pickup_address: {
+        address: "متجر الإلكترونيات، شارع الخرطوم الرئيسي",
+        latitude: 15.5100,
+        longitude: 32.5650
+      },
+      delivery_address: {
+        address: "شارع النيل، مبنى 12، شقة 3",
+        latitude: 15.5007,
+        longitude: 32.5599
+      },
+      recipient_name: "أحمد محمد",
+      recipient_phone: "+249123456789",
+      estimated_delivery: "2023-04-05T16:00:00Z",
+      delivery_notes: "الرجاء الاتصال قبل التسليم"
+    },
+    // ... المزيد من الشحنات
+  ]
+}
+
+// قبول شحنة
+POST /api/v1/delivery/driver/shipments/{id}/accept
+Response: {
+  id: "shipment_456",
+  status: "assigned",
+  updated_at: "2023-04-05T14:15:00Z"
+}
+
+// تحديث مسار الشحنة
+POST /api/v1/delivery/driver/shipments/{id}/route
+Request: {
+  location: {
+    latitude: 15.5050,
+    longitude: 32.5520
+  },
+  estimated_arrival_time: "2023-04-05T16:00:00Z"
+}
+Response: {
+  id: "shipment_456",
+  status: "in_transit",
+  updated_at: "2023-04-05T15:30:45Z"
+}
+12. الواجهة الأمامية
+12.1 هيكل واجهة المستخدم
+12.1.1 التنظيم العام
+التخطيط العام:
+شريط التنقل الرئيسي
+الشريط الجانبي أو التنقل السفلي
+منطقة المحتوى الرئيسية
+الذيل والروابط السريعة
+تنظيم الصفحات:
+الصفحة الرئيسية (لوحة القيادة)
+صفحات الميزات الرئيسية (المحفظة، المراسلة، التسوق، إلخ)
+صفحات الإعدادات والملف الشخصي
+صفحات المساعدة والدعم
+تدفق التنقل:
+تدفق المستخدم سلس وبديهي
+خيارات التنقل المختصرة
+تنقل متسق عبر التطبيق
+تاريخ التنقل والرجوع
+12.1.2 مكونات الواجهة الرئيسية
+شريط التنقل:
+الشعار والهوية
+زر القائمة الرئيسية
+البحث السريع
+الإشعارات والرسائل
+التبديل بين الحسابات (إذا كان متاحًا)
+لوحة القيادة الرئيسية:
+ملخص الرصيد والمعاملات الأخيرة
+الإشعارات والتنبيهات المهمة
+اختصارات للإجراءات الشائعة
+آخر الأنشطة والتحديثات
+قوائم التنقل:
+الصفحة الرئيسية
+المحفظة
+المراسلة
+التسوق
+الاستكشاف
+المجتمع
+الإعدادات
+12.2 مكونات الواجهة الرئيسية
+12.2.1 تصميم الصفحة الرئيسية
+عناصر الصفحة الرئيسية:
+ html
+Copy
+<div class="dashboard-container">
+  <!-- ملخص الرصيد -->
+  <div class="balance-card">
+    <h2>رصيدك الحالي</h2>
+    <div class="balance-amount">5,240.75 SDG</div>
+    <div class="balance-actions">
+      <button class="btn btn-primary">إرسال</button>
+      <button class="btn btn-secondary">استلام</button>
+      <button class="btn btn-outline">إيداع</button>
+    </div>
+  </div>
+  
+  <!-- المعاملات الأخيرة -->
+  <div class="recent-transactions">
+    <div class="section-header">
+      <h3>آخر المعاملات</h3>
+      <a href="/transactions">عرض الكل</a>
+    </div>
+    <ul class="transaction-list">
+      <li class="transaction-item outgoing">
+        <div class="transaction-icon">
+          <i class="icon-send"></i>
+        </div>
+        <div class="transaction-details">
+          <div class="transaction-title">إرسال إلى أحمد محمد</div>
+          <div class="transaction-date">اليوم، 10:30 صباحًا</div>
+        </div>
+        <div class="transaction-amount">-500 SDG</div>
+      </li>
+      <li class="transaction-item incoming">
+        <div class="transaction-icon">
+          <i class="icon-receive"></i>
+        </div>
+        <div class="transaction-details">
+          <div class="transaction-title">استلام من متجر الإلكترونيات</div>
+          <div class="transaction-date">أمس، 3:45 مساءً</div>
+        </div>
+        <div class="transaction-amount">+1,200 SDG</div>
+      </li>
+      <!-- المزيد من المعاملات -->
+    </ul>
+  </div>
+  
+  <!-- الإجراءات السريعة -->
+  <div class="quick-actions">
+    <div class="action-item">
+      <i class="icon-qr-code"></i>
+      <span>مسح QR</span>
+    </div>
+    <div class="action-item">
+      <i class="icon-voucher"></i>
+      <span>قسائم</span>
+    </div>
+    <div class="action-item">
+      <i class="icon-bills"></i>
+      <span>فواتير</span>
+    </div>
+    <div class="action-item">
+      <i class="icon-more"></i>
+      <span>المزيد</span>
+    </div>
+  </div>
+  
+  <!-- الإشعارات والتنبيهات -->
+  <div class="notifications-panel">
+    <div class="section-header">
+      <h3>الإشعارات</h3>
+      <a href="/notifications">عرض الكل</a>
+    </div>
+    <ul class="notification-list">
+      <li class="notification-item unread">
+        <div class="notification-icon">
+
+
+<div class="notification-icon"> <i class="icon-offer"></i> </div> <div class="notification-content"> <div class="notification-title">عرض خاص على متجر الإلكترونيات</div> <div class="notification-text">استمتع بخصم 15% على جميع المنتجات حتى نهاية الأسبوع</div> <div class="notification-time">منذ ساعتين</div> </div> </li> <li class="notification-item"> <div class="notification-icon"> <i class="icon-security"></i> </div> <div class="notification-content"> <div class="notification-title">تسجيل دخول جديد</div> <div class="notification-text">تم تسجيل الدخول من جهاز جديد، إذا لم تكن أنت، يرجى تأمين حسابك</div> <div class="notification-time">أمس، 8:30 مساءً</div> </div> </li> <!-- المزيد من الإشعارات --> </ul> </div> </div> ```
+12.2.2 مكونات صفحة المحفظة
+عرض الرصيد والمعاملات:
+ html
+Copy
+<div class="wallet-container">
+  <!-- بطاقات الرصيد -->
+  <div class="balance-cards">
+    <div class="balance-card primary">
+      <div class="card-header">
+        <h3>الجنيه السوداني</h3>
+        <span class="currency-code">SDG</span>
+      </div>
+      <div class="card-body">
+        <div class="balance-amount">5,240.75</div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-light">تحويل</button>
+        <button class="btn btn-light">سحب</button>
+      </div>
+    </div>
+    <div class="balance-card secondary">
+      <div class="card-header">
+        <h3>الدولار الأمريكي</h3>
+        <span class="currency-code">USD</span>
+      </div>
+      <div class="card-body">
+        <div class="balance-amount">120.50</div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-light">تحويل</button>
+        <button class="btn btn-light">سحب</button>
+      </div>
+    </div>
+    <div class="add-currency-card">
+      <div class="card-body">
+        <i class="icon-plus"></i>
+        <span>إضافة عملة</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- عمليات المحفظة -->
+  <div class="wallet-actions">
+    <div class="action-row">
+      <div class="action-button">
+        <i class="icon-send"></i>
+        <span>إرسال</span>
+      </div>
+      <div class="action-button">
+        <i class="icon-receive"></i>
+        <span>استلام</span>
+      </div>
+      <div class="action-button">
+        <i class="icon-exchange"></i>
+        <span>تحويل العملات</span>
+      </div>
+      <div class="action-button">
+        <i class="icon-voucher"></i>
+        <span>القسائم</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- سجل المعاملات -->
+  <div class="transactions-history">
+    <div class="filter-bar">
+      <div class="period-selector">
+        <button class="active">الكل</button>
+        <button>اليوم</button>
+        <button>هذا الأسبوع</button>
+        <button>هذا الشهر</button>
+      </div>
+      <div class="search-filter">
+        <i class="icon-filter"></i>
+        <span>تصفية</span>
+      </div>
+    </div>
+    
+    <ul class="transaction-list detailed">
+      <!-- المعاملات -->
+    </ul>
+  </div>
+</div>
+
+
+12.2.3 مكونات صفحة المراسلة
+واجهة المراسلة:
+ html
+Copy
+<div class="messaging-container">
+  <div class="conversations-sidebar">
+    <div class="search-bar">
+      <input type="text" placeholder="بحث..." />
+      <i class="icon-search"></i>
+    </div>
+    
+    <div class="conversations-list">
+      <div class="conversation-item active">
+        <div class="avatar">
+          <img src="/avatars/user1.jpg" alt="أحمد محمد" />
+          <span class="status-indicator online"></span>
+        </div>
+        <div class="conversation-details">
+          <div class="conversation-header">
+            <span class="name">أحمد محمد</span>
+            <span class="time">10:30</span>
+          </div>
+          <div class="last-message">أين أنت الآن؟ هل يمكننا اللقاء...</div>
+        </div>
+      </div>
+      <!-- المزيد من المحادثات -->
+    </div>
+    
+    <div class="new-conversation">
+      <i class="icon-new-message"></i>
+      <span>محادثة جديدة</span>
+    </div>
+  </div>
+  
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-user-info">
+        <div class="avatar">
+          <img src="/avatars/user1.jpg" alt="أحمد محمد" />
+          <span class="status-indicator online"></span>
+        </div>
+        <div class="user-details">
+          <div class="name">أحمد محمد</div>
+          <div class="status">متصل الآن</div>
+        </div>
+      </div>
+      <div class="chat-actions">
+        <button class="btn-icon">
+          <i class="icon-call"></i>
+        </button>
+        <button class="btn-icon">
+          <i class="icon-video"></i>
+        </button>
+        <button class="btn-icon">
+          <i class="icon-info"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="messages-container">
+      <div class="message-date">اليوم</div>
+      
+      <div class="message-item received">
+        <div class="message-bubble">
+          <div class="message-text">مرحبا، كيف حالك؟</div>
+          <div class="message-time">10:15</div>
+        </div>
+      </div>
+      
+      <div class="message-item sent">
+        <div class="message-bubble">
+          <div class="message-text">بخير، شكرا! أين أنت الآن؟</div>
+          <div class="message-time">10:20</div>
+          <div class="message-status read"></div>
+        </div>
+      </div>
+      
+      <!-- المزيد من الرسائل -->
+    </div>
+    
+    <div class="message-composer">
+      <button class="btn-icon">
+        <i class="icon-attachment"></i>
+      </button>
+      <div class="message-input">
+        <input type="text" placeholder="اكتب رسالتك..." />
+      </div>
+      <button class="btn-icon">
+        <i class="icon-emoji"></i>
+      </button>
+      <button class="btn-icon send">
+        <i class="icon-send"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+12.3 تجربة المستخدم وسهولة الوصول
+12.3.1 مبادئ تجربة المستخدم
+البساطة والوضوح:
+واجهات نظيفة وخالية من التشتيت
+وضوح الإجراءات والأهداف
+تسلسل منطقي للعمليات والخطوات
+لغة بسيطة ومفهومة
+الاتساق:
+نمط تصميم موحد عبر التطبيق
+سلوك متناسق للعناصر المتشابهة
+مصطلحات متسقة وواضحة
+تجربة متماسكة عبر الأجهزة المختلفة
+ردود الفعل والاستجابة:
+استجابة فورية للإجراءات
+إشعارات وتنبيهات واضحة
+مؤشرات التحميل والتقدم
+تأكيد العمليات المهمة
+الكفاءة وسهولة الاستخدام:
+تقليل عدد النقرات اللازمة للإجراءات الشائعة
+اختصارات ووسائل سريعة للمهام المتكررة
+البحث والتصفية الفعالة
+تذكر التفضيلات والإعدادات
+12.3.2 سهولة الوصول
+المعايير المتبعة:
+الامتثال لمعايير WCAG 2.1 AA
+دعم قارئات الشاشة
+سهولة استخدام لوحة المفاتيح
+تباين ألوان مناسب
+ميزات سهولة الوصول:
+نصوص بديلة للصور
+تسميات وإشارات توضيحية للنماذج والأزرار
+هيكل عناوين منطقي
+القدرة على تغيير حجم النص
+اختبارات سهولة الوصول:
+اختبارات آلية باستخدام أدوات التحقق
+اختبارات مع مستخدمين حقيقيين من ذوي الاحتياجات الخاصة
+مراجعة الخبراء
+اختبارات التوافق مع التقنيات المساعدة
+12.4 التوافق عبر الأجهزة المختلفة
+12.4.1 التصميم المتجاوب
+استراتيجية تصميم الشبكة:
+نظام شبكة مرن (12 عمود)
+نقاط توقف (Breakpoints) متعددة لمختلف أحجام الشاشات
+تعديل تخطيطات طرق العرض
+تعديل حجم ومساحة العناصر
+تقنيات CSS المتقدمة:
+استخدام Flexbox وGrid
+وحدات نسبية (rem، %، vw/vh)
+Media Queries للتحكم في المظهر
+CSS المتغيرات للتخصيص
+إستراتيجية "Mobile First":
+تصميم للأجهزة المحمولة أولاً
+إضافة تعقيد وميزات إضافية للشاشات الأكبر
+تبسيط الواجهة في الشاشات الصغيرة
+تحسين أداء الهاتف المحمول
+12.4.2 الأجهزة والمتصفحات المدعومة
+الأجهزة المحمولة:
+الهواتف الذكية (iOS، Android)
+الأجهزة اللوحية
+تحسينات خاصة للأجهزة ذات الشاشات الصغيرة
+أجهزة سطح المكتب:
+أجهزة الكمبيوتر الشخصية
+أجهزة MacOS
+الشاشات الكبيرة والعالية الدقة
+المتصفحات المدعومة:
+Chrome (آخر إصدارين)
+Firefox (آخر إصدارين)
+Safari (آخر إصدارين)
+Edge (آخر إصدارين)
+دعم محدود لـ IE11 (إن لزم الأمر)
+12.4.3 تطبيقات الهاتف المحمول
+تطبيقات هجينة:
+React Native للتطبيق الرئيسي
+أداء قريب من الأصلي
+مشاركة معظم الكود بين iOS وAndroid
+واجهات محددة للنظام عند اللزوم
+ميزات الأجهزة الأصلية:
+الوصول إلى الكاميرا لمسح QR
+الإشعارات المحلية
+التخزين المحلي آمن
+الوصول إلى جهات الاتصال (بإذن)
+وضع عدم الاتصال:
+تخزين البيانات الأساسية محليًا
+المعاملات خارج الاتصال
+مزامنة تلقائية عند استعادة الاتصال
+واجهة مستخدم مصممة للعمل دون اتصال
+12.5 أنماط التصميم ومكتبات UI
+12.5.1 نظام التصميم
+المكونات الأساسية:
+دليل الألوان
+الطباعة والخطوط
+الرموز والأيقونات
+المسافات والهوامش
+الظلال والارتفاعات
+دليل الألوان:
+ css
+Copy
+:root {
+  /* الألوان الأساسية */
+  --color-primary: #F9A948;
+  --color-primary-light: #FABB6F;
+  --color-primary-dark: #E89530;
+  
+  /* الألوان الثانوية */
+  --color-secondary: #2A6DB0;
+  --color-secondary-light: #3F85CD;
+  --color-secondary-dark: #1A5798;
+  
+  /* ألوان المحايدة */
+  --color-neutral-50: #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #EEEEEE;
+  --color-neutral-300: #E0E0E0;
+  --color-neutral-400: #BDBDBD;
+  --color-neutral-500: #9E9E9E;
+  --color-neutral-600: #757575;
+  --color-neutral-700: #616161;
+  --color-neutral-800: #424242;
+  --color-neutral-900: #212121;
+  
+  /* ألوان الحالة */
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error: #F44336;
+  --color-info: #2196F3;
+}
+
+
+الطباعة والخطوط:
+ css
+Copy
+:root {
+  /* العائلات الخطية */
+  --font-family-sans: 'Cairo', 'Tajawal', sans-serif;
+  --font-family-display: 'Cairo', 'Tajawal', sans-serif;
+  --font-family-mono: 'Courier New', monospace;
+  
+  /* أحجام الخط */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-md: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  
+  /* أوزان الخط */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* ارتفاع السطر */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* تباعد الحروف */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+}
+
+
+12.5.2 مكتبات UI المستخدمة
+مكتبات الواجهة الأمامية:
+Tailwind CSS للتصميم السريع والمرن
+Vue.js كإطار عمل للتطبيق
+Headless UI لمكونات UI المتقدمة
+Vue Router للتنقل
+Vuex لإدارة الحالة
+مكونات UI الرئيسية:
+الأزرار والأشكال
+الحقول والنماذج
+البطاقات والقوائم
+الجداول والشبكات
+التنبيهات والإشعارات
+التبويبات والقوائم
+دليل التصميم التفاعلي:
+الحالات التفاعلية (هوفر، نشط، معطل)
+المؤثرات الانتقالية والرسوم المتحركة
+ردود الفعل والتلميحات
+أساليب التفاعل والاستجابة
+13. الأمان والخصوصية
+13.1 استراتيجية الأمان الشاملة
+13.1.1 مبادئ الأمان الأساسية
+الأمان بالتصميم:
+دمج الأمان في مرحلة التصميم
+مراجعات الأمان المنتظمة
+اتباع مبدأ الامتيازات الأقل
+التطوير الآمن والاختبار المستمر
+دفاع عميق متعدد الطبقات:
+طبقات متعددة من الحماية
+حماية نقاط النهاية
+حماية قاعدة البيانات
+أمان الشبكة والبنية التحتية
+كشف الحوادث والاستجابة:
+مراقبة مستمرة للأنشطة المشبوهة
+خطة استجابة للحوادث
+فريق استجابة للطوارئ
+التحسين المستمر بناءً على الحوادث
+13.1.2 إطار عمل الأمان
+التقييم والتخطيط:
+تقييم المخاطر المنتظم
+تحديد الأصول الحساسة
+تطوير سياسات الأمان
+وضع خطة أمنية
+التنفيذ والحماية:
+تطبيق ضوابط الأمان
+تصلب البنية التحتية
+إدارة الهوية والوصول
+حماية البيانات
+الكشف والاستجابة:
+مراقبة الأحداث الأمنية
+تحليل السجلات والأنشطة
+التنبيه عن الحوادث
+التحقيق والاستجابة
+التعافي والتحسين:
+استعادة العمليات بعد الحوادث
+تحليل ما بعد الحادث
+تحديث الضوابط الأمنية
+التحسين المستمر
+13.2 تشفير البيانات وحمايتها
+13.2.1 تشفير البيانات
+البيانات أثناء النقل:
+TLS 1.3 لجميع الاتصالات
+شهادات SSL موثوقة
+HTTP Strict Transport Security (HSTS)
+تأمين WebSockets و APIs
+البيانات أثناء التخزين:
+تشفير كامل لقاعدة البيانات
+تشفير الصفات الحساسة
+إدارة آمنة للمفاتيح
+تشفير النسخ الاحتياطية
+تشفير المحادثات:
+تشفير من طرف إلى طرف (E2EE)
+بروتوكول Signal للمراسلة الآمنة
+مفاتيح مؤقتة للجلسات
+تخزين الرسائل المحلية المشفرة
+تشفير المعاملات:
+توقيع رقمي للمعاملات
+تشفير بيانات المعاملات
+حماية البيانات المالية
+سجل تدقيق مشفر
+13.2.2 إدارة البيانات الحساسة
+تصنيف البيانات:
+تحديد فئات البيانات
+تصنيف البيانات حسب الحساسية
+تحديد متطلبات الحماية
+سياسات الاحتفاظ بالبيانات
+حماية البيانات الشخصية:
+التوافق مع قوانين حماية البيانات
+إخفاء البيانات الحساسة
+تقليل جمع البيانات
+ضوابط الوصول إلى البيانات
+إدارة دورة حياة البيانات:
+جمع البيانات الآمن
+معالجة البيانات
+تخزين البيانات
+حذف البيانات وتدميرها
+13.3 أمان المعاملات
+13.3.1 حماية المعاملات المالية
+مصادقة المعاملات:
+التحقق متعدد العوامل للمعاملات الكبيرة
+رموز التحقق لمرة واحدة (OTP)
+مصادقة بيومترية (بصمة، وجه)
+رموز PIN للمعاملات
+مراقبة المعاملات:
+كشف الأنماط غير العادية
+تنبيهات المعاملات المشبوهة
+حدود المعاملات (يومية، أسبوعية، شهرية)
+تتبع النشاط وسجل التدقيق
+ضوابط السلامة:
+تأكيد المعاملات متعدد الخطوات
+فترات تأخير للمعاملات الكبيرة
+معلومات مستفيد موثوقة
+إمكانية إلغاء المعاملات (خلال فترة محددة)
+13.3.2 التكامل والتوثيق
+سلامة المعاملات:
+توقيعات رقمية للمعاملات
+تشفير بيانات المعاملات
+رموز HMAC للتحقق
+مقاومة هجمات التكرار
+توثيق المعاملات:
+سجل معاملات غير قابل للتغيير
+إيصالات رقمية موثقة
+طوابع زمنية موثوقة
+أدلة رقمية للمعاملات
+حفظ السجلات:
+سجل كامل للمعاملات
+حفظ بيانات المعاملات آمن
+أرشفة المعاملات
+استرجاع البيانات الآمن
+13.4 اكتشاف الاحتيال والمنع
+13.4.1 أنظمة كشف الاحتيال
+تقنيات الكشف:
+تحليل السلوك (Behavioral Analytics)
+أنظمة قائمة على القواعد
+نماذج التعلم الآلي
+تحليلات الوقت الفعلي
+مؤشرات الاحتيال:
+أنماط معاملات غير عادية
+تغييرات في سلوك المستخدم
+تسجيل دخول من مواقع جديدة
+معاملات متعددة في وقت قصير
+إجراءات الاستجابة:
+تعليق المعاملات المشبوهة
+إشعارات للمستخدم
+تحقق إضافي للمعاملات المشبوهة
+تصعيد للمراجعة اليدوية
+13.4.2 منع الاحتيال
+إجراءات وقائية:
+التحقق من المستفيدين الجدد
+فترات انتظار للمستفيدين الجدد
+حدود المعاملات الافتراضية
+قوائم المستفيدين الموثوقين
+تثقيف المستخدم:
+توعية بأساليب الاحتيال الشائعة
+نصائح للمعاملات الآمنة
+كيفية التعرف على محاولات الاحتيال
+آليات الإبلاغ عن الاحتيال
+ضوابط متقدمة:
+التحقق من الجهاز والموقع
+التحقق من السياق
+التحقق من العلاقات والروابط
+تحليل أنماط التداول
+13.5 الامتثال للوائح والقوانين
+13.5.1 الامتثال التنظيمي
+اللوائح المالية:
+أنظمة مكافحة غسيل الأموال (AML)
+اعرف عميلك (KYC)
+مكافحة تمويل الإرهاب (CFT)
+لوائح الخدمات المالية المحلية
+حماية البيانات والخصوصية:
+قوانين حماية البيانات المحلية
+سياسة خصوصية واضحة
+موافقة المستخدم على جمع البيانات
+حقوق المستخدم في البيانات
+التقارير والتدقيق:
+تقارير المعاملات المشبوهة
+تقارير الامتثال
+التدقيق الدوري
+حفظ السجلات للامتثال
+13.5.2 ممارسات الخصوصية
+مبادئ الخصوصية:
+الحد الأدنى من البيانات
+تحديد الغرض من البيانات
+محدودية الاستخدام
+دقة البيانات
+ضوابط الخصوصية:
+تحكم المستخدم في البيانات
+إعدادات الخصوصية
+إمكانية حذف الحساب والبيانات
+شفافية في جمع واستخدام البيانات
+تقييم تأثير الخصوصية:
+تقييم مخاطر الخصوصية
+تطبيق الضو
+

@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Log;
+
+class CheckUserType
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string  $userType  El tipo de usuario requerido
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handle(Request $request, Closure $next, string $userType): Response
+    {
+        try {
+            // Registrar información para depuración
+            Log::info('CheckUserType middleware ejecutado', [
+                'required_type' => $userType,
+                'authenticated' => $request->user() ? 'true' : 'false',
+                'actual_type' => $request->user() ? $request->user()->user_type : 'none'
+            ]);
+            
+            // Verificar si el usuario está autenticado y tiene el tipo correcto
+            if (!$request->user()) {
+                Log::warning('Usuario no autenticado, redirigiendo a login');
+                return redirect()->route('login');
+            }
+            
+            // Verificar si el tipo de usuario coincide
+            if ($request->user()->user_type !== $userType) {
+                Log::info('Tipo de usuario incorrecto, redirigiendo a dashboard correspondiente', [
+                    'required' => $userType,
+                    'actual' => $request->user()->user_type
+                ]);
+                
+                // Redirigir según el tipo de usuario actual
+                return $this->redirectBasedOnUserType($request->user()->user_type);
+            }
+            
+            Log::info('Usuario verificado correctamente, continuando');
+            return $next($request);
+        } catch (\Exception $e) {
+            Log::error('Error en CheckUserType middleware', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            // En caso de error, redirigir a login
+            return redirect()->route('login')->with('error', 'Se produjo un error al verificar tu perfil. Por favor, inicia sesión de nuevo.');
+        }
+    }
+    
+    /**
+     * Redirige al usuario según su tipo
+     *
+     * @param string $userType
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function redirectBasedOnUserType(string $userType): Response
+    {
+        switch ($userType) {
+            case 'admin':
+                return redirect()->route('admin.dashboard');
+            case 'merchant':
+                return redirect()->route('merchant.dashboard');
+            case 'agent':
+                return redirect()->route('agent.dashboard');
+            case 'messenger':
+                return redirect()->route('messenger.dashboard');
+            default: // customer
+                return redirect()->route('customer.dashboard');
+        }
+    }
+}

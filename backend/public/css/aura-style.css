@@ -1,0 +1,433 @@
+/* أورا - ملف التنسيق الرئيسي */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+:root {
+    /* ألوان أساسية تناسب التجارة الإلكترونية والمحافظ الرقمية */
+    --primary-color: #4758B8;      /* أزرق غامق - يرمز للثقة والأمان */
+    --secondary-color: #14b8a6;    /* تركواز - يرمز للحداثة والرقمية */
+    --accent-color: #8C52FF;       /* بنفسجي - يرمز للإبداع والابتكار */
+    --text-color: #333333;         /* لون النص الأساسي */
+    --light-bg: #f8fafc;           /* خلفية فاتحة */
+    --white: #ffffff;              /* أبيض */
+    --success-color: #10b981;      /* أخضر - للنجاح والإتمام */
+    --warning-color: #f59e0b;      /* برتقالي - للتنبيهات */
+    --error-color: #ef4444;        /* أحمر - للأخطاء */
+    --border-color: #e2e8f0;       /* لون الحدود */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    direction: rtl;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--light-bg);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ترويسة الصفحة */
+header {
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-right: 1.5rem;
+}
+
+nav li:last-child {
+    margin-right: 0;
+}
+
+nav a {
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+nav a:hover {
+    border-bottom-color: var(--secondary-color);
+}
+
+/* القسم الرئيسي */
+main {
+    margin-top: 5rem;
+    padding: 2rem 0;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+section:nth-child(odd) {
+    background-color: var(--white);
+}
+
+section:nth-child(even) {
+    background-color: var(--light-bg);
+}
+
+section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+section p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+/* قسم المميزات */
+.features {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 6rem 0;
+}
+
+.features h2 {
+    color: var(--white);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.features p {
+    color: var(--white);
+    opacity: 0.9;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* قسم الأهداف */
+.goals {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.goals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.goal-card {
+    background-color: var(--white);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.goal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.goal-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.goal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* قسم الخدمات */
+.services {
+    padding: 5rem 0;
+    background-color: var(--light-bg);
+}
+
+.services ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 3rem auto;
+    max-width: 1000px;
+}
+
+.services li {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.services li:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-bottom-color: var(--accent-color);
+}
+
+/* قسم الانضمام */
+.join {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 6rem 0;
+}
+
+.join h2 {
+    color: var(--white);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.join p {
+    color: var(--white);
+    opacity: 0.9;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 2px solid var(--white);
+    font-size: 1.1rem;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--white);
+}
+
+/* قسم الأسئلة المتكررة */
+.faq {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.accordion {
+    max-width: 800px;
+    margin: 3rem auto;
+}
+
+.accordion-item {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 1.5rem;
+    background-color: var(--light-bg);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.accordion-content {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* تذييل الصفحة */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 3rem 0;
+}
+
+footer .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: var(--white);
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+footer a:hover {
+    opacity: 1;
+    color: var(--white);
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transition: all 0.3s;
+}
+
+.social-icon:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* التجاوب مع الشاشات المختلفة */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 0.5rem 1rem;
+    }
+    
+    header h1 {
+        margin-bottom: 1rem;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav li {
+        margin: 0.5rem 0.75rem;
+    }
+    
+    section h2 {
+        font-size: 2rem;
+    }
+    
+    .features h2 {
+        font-size: 2.5rem;
+    }
+    
+    main {
+        margin-top: 7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    .services ul {
+        grid-template-columns: 1fr;
+    }
+}

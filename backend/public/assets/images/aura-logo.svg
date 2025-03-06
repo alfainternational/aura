@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="50px" viewBox="0 0 150 50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="AURA-Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M15.8,40 L4,10 L11.2,10 L18.4,31 L25.6,10 L32.8,10 L21,40 L15.8,40 Z" id="A" fill="#3461FF"></path>
+        <path d="M39,40 L39,10 L61,10 L61,16 L46,16 L46,22 L59,22 L59,28 L46,28 L46,34 L61,34 L61,40 L39,40 Z" id="U" fill="#3461FF"></path>
+        <path d="M73,40 L66,10 L73.6,10 L77.8,30.4 L84.6,10 L91.4,10 L98.2,30.4 L102.4,10 L110,10 L103,40 L95.8,40 L88,18.3 L80.2,40 L73,40 Z" id="R" fill="#3461FF"></path>
+        <path d="M115,40 L115,10 L137,10 L137,16 L122,16 L122,22 L135,22 L135,28 L122,28 L122,34 L137,34 L137,40 L115,40 Z" id="A" fill="#3461FF"></path>
+        
+        <path d="M143,12 C143,10.3 144.3,9 146,9 C147.7,9 149,10.3 149,12 C149,13.7 147.7,15 146,15 C144.3,15 143,13.7 143,12 Z" id="Dot" fill="#F9A826"></path>
+        
+        <circle id="Outer-Ring" stroke="#3461FF" stroke-width="2" cx="25" cy="25" r="23"></circle>
+        <circle id="Inner-Ring" stroke="#F9A826" stroke-width="1.5" cx="25" cy="25" r="18" stroke-dasharray="2,2"></circle>
+    </g>
+</svg>

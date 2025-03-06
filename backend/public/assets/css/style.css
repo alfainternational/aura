@@ -1,0 +1,465 @@
+/**
+ * AURA - النظام البيئي الرقمي المتكامل
+ * CSS الرئيسي
+ */
+
+/* Estas variables ahora son de respaldo, las principales están en themes.css */
+:root {
+    --primary: var(--primary-color, #3461FF);
+    --primary-dark: var(--primary-color-dark, #2948CC);
+    --secondary: var(--secondary-color, #5D6A92);
+    --success: var(--success-color, #2E9B4F);
+    --info: var(--info-color, #2E9BAB);
+    --warning: var(--warning-color, #F9A826);
+    --danger: var(--danger-color, #E53F3C);
+    --light: var(--light-color, #F5F8FB);
+    --dark: var(--dark-color, #1E2432);
+    --darker: var(--darker-color, #131720);
+    --muted: var(--text-muted, #8896AB);
+    --body-bg: var(--body-bg, #FFFFFF);
+    --body-color: var(--text-primary, #4A5568);
+    --heading-color: var(--text-primary, #2D3748);
+    --border-color: var(--border-color, #E2E8F0);
+    --border-radius: 0.5rem;
+    --font-family: 'Cairo', sans-serif;
+    --font-size-base: 1rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --line-height-base: 1.5;
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --transition: all 0.2s ease-in-out;
+}
+
+/* ===== Base Styles ===== */
+html {
+    direction: rtl;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-base);
+    color: var(--body-color);
+    background-color: var(--body-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    font-weight: var(--font-weight-medium);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover, .btn-outline:focus {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* ===== Layout Components ===== */
+.section {
+    padding: 6rem 0;
+}
+
+.section-sm {
+    padding: 3rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    position: relative;
+}
+
+.section-title h2:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary);
+    transform: translateX(-50%);
+}
+
+.section-title p {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ===== Header ===== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+}
+
+.header-top {
+    font-size: 0.85rem;
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.navbar {
+    padding: 0.75rem 0;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+    font-weight: var(--font-weight-medium);
+}
+
+.navbar .nav-item.active .nav-link, 
+.navbar .nav-item:hover .nav-link {
+    color: var(--primary);
+}
+
+/* ===== Footer ===== */
+.site-footer {
+    background-color: var(--dark);
+    color: white;
+    padding-top: 4rem;
+}
+
+.footer-links a {
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: white !important;
+    padding-right: 5px;
+}
+
+.bg-darker {
+    background-color: var(--darker);
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(52, 97, 255, 0.1) 0%, rgba(52, 97, 255, 0) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--secondary);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-image {
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== Feature Cards ===== */
+.feature-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(52, 97, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.feature-icon i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--secondary);
+}
+
+/* ===== How it works ===== */
+.how-it-works {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.how-it-works:before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: var(--border-color);
+    top: 45px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.step {
+    text-align: center;
+    padding: 0 1rem;
+    flex: 1;
+    max-width: 25%;
+    min-width: 200px;
+    margin-bottom: 2rem;
+}
+
+.step-number {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.step p {
+    color: var(--secondary);
+}
+
+/* ===== CTA Section ===== */
+.cta-section {
+    background-color: var(--primary);
+    padding: 5rem 0;
+    color: white;
+    text-align: center;
+}
+
+.cta-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.cta-section .btn-outline {
+    border-color: white;
+    color: white;
+}
+
+.cta-section .btn-outline:hover {
+    background-color: white;
+    color: var(--primary);
+}
+
+/* ===== Back to top button ===== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.back-to-top.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-inner {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar-close {
+    cursor: pointer;
+}
+
+.sidebar-menu {
+    padding-right: 0;
+}
+
+.sidebar-menu-item {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-menu-link {
+    color: var(--body-color);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    display: block;
+    transition: var(--transition);
+}
+
+.sidebar-menu-link:hover, 
+.sidebar-menu-item.active .sidebar-menu-link {
+    background-color: rgba(52, 97, 255, 0.1);
+    color: var(--primary);
+}
+
+.sidebar-heading {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+/* ===== Media Queries ===== */
+@media (max-width: 991.98px) {
+    .hero-content {
+        text-align: center;
+        margin: 0 auto 3rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .step {
+        max-width: 50%;
+        margin-bottom: 3rem;
+    }
+    
+    .how-it-works:before {
+        display: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .section, .hero-section {
+        padding: 4rem 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .step {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}

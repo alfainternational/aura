@@ -1,0 +1,357 @@
+/**
+ * AURA Theme System - CSS Variables for Theme Support
+ */
+
+/* Default Theme Variables - Light Mode */
+:root {
+    /* Variables para el tema claro (predeterminado) */
+    --body-bg: #f8f9fa;
+    --body-color: #212529;
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.125);
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --input-color: #212529;
+    --input-focus-border: #80bdff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.25);
+    --nav-bg: #ffffff;
+    --nav-link-color: #495057;
+    --nav-link-hover: #0d6efd;
+    --nav-link-active: #0d6efd;
+    --border-color: #dee2e6;
+    --table-border: #dee2e6;
+    --table-striped: rgba(0, 0, 0, 0.05);
+    --table-hover: rgba(0, 0, 0, 0.075);
+    --dropdown-bg: #ffffff;
+    --dropdown-link-color: #212529;
+    --dropdown-link-hover-bg: #f8f9fa;
+    --modal-bg: #ffffff;
+    --modal-border: rgba(0, 0, 0, 0.2);
+    --toast-bg: #ffffff;
+    --toast-header-bg: rgba(255, 255, 255, 0.85);
+    --toast-border: rgba(0, 0, 0, 0.1);
+    --progress-bg: #e9ecef;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .175);
+    
+    /* Colores de texto */
+    --text-muted: #6c757d;
+    --text-primary: #0d6efd;
+    --text-secondary: #6c757d;
+    --text-success: #198754;
+    --text-info: #0dcaf0;
+    --text-warning: #ffc107;
+    --text-danger: #dc3545;
+    --text-light: #f8f9fa;
+    --text-dark: #212529;
+    
+    /* Colores de fondo */
+    --bg-primary: #0d6efd;
+    --bg-secondary: #6c757d;
+    --bg-success: #198754;
+    --bg-info: #0dcaf0;
+    --bg-warning: #ffc107;
+    --bg-danger: #dc3545;
+    --bg-light: #f8f9fa;
+    --bg-dark: #212529;
+    
+    /* Colores de borde */
+    --border-primary: #0d6efd;
+    --border-secondary: #6c757d;
+    --border-success: #198754;
+    --border-info: #0dcaf0;
+    --border-warning: #ffc107;
+    --border-danger: #dc3545;
+    --border-light: #f8f9fa;
+    --border-dark: #212529;
+    
+    /* Colores de botones */
+    --btn-primary-bg: #0d6efd;
+    --btn-primary-border: #0d6efd;
+    --btn-primary-color: #ffffff;
+    --btn-secondary-bg: #6c757d;
+    --btn-secondary-border: #6c757d;
+    --btn-secondary-color: #ffffff;
+    
+    /* Colores específicos de la aplicación */
+    --sidebar-bg: #ffffff;
+    --sidebar-color: #212529;
+    --sidebar-active-bg: #e9ecef;
+    --sidebar-active-color: #0d6efd;
+    --header-bg: #ffffff;
+    --header-color: #212529;
+    --footer-bg: #f8f9fa;
+    --footer-color: #212529;
+    --notification-badge-bg: #dc3545;
+    --notification-badge-color: #ffffff;
+}
+
+/* Tema oscuro */
+[data-theme="dark"] {
+    --body-bg: #121212;
+    --body-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-border: rgba(255, 255, 255, 0.125);
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    --input-bg: #2c2c2c;
+    --input-border: #444444;
+    --input-color: #e0e0e0;
+    --input-focus-border: #0d6efd;
+    --input-focus-shadow: rgba(13, 110, 253, 0.25);
+    --nav-bg: #1e1e1e;
+    --nav-link-color: #e0e0e0;
+    --nav-link-hover: #0d6efd;
+    --nav-link-active: #0d6efd;
+    --border-color: #444444;
+    --table-border: #444444;
+    --table-striped: rgba(255, 255, 255, 0.05);
+    --table-hover: rgba(255, 255, 255, 0.075);
+    --dropdown-bg: #2c2c2c;
+    --dropdown-link-color: #e0e0e0;
+    --dropdown-link-hover-bg: #3c3c3c;
+    --modal-bg: #2c2c2c;
+    --modal-border: rgba(255, 255, 255, 0.2);
+    --toast-bg: #2c2c2c;
+    --toast-header-bg: rgba(44, 44, 44, 0.85);
+    --toast-border: rgba(255, 255, 255, 0.1);
+    --progress-bg: #444444;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .3);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+    --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .7);
+    
+    /* Colores de texto */
+    --text-muted: #adb5bd;
+    --text-primary: #0d6efd;
+    --text-secondary: #adb5bd;
+    --text-success: #28a745;
+    --text-info: #17a2b8;
+    --text-warning: #ffc107;
+    --text-danger: #dc3545;
+    --text-light: #f8f9fa;
+    --text-dark: #343a40;
+    
+    /* Colores de fondo */
+    --bg-primary: #0d6efd;
+    --bg-secondary: #6c757d;
+    --bg-success: #28a745;
+    --bg-info: #17a2b8;
+    --bg-warning: #ffc107;
+    --bg-danger: #dc3545;
+    --bg-light: #343a40;
+    --bg-dark: #212529;
+    
+    /* Colores de borde */
+    --border-primary: #0d6efd;
+    --border-secondary: #6c757d;
+    --border-success: #28a745;
+    --border-info: #17a2b8;
+    --border-warning: #ffc107;
+    --border-danger: #dc3545;
+    --border-light: #343a40;
+    --border-dark: #212529;
+    
+    /* Colores de botones */
+    --btn-primary-bg: #0d6efd;
+    --btn-primary-border: #0d6efd;
+    --btn-primary-color: #ffffff;
+    --btn-secondary-bg: #6c757d;
+    --btn-secondary-border: #6c757d;
+    --btn-secondary-color: #ffffff;
+    
+    /* Colores específicos de la aplicación */
+    --sidebar-bg: #1e1e1e;
+    --sidebar-color: #e0e0e0;
+    --sidebar-active-bg: #2c2c2c;
+    --sidebar-active-color: #0d6efd;
+    --header-bg: #1e1e1e;
+    --header-color: #e0e0e0;
+    --footer-bg: #1e1e1e;
+    --footer-color: #e0e0e0;
+    --notification-badge-bg: #dc3545;
+    --notification-badge-color: #ffffff;
+}
+
+/* Aplicar variables CSS a elementos comunes */
+body {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    box-shadow: 0 0.125rem 0.25rem var(--card-shadow);
+}
+
+.form-control, .form-select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--input-color);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 0.25rem var(--input-focus-shadow);
+}
+
+.navbar, .nav {
+    background-color: var(--nav-bg);
+}
+
+.nav-link {
+    color: var(--nav-link-color);
+}
+
+.nav-link:hover {
+    color: var(--nav-link-hover);
+}
+
+.nav-link.active {
+    color: var(--nav-link-active);
+}
+
+.border {
+    border-color: var(--border-color) !important;
+}
+
+.table {
+    color: var(--body-color);
+}
+
+.table-bordered, .table-bordered th, .table-bordered td {
+    border-color: var(--table-border);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--table-striped);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--table-hover);
+}
+
+.dropdown-menu {
+    background-color: var(--dropdown-bg);
+}
+
+.dropdown-item {
+    color: var(--dropdown-link-color);
+}
+
+.dropdown-item:hover {
+    background-color: var(--dropdown-link-hover-bg);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    border-color: var(--modal-border);
+}
+
+.toast {
+    background-color: var(--toast-bg);
+    border-color: var(--toast-border);
+}
+
+.toast-header {
+    background-color: var(--toast-header-bg);
+}
+
+.progress {
+    background-color: var(--progress-bg);
+}
+
+/* Clases de texto */
+.text-muted { color: var(--text-muted) !important; }
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-success { color: var(--text-success) !important; }
+.text-info { color: var(--text-info) !important; }
+.text-warning { color: var(--text-warning) !important; }
+.text-danger { color: var(--text-danger) !important; }
+.text-light { color: var(--text-light) !important; }
+.text-dark { color: var(--text-dark) !important; }
+
+/* Clases de fondo */
+.bg-primary { background-color: var(--bg-primary) !important; }
+.bg-secondary { background-color: var(--bg-secondary) !important; }
+.bg-success { background-color: var(--bg-success) !important; }
+.bg-info { background-color: var(--bg-info) !important; }
+.bg-warning { background-color: var(--bg-warning) !important; }
+.bg-danger { background-color: var(--bg-danger) !important; }
+.bg-light { background-color: var(--bg-light) !important; }
+.bg-dark { background-color: var(--bg-dark) !important; }
+
+/* Elementos específicos de la aplicación */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-color);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--sidebar-active-bg);
+    color: var(--sidebar-active-color);
+}
+
+.app-header {
+    background-color: var(--header-bg);
+    color: var(--header-color);
+}
+
+.app-footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-color);
+}
+
+.notification-badge {
+    background-color: var(--notification-badge-bg);
+    color: var(--notification-badge-color);
+}
+
+/* Selector de tema */
+.theme-toggle {
+    display: inline-block;
+}
+
+.theme-toggle button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    color: var(--body-color);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle button i {
+    font-size: 1.25rem;
+}
+
+/* Muestras de color */
+.color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-swatch:hover, input:checked + .color-swatch {
+    border-color: var(--body-color);
+}
+
+/* Transiciones suaves */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}

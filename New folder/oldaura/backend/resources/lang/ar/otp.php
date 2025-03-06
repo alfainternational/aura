@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'verification_title' => 'التحقق من الرمز',
+    'verification_message' => 'تم إرسال رمز التحقق إلى رقم الهاتف المسجل :phone',
+    'verify_button' => 'تحقق',
+    'not_received' => 'لم تستلم الرمز؟',
+    'resend_button' => 'إعادة إرسال الرمز',
+    'resend_countdown' => 'إعادة إرسال الرمز خلال :time ثانية',
+    'generic_error' => 'حدث خطأ أثناء التحقق من الرمز',
+    'attempts_left' => 'محاولات متبقية: :attempts',
+    'no_attempts_left' => 'لقد استنفدت جميع المحاولات. يرجى طلب رمز جديد.',
+    'resent_success' => 'تم إرسال رمز جديد بنجاح',
+    'resend_error' => 'حدث خطأ أثناء إعادة إرسال الرمز',
+    'expired' => 'انتهت صلاحية الرمز. يرجى طلب رمز جديد.',
+    'transaction_verification' => 'التحقق من العملية',
+    'transaction_amount' => 'قيمة العملية: :amount',
+    'transaction_recipient' => 'المستفيد: :recipient',
+    'success_message' => 'تم التحقق من العملية بنجاح',
+    'account_verification' => 'التحقق من الحساب',
+    'login_verification' => 'التحقق من تسجيل الدخول',
+    'otp_settings' => 'إعدادات التحقق بخطوتين',
+    'enable_otp' => 'تفعيل التحقق بخطوتين للمعاملات',
+    'otp_threshold' => 'تفعيل التحقق بخطوتين للمعاملات التي تزيد عن',
+    'save_settings' => 'حفظ الإعدادات',
+    'settings_saved' => 'تم حفظ الإعدادات بنجاح',
+];
